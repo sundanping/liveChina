@@ -7,33 +7,40 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no,email=no">
-   <link rel="stylesheet" type="text/css" href="static/css/liveChina.css">
+   <link rel="stylesheet" type="text/css" href="src/css/liveChina.css">
 </head>
 <body ng-app="liveChinaApp">
-<article ng-view>
-	<section  id="nav">
+	<nav  id="nav">
 		<div class="col-2 padding-left-3rem">
 
-            <img class=" " src="static/imgs/right.png" alt="">
+            <img class=" " src="src/imgs/right.png" alt="">
         </div>
         <div class="col-8 title">直播中国</div>
 	    <div class="col-2 right ">
-            <img class="right transtrom padding-right-3rem" src="static/imgs/search.png" alt="">
+            <img class="right transtrom padding-right-3rem" src="src/imgs/search.png" alt="">
 
         </div>
-	</section>
+	</nav>
     <!--预告-->
     <div style='height:.6rem'></div>
-		<section> 
-            <div class="trailer">
-                <img style='width:100%;height:100%;' src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
+    <article ng-controller="live" >
+
+    <section ng-repeat=" data in trailer" >
+            <div class="trailer" style="background-image: url({{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}});
+    background-size:100% 100%;">
+            <!--<div class="logo">-->
+                <!--<img class="logo" style='width:100%;height:100%;' src="" alt="">-->
+                <!--<span>{{data.brief}}</span>-->
+            <!--</div>-->
+                <div></div>
+
             </div>
             <div class="trailer-msg">
                     <div class="padding-left-3rem display-inline-block">台联盟</div >
                     <div class="line"></div>
                     <span>人预约</span>
                     <span class="padding-right-3rem right">
-                    <img class="clock" src="static/imgs/clock.png" alt="clock">
+                    <img class="clock" src="src/imgs/clock.png" alt="clock">
                     分钟后</span>
             </div>
             <div class="bg-color-eee"></div>
@@ -42,8 +49,9 @@
         </section>
 
     <!--直播-->
-    <section >
+    <section ng-repeat=" data in live" >
     <div class="live trailer"></div>
+
         <div class="trailer-msg">
             <div class="padding-left-3rem display-inline-block">台联盟</div>
             <span class="padding-right-3rem right">人气</span >
@@ -55,7 +63,7 @@
 
     </div>
     <!--回看-->
-    <section class="">
+    <section ng-repeat=" data in history"  class="">
         <div class="history trailer"></div>
         <div class="trailer-msg">
              <div class="padding-left-3rem display-inline-block">台联盟</div>
@@ -66,16 +74,16 @@
 
     </div>
 </article>
-<!--<div ng-controller="live">{{aa}}</div>-->
+<div ng-controller="live">{{aa}}</div>
 
 
 </body>
 
 <!-- <script src="https://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script> -->
-<script src="static/js/lib/rem.js"></script>
-<script src="static/js/lib/angular.min.js"></script>
-<script src="static/js/lib/angular-route.min.js"></script>
-<script src="static/js/lib/liveChinaApp.js"></script>
+<script src="src/js/lib/rem.js"></script>
+<script src="src/js/lib/angular.min.js"></script>
+<script src="src/js/lib/angular-route.min.js"></script>
+<script src="src/js/lib/liveChinaApp.js"></script>
 <script type="text/javascript">
 
 </script>
