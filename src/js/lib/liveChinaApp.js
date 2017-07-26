@@ -1,6 +1,15 @@
 
-var liveChinaApp=angular.module('liveChinaApp', []);
+var liveChinaApp=angular.module('liveChinaApp', ['ngRoute']);
 var API_URL_ROOT = 'http://twapi.live.hoge.cn/index.php';
+liveChinaApp.constant('API_URL_ROOT', API_URL_ROOT);
+//路由
+liveChinaApp.config(['$routeProvider',
+    function(rp) {
+        rp.when('/live/:id',{templateUrl:'../liveChina/src/template/liveList.html'})
+            .when('/bbb', {templateUrl:'../tmps/bbb.html',
+                          controller: 'liveList'})
+            .otherwise({templateUrl:'../liveChina/src/template/liveIndex.html'});
+    }])
 liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
     $scope.aa=0;
     $http({
@@ -43,7 +52,10 @@ liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
 
     });
 }]);
+liveChinaApp.controller('liveList',  function($scope,$http,API_URL_ROOT,$routeParams){
+        console.log($routeParams.id); console.log(34)
 
+    })
 // liveChinaApp.config(['$routeProvider', function($routeProvider){
 //     $routeProvider
 //         .when('/',{template:'这是首页页面'})

@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="../css/liveChina.css">
+<nav  id="nav">
+    <div class="col-2 padding-left-3rem">
+
+        <img class=" " src="src/imgs/right.png" alt="">
+    </div>
+    <div class="col-8 title">直播中国</div>
+    <div class="col-2 right ">
+        <img class="right transtrom padding-right-3rem" src="src/imgs/search.png" alt="">
+
+    </div>
+</nav>
+<!--预告-->
+<div style='height:.6rem'></div>
+<article ng-controller="live" >
+    <!--http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif-->
+    <section ng-repeat=" data in trailer" >
+        <a href="#/live/{{data.id}}"> <div class="trailer" style="background-image: url({{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename||'http://ocb467zho.bkt.clouddn.com/bbs/pics/2017/0216/ce/cef05ac20cf7bc55ffeb64abffe78a60.jpg?{$hgPicSizeStart}imageView2/1/w/{$hgPicSizeWidth}/h/{$hgPicSizeHeight}{$hgPicSizeEnd}'}});
+    background-size:100% 100%;">
+            <!--<div class="logo">-->
+            <!--<img class="logo" style='width:100%;height:100%;' src="" alt="">-->
+            <!--<span>{{data.brief}}</span>-->
+            <!--</div>-->
+            <div></div>
+
+        </div></a>
+        <div class="trailer-msg">
+            <div class="padding-left-3rem display-inline-block">台联盟</div >
+            <div class="line"></div>
+            <span>人预约</span>
+            <span class="padding-right-3rem right">
+                    <img class="clock" src="src/imgs/clock.png" alt="clock">
+                    分钟后</span>
+        </div>
+        <div class="bg-color-eee"></div>
+
+
+    </section>
+
+    <!--直播-->
+    <section ng-repeat=" data in live" >
+        <div class="live trailer" style="background-image: url({{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename||'http://ocb467zho.bkt.clouddn.com/bbs/pics/2017/0216/ce/cef05ac20cf7bc55ffeb64abffe78a60.jpg?{$hgPicSizeStart}imageView2/1/w/{$hgPicSizeWidth}/h/{$hgPicSizeHeight}{$hgPicSizeEnd}'}});
+    background-size:100% 100%;"></div>
+
+        <div class="trailer-msg">
+            <div class="padding-left-3rem display-inline-block">台联盟</div>
+            <span class="padding-right-3rem right">人气</span >
+        </div>
+        <div class="bg-color-eee"></div>
+
+    </section>
+    <div>
+
+    </div>
+    <!--回看-->
+    <section ng-repeat=" data in history"  class="">
+        <div class="history trailer" style="background-image: url({{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename||'http://ocb467zho.bkt.clouddn.com/bbs/pics/2017/0216/ce/cef05ac20cf7bc55ffeb64abffe78a60.jpg?{$hgPicSizeStart}imageView2/1/w/{$hgPicSizeWidth}/h/{$hgPicSizeHeight}{$hgPicSizeEnd}'}});
+    background-size:100% 100%;"></div>
+        <div class="trailer-msg">
+            <div class="padding-left-3rem display-inline-block">台联盟</div>
+            <span class="padding-right-3rem right">人气</span >
+        </div>
+    </section>
+    <div>
+
+    </div>
+</article>
+<div ng-controller="live">{{aa}}</div>
+
+
