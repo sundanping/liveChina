@@ -42,62 +42,6 @@ liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
 
 
     });
-
-
-     $http({
-        method: 'JSONP',
-        // url: 'http://www.b.com/test.php?callback=JSON_CALLBACK',
-        url:API_URL_ROOT+"?callback=JSON_CALLBACK"+'&m=Apituwenol&c=tuwenol&a=detail&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197',
-        // data:{
-        //     show_tailer:0,
-        //     custom_appkey:'da1c994019b00a760a68e735db9dc281',
-        //     custom_appid:197
-        // },
-    }).success(function (msg) {
-            console.log(msg)
-        });
-       
-
-     $http({
-        method: 'JSONP',
-        // url: 'http://www.b.com/test.php?callback=JSON_CALLBACK',
-        url:API_URL_ROOT+"?callback=JSON_CALLBACK"+'&m=Apituwenol&c=tuwenol&a=detail&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197',
-        // data:{
-        //     show_tailer:0,
-        //     custom_appkey:'da1c994019b00a760a68e735db9dc281',
-        //     custom_appid:197
-        // },
-    }).success(function (msg) {
-            console.log(msg)
-        });
-       
-     $http({
-        method: 'JSONP',
-        // url: 'http://www.b.com/test.php?callback=JSON_CALLBACK',
-        url:API_URL_ROOT+"?callback=JSON_CALLBACK"+'&m=Apituwenol&c=tuwenol&a=detail&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197',
-        // data:{
-        //     show_tailer:0,
-        //     custom_appkey:'da1c994019b00a760a68e735db9dc281',
-        //     custom_appid:197
-        // },
-    }).success(function (msg) {
-            console.log(msg)
-        });
-       
-     $http({
-        method: 'JSONP',
-        // url: 'http://www.b.com/test.php?callback=JSON_CALLBACK',
-        url:API_URL_ROOT+"?callback=JSON_CALLBACK"+'&m=Apituwenol&c=tuwenol&a=show_comment&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197',
-        // data:{
-        //     show_tailer:0,
-        //     custom_appkey:'da1c994019b00a760a68e735db9dc281',
-        //     custom_appid:197
-        // },
-    }).success(function (msg) {
-            console.log(msg)
-        });
-       
-
 }]);
 
 // liveChinaApp.config(['$routeProvider', function($routeProvider){
