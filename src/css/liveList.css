@@ -18,29 +18,29 @@
 .font-size-26{
     font-size: .26rem;
 }
-.introduce-interation{
+.introduce-interaction{
     color:#999;
     text-align: center;
     line-height:.65rem;
     height:.65rem;
     border-bottom: 2px solid #F0F0F0;
 }
-introduce-interation>div{
+introduce-interaction>div{
     line-height:.65rem;
 
 }
-.interation>div:first-child{
+.interaction>div:first-child{
     margin-top:.2rem;
 
 }
-.interation{
+.interaction{
     margin-bottom:1rem;
 }
-.interation>div{
+.interaction>div{
     font-size: .24rem;
     margin-top:.3rem;
 }
-.interation>div>div{
+.interaction>div>div{
     display: inline-block;
 
 }
@@ -70,6 +70,9 @@ introduce-interation>div{
     padding:0  .15rem;
     margin-left: .2rem;
 
+}
+#none{
+    display: none!important;
 }
 .user-logo{
     width: .6rem;
@@ -145,3 +148,4 @@ introduce-interation>div{
     top:.2rem;
     background-color: #f2f2f2;
 }
+

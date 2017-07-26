@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2dd33350-1177-400e-8ff1-7658957090de" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/lib/liveChinaApp.js" afterPath="$PROJECT_DIR$/src/js/lib/liveChinaApp.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/liveList.css" afterPath="$PROJECT_DIR$/src/css/liveList.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/lib/liveList.js" afterPath="$PROJECT_DIR$/src/js/lib/liveList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/template/liveIndex.html" afterPath="$PROJECT_DIR$/src/template/liveIndex.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/template/liveList.html" afterPath="$PROJECT_DIR$/src/template/liveList.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -45,7 +45,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="liveIndex.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="liveIndex.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/template/liveIndex.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="319">
@@ -88,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="liveList.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="liveList.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/lib/liveList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="108">
+              <caret line="4" column="38" lean-forward="false" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -101,8 +101,18 @@
       <file leaf-file-name="liveList.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/template/liveList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2268">
-              <caret line="85" column="46" lean-forward="false" selection-start-line="85" selection-start-column="46" selection-end-line="85" selection-end-column="46" />
+            <state relative-caret-position="-135">
+              <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="liveList.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/css/liveList.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="72" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -122,6 +132,9 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>sta</find>
+      <find>intera</find>
+      <find>interation</find>
+      <find>introduce-interation</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -138,14 +151,14 @@
         <option value="$PROJECT_DIR$/src/js/lib/rem.js" />
         <option value="$PROJECT_DIR$/src/css/liveChina.css" />
         <option value="$PROJECT_DIR$/src/css/normal.css" />
-        <option value="$PROJECT_DIR$/src/css/liveList.css" />
         <option value="$PROJECT_DIR$/src/template/search.html" />
         <option value="$PROJECT_DIR$/src/css/search.css" />
         <option value="$PROJECT_DIR$/liveChina.html" />
-        <option value="$PROJECT_DIR$/src/template/liveList.html" />
         <option value="$PROJECT_DIR$/src/js/lib/liveChinaApp.js" />
-        <option value="$PROJECT_DIR$/src/js/lib/liveList.js" />
         <option value="$PROJECT_DIR$/src/template/liveIndex.html" />
+        <option value="$PROJECT_DIR$/src/css/liveList.css" />
+        <option value="$PROJECT_DIR$/src/template/liveList.html" />
+        <option value="$PROJECT_DIR$/src/js/lib/liveList.js" />
       </list>
     </option>
   </component>
@@ -163,8 +176,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="128" />
-    <option name="y" value="37" />
+    <option name="x" value="75" />
+    <option name="y" value="91" />
     <option name="width" value="1306" />
     <option name="height" value="776" />
   </component>
@@ -410,7 +423,7 @@
       <option name="presentableId" value="Default" />
       <updated>1500953616172</updated>
       <workItem from="1500953618586" duration="33026000" />
-      <workItem from="1501077247244" duration="9753000" />
+      <workItem from="1501077247244" duration="11836000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1500954287275</created>
@@ -447,19 +460,27 @@
       <option name="project" value="LOCAL" />
       <updated>1501087391401</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="播放页ajax">
+      <created>1501089716748</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1501089716748</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42779000" />
+    <option name="totallyTimeSpent" value="44862000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="128" y="37" width="1306" height="776" extended-state="0" />
+    <frame x="75" y="91" width="1306" height="776" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.06744186" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12868217" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16516517" sideWeight="0.50310075" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0045045046" sideWeight="0.49379843" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -472,7 +493,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -505,7 +525,8 @@
     <MESSAGE value="test" />
     <MESSAGE value="ajax" />
     <MESSAGE value="路由" />
-    <option name="LAST_COMMIT_MESSAGE" value="路由" />
+    <MESSAGE value="播放页ajax" />
+    <option name="LAST_COMMIT_MESSAGE" value="播放页ajax" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -629,7 +650,6 @@
     <entry file="file://$PROJECT_DIR$/src/css/normal.css" />
     <entry file="file://$PROJECT_DIR$/src/template/search.html" />
     <entry file="file://$PROJECT_DIR$/src/css/search.css" />
-    <entry file="file://$PROJECT_DIR$/src/css/liveList.css" />
     <entry file="file://$PROJECT_DIR$/src/css/liveChina.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -646,34 +666,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/template/liveList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2268">
-          <caret line="85" column="46" lean-forward="false" selection-start-line="85" selection-start-column="46" selection-end-line="85" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/lib/liveList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/lib/liveChinaApp.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-81">
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/liveChina.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
-          <caret line="21" column="4" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="46" />
           <folding />
         </state>
       </provider>
@@ -686,6 +682,38 @@
             <element signature="n#style#0;n#div#0;n#a#0;n#section#0;n#article#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#a#0;n#section#1;n#article#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/liveChina.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="21" column="4" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/css/liveList.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="72" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/template/liveList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-135">
+          <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/lib/liveList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" column="38" lean-forward="false" selection-start-line="4" selection-start-column="38" selection-end-line="4" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>

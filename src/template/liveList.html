@@ -1,13 +1,20 @@
 <link rel="stylesheet" href="src/css/liveList.css">
+<style>
+    .none{display: none}
+.haha{
+   color: red!important;
+}
+
+</style>
 <body ng-controller="liveList">
     <div class="show-video">
         <video  src=""></video>
     </div>
     <div class="title">中央电视台领导莅临</div>
     <div class="bg-color-238"></div>
-    <div class="introduce-interation">
-        <div class="col-6 font-size-26 ">简介</div>
-        <div class="col-6 font-size-26 " >互动<span>(455)</span>
+    <div class="introduce-interaction">
+        <div ng-click="changeIntroduce()" id="introduce1" class="col-6 font-size-26 ">简介</div>
+        <div ng-click="changeIntroduce()" id="c" class="col-6 font-size-26 " >互动<span>(455)</span>
         </div>
         <div style="height: 2px;background-color: #333;width: .6rem;position: relative;
 top: .61rem;left: 70%;"></div>
@@ -15,7 +22,7 @@ top: .61rem;left: 70%;"></div>
 
     </div>
     <!--互动BAGIN-->
-    <div class="interation">
+    <div class="interaction">
         <div>
             <div class="user-logo"><img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt=""> </div>
 
@@ -50,13 +57,13 @@ top: .61rem;left: 70%;"></div>
     <!--互动END-->
 
 <!--简介BEGIN-->
-    <div>
+    <div class="none" >
         <div class="introduce">
             <img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
             <span> 无线南京</span>
         </div>
         <div class="introduce-content">
-            简 <span>介:</span>HTTP协议（HyperText Transfer Protocol，超文本传输协议）是因特网上应用最为广泛的一种网络传输协议，所有的WWW文件都必须遵守这个标准。
+            简 <span>介:</span>111111HTTP协议（HyperText Transfer Protocol，超文本传输协议）是因特网上应用最为广泛的一种网络传输协议，所有的WWW文件都必须遵守这个标准。
             HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）
         </div>
     </div>
