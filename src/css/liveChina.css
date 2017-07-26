@@ -9,14 +9,14 @@
 .padding-left-3rem{
 	padding-left:.3rem;
 }
-@media screen and (min-width:460px)and (min-width:640px){
-	 html{font-size:100px!important;}
-	 .transtrom{
-	  transform:scale(1.5);
-	     -ms-transform:scale(1.5);
-	     -webkit-transform: scale(1.5);
-	 }
-}
+/*@media screen and (min-width:460px)and (min-width:640px){*/
+	 /*html{font-size:100px!important;}*/
+	 /*.transtrom{*/
+	  /*transform:scale(1.5);*/
+	     /*-ms-transform:scale(1.5);*/
+	     /*-webkit-transform: scale(1.5);*/
+	 /*}*/
+/*}*/
 #nav>div{
 	display:inline-block;
 }
