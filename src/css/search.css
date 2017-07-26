@@ -32,18 +32,8 @@ height: 1rem;
     line-height: 1rem;
 
 }
-.search-history{
-    margin:0 .2rem;
-}
 .search-history>div{
-    font-size: .3rem;
-    height: .9rem;
-    line-height: .9rem;
-    color:#999;
-    border-bottom:1px solid #cbcbcb;
-}
-.search-history> div:first-child{
-    color:#333;
+    font-size: 30px;
 }
 .clear-history{
     font-size: .3rem;
