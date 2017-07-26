@@ -15,7 +15,7 @@
 <article ng-controller="live" >
     <!--http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif-->
     <section ng-repeat=" data in trailer" >
-        <a href="#/live/{{data.id}}"> <div class="trailer" style="background-image: url({{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename||'http://ocb467zho.bkt.clouddn.com/bbs/pics/2017/0216/ce/cef05ac20cf7bc55ffeb64abffe78a60.jpg?{$hgPicSizeStart}imageView2/1/w/{$hgPicSizeWidth}/h/{$hgPicSizeHeight}{$hgPicSizeEnd}'}});
+        <a href="#/liveList/{{data.id}}"> <div class="trailer" style="background-image: url({{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename||'http://ocb467zho.bkt.clouddn.com/bbs/pics/2017/0216/ce/cef05ac20cf7bc55ffeb64abffe78a60.jpg?{$hgPicSizeStart}imageView2/1/w/{$hgPicSizeWidth}/h/{$hgPicSizeHeight}{$hgPicSizeEnd}'}});
     background-size:100% 100%;">
             <!--<div class="logo">-->
             <!--<img class="logo" style='width:100%;height:100%;' src="" alt="">-->
@@ -39,9 +39,10 @@
 
     <!--直播-->
     <section ng-repeat=" data in live" >
-        <div class="live trailer" style="background-image: url({{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename||'http://ocb467zho.bkt.clouddn.com/bbs/pics/2017/0216/ce/cef05ac20cf7bc55ffeb64abffe78a60.jpg?{$hgPicSizeStart}imageView2/1/w/{$hgPicSizeWidth}/h/{$hgPicSizeHeight}{$hgPicSizeEnd}'}});
-    background-size:100% 100%;"></div>
-
+        <a href="#/liveList/{{data.id}}">
+            <div class="live trailer" style="background-image: url({{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename||'http://ocb467zho.bkt.clouddn.com/bbs/pics/2017/0216/ce/cef05ac20cf7bc55ffeb64abffe78a60.jpg?{$hgPicSizeStart}imageView2/1/w/{$hgPicSizeWidth}/h/{$hgPicSizeHeight}{$hgPicSizeEnd}'}});
+        background-size:100% 100%;"></div>
+        </a>
         <div class="trailer-msg">
             <div class="padding-left-3rem display-inline-block">台联盟</div>
             <span class="padding-right-3rem right">人气</span >
