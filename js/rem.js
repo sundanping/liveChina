@@ -1,7 +1,7 @@
 
 // 监听浏览器,针对不同分辨率计算font-size
 // 然后根据设计稿比如尺寸是750尺寸      rem = 设计稿的字体大小 / 100 ; 16px —> 0.16rem
-
+console.log(1)
 
 (function (doc, win) {
     var docEl = doc.documentElement,

@@ -7,77 +7,102 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no,email=no">
-   <link rel="stylesheet" type="text/css" href="static/css/liveChina.css">
+    <link rel="stylesheet" type="text/css" href="../css/normal.css">
+
+    <link rel="stylesheet" type="text/css" href="../css/liveList.css">
 </head>
-<body ng-app="liveChinaApp">
-	<nav  id="nav">
-		<div class="col-2 padding-left-3rem">
-
-            <img class=" " src="static/imgs/right.png" alt="">
+<body >
+    <div class="show-video">
+        <video  src=""></video>
+    </div>
+    <div class="title">中央电视台领导莅临</div>
+    <div class="bg-color-238"></div>
+    <div class="introduce-interation">
+        <div class="col-6 font-size-26 ">简介</div>
+        <div class="col-6 font-size-26 " >互动<span>(455)</span>
         </div>
-        <div class="col-8 title">????</div>
-	    <div class="col-2 right ">
-            <img class="right transtrom padding-right-3rem" src="static/imgs/search.png" alt="">
+        <div style="height: 2px;background-color: #333;width: .6rem;position: relative;
+top: .61rem;left: 70%;"></div>
 
-        </div>
-	</nav>
-    <!--??-->
-    <div style='height:.6rem'></div>
-    <!--<div></div>-->
-    <article ng-repeat="liveType">
-    <section>
-            <div class="trailer">
-                <img style='width:100%;height:100%;' src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
-            </div>
-            <div class="trailer-msg">
-                    <div class="padding-left-3rem display-inline-block">???</div >
-                    <div class="line"></div>
-                    <span>???</span>
-                    <span class="padding-right-3rem right">
-                    <img class="clock" src="static/imgs/clock.png" alt="clock">
-                    ???</span>
-            </div>
-            <div class="bg-color-eee"></div>
-
-
-        </section>
-
-    <!--??-->
-    <section >
-    <div class="live trailer"></div>
-        <div class="trailer-msg">
-            <div class="padding-left-3rem display-inline-block">???</div>
-            <span class="padding-right-3rem right">??</span >
-        </div>
-            <div class="bg-color-eee"></div>
-
-    </section>
-    <div>
 
     </div>
-    <!--??-->
-    <section class="">
-        <div class="history trailer"></div>
-        <div class="trailer-msg">
-             <div class="padding-left-3rem display-inline-block">???</div>
-            <span class="padding-right-3rem right">??</span >
+    <!--互动BAGIN-->
+    <div class="interation">
+        <div>
+            <div class="user-logo"><img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt=""> </div>
+
+            <div class="comment">
+                <span>我是观众:</span><span class="time">10:00:23</span><div class="channel">智慧南京</div>
+                <div>  </div>
+                <div class="reply">厉害！来啊厉害！来啊
+                </div>
+            </div>
         </div>
-    </section>
-    <div>
+        <div>
+            <div class="user-logo"><img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt=""> </div>
+
+            <div class="comment">
+                <span>我是观众:</span><span class="time">10:00:23</span><div class="channel">智慧南京</div>
+                <div>  </div>
+                <div class="reply">厉害！来啊厉害！来啊
+                </div>
+            </div>
+        </div> <div>
+        <div class="user-logo"><img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt=""> </div>
+
+        <div class="comment">
+            <span>我是观众:</span><span class="time">10:00:23</span><div class="channel">智慧南京</div>
+            <div>  </div>
+            <div class="reply">厉害！来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害！来啊
+            </div>
+        </div>
+    </div>
 
     </div>
-</article>
-<!--<div ng-controller="live">{{aa}}</div>-->
+    <!--互动END-->
+
+<!--简介BEGIN-->
+    <div>
+        <div class="introduce">
+            <img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
+            <span> 无线南京</span>
+        </div>
+        <div class="introduce-content">
+            简 <span>介:</span>HTTP协议（HyperText Transfer Protocol，超文本传输协议）是因特网上应用最为广泛的一种网络传输协议，所有的WWW文件都必须遵守这个标准。
+            HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）
+        </div>
+    </div>
+<!--简介END-->
 
 
+    <!--预告video 的简介BEGIN-->
+    <div>
+        <div class="introduce">
+            <img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
+            <span> 无线南京</span>
+        </div>
+        <div class="introduce-content">
+            简 <span>介:</span>HTTP协议（HyperText Transfer Protocol，超文本传输协议）是因特网上应用最为广泛的一种网络传输协议，所有的WWW文件都必须遵守这个标准。
+            HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）
+        </div>
+        <div class="launch-time">
+            开播时间：
+        </div>
+    </div>
+    <!--简介END-->
+<!--input-->
+    <div class="input-comment">
+        <input  type="text" placeholder="和大家说点什么吧">
+    </div>
 </body>
 
 <!-- <script src="https://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script> -->
-<script src="static/js/lib/rem.js"></script>
-<script src="static/js/lib/angular.min.js"></script>
-<script src="static/js/lib/angular-route.min.js"></script>
-<script src="static/js/lib/liveChinaApp.js"></script>
+<script src="../../src/js/lib/rem.js"></script>
+<script src="../../src/js/lib/angular.min.js"></script>
+<script src="../../src/js/lib/angular-route.min.js"></script>
+<script src="../../src/js/lib/liveChinaApp.js"></script>
 <script type="text/javascript">
+
 
 </script>
 </html>
