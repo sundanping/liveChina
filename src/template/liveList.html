@@ -4,20 +4,21 @@
 </style>
 <body ng-controller="liveList" >
     <div class="show-video">
-        <video POSTER="" src=""></video>
+        <video poster="http://7xn47o.com1.z0.glb.clouddn.com/bbs/pics/2017/0220/4c/4cd70441c1487cc92e12a10f7520d07e.jpg?{$hgPicSizeStart}imageView2/1/w/{$hgPicSizeWidth}/h/{$hgPicSizeHeight}{$hgPicSizeEnd}"
+               src="http://vfile.m2ou4.v1.m2odemo.com/2017/1491/4427/1226/149144271226.ssm/149144271226.m3u8" controls
+        width="'100%" height="100%"></video>
     </div>
     <div class="title">中央电视台领导莅临</div>
     <div class="bg-color-238"></div>
-    <div ng-show="time_status !==1" class="introduce-interaction">
+    <div ng-show="time_status !=1" class="introduce-interaction">
         <div ng-click="changeIntroduce('introduce')" class="col-6 font-size-26 ">简介</div>
         <div ng-click="changeIntroduce('interaction')"  class="col-6 font-size-26 " >互动<span>(455)</span>
         </div>
         <div id="underLine" class="underLine" ></div>
 
-
     </div>
     <!--互动BAGIN-->
-    <div ng-if="time_status!==1" class="interaction">
+    <div ng-if="tag=='interaction'&& time_status!=1" class="interaction">
         <div>
             <div class="user-logo"><img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt=""> </div>
 
@@ -52,7 +53,7 @@
     <!--互动END-->
 
 <!--简介BEGIN-->
-    <div ng-if="time_status!==1" >
+    <div ng-if="tag=='introduce' &&time_status!=1" >
         <div class="introduce">
             <img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
             <span> 无线南京{{time_status}}</span>

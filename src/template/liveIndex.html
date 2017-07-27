@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../css/liveChina.css">
+<!--<link rel="stylesheet" href="../css/liveChina.css">-->
 <nav  id="nav">
     <div class="col-2 padding-left-3rem">
 
@@ -17,20 +17,24 @@
     <section ng-repeat=" data in trailer" >
         <a href="#/liveList/{{data.id}}/{{data.time_status}}"> <div class="trailer" style="background-image: url({{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename||'http://ocb467zho.bkt.clouddn.com/bbs/pics/2017/0216/ce/cef05ac20cf7bc55ffeb64abffe78a60.jpg?{$hgPicSizeStart}imageView2/1/w/{$hgPicSizeWidth}/h/{$hgPicSizeHeight}{$hgPicSizeEnd}'}});
     background-size:100% 100%;">
-            <!--<div class="logo">-->
-            <!--<img class="logo" style='width:100%;height:100%;' src="" alt="">-->
-            <!--<span>{{data.brief}}</span>-->
-            <!--</div>-->
-            <div></div>
+            <div style="margin-top: 0;padding-top:.2rem;padding-left:.3rem;">
+                <img class="tv-logo" src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
+                <div class="tv-name">aaa</div>
+                <div class="type-name">sss</div>
+            </div>
 
-        </div></a>
+
+            <!--<div class="tv-name">aaa</div>-->
+            <!--<div class="type-name">预告</div>-->
+            </div>
+        </a>
         <div class="trailer-msg">
-            <div class="padding-left-3rem display-inline-block">台联盟</div >
+            <div class="padding-left-3rem display-inline-block"><span class="f00000">{{data.comment}}</span> 台联盟</div >
             <div class="line"></div>
-            <span>人预约</span>
+            <span class="fabf63">{{data.click_num}} </span>人预约
             <span class="padding-right-3rem right">
                     <img class="clock" src="src/imgs/clock.png" alt="clock">
-                    分钟后</span>
+                   {{countDown(data.start_time_show)}} 分钟后</span>
         </div>
         <div class="bg-color-eee"></div>
 
@@ -44,8 +48,8 @@
         background-size:100% 100%;"></div>
         </a>
         <div class="trailer-msg">
-            <div class="padding-left-3rem display-inline-block">台联盟</div>
-            <span class="padding-right-3rem right">人气</span >
+            <div class="padding-left-3rem display-inline-block"><span class="fabf63">{{data.comment}}</span> 台联盟</div>
+            <span class="padding-right-3rem right"> <span class="fabf63">{{data.click_num||'123'}}</span> 人气</span >
         </div>
         <div class="bg-color-eee"></div>
 
@@ -60,8 +64,8 @@
     background-size:100% 100%;"></div>
         </a>
         <div class="trailer-msg">
-            <div class="padding-left-3rem display-inline-block">台联盟</div>
-            <span class="padding-right-3rem right">人气</span >
+            <div class="padding-left-3rem display-inline-block"> <span class="fabf63">{{data.comment}}</span> 台联盟</div>
+            <span class="padding-right-3rem right"> <span class="fabf63">{{data.click_num||'123'}}</span> 人气</span >
         </div>
     </section>
     <div>

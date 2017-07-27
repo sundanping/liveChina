@@ -3,13 +3,25 @@ var liveChinaApp=angular.module('liveChinaApp', ['ngRoute']);
 var API_URL_ROOT = 'http://twapi.live.hoge.cn/index.php';
     liveChinaApp.constant('API_URL_ROOT', API_URL_ROOT);
 
+//剩余时间
+function countDown(time){
+    var remainingTime= Date.parse(new Date(time))-new Date();
+    return remainingTime;
+    console.log(remainingTime)
+}
+
+countDown('2017-02-06 00:00')
+//剩余时间
+
 liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
-    $scope.aa=0;
+
+
     $http({
         method: 'JSONP',
         url:API_URL_ROOT+"?callback=JSON_CALLBACK"+'&m=Apituwenol&c=tuwenol&a=show&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197',
 
     }).success(function (msg) {
+        console.log(JSON.stringify(msg))
     $scope.liveType=msg;
         $scope.trailer=[];
         $scope.history=[];
@@ -25,14 +37,14 @@ liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
             }
         });
 
+
     });
 }]);
-
+//
 liveChinaApp.config(['$routeProvider',
     function(rp) {
-        rp.when('/',{templateUrl:'../livaChina/src/template/liveChina.html',
-            controller:'live' })
-            .when('/liveList/:id/:time_status',{templateUrl:'../livaChina/src/template/liveList.html',
+
+        rp.when('/liveList/:id/:time_status',{templateUrl:'../livaChina/src/template/liveList.html',
             controller:'liveList' })
             .otherwise({templateUrl:'../livaChina/src/template/liveIndex.html'});
     }])

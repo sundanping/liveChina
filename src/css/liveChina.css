@@ -3,6 +3,12 @@
 	float:right;
 	/*background: url(../imgs/search.png) no-repeat center;*/
 }
+.fabf63{
+	color:#fabf63
+}
+.f00000{
+	color:#f00000;
+}
 .padding-right-3rem{
 	padding-right:.3rem;
 }
@@ -69,6 +75,30 @@ background:#333;
 	height:3.5rem;
 	background-color: aqua;
 }
+.trailer>img{
+	display: inline-block;
+}
+.type-name,.tv-name{
+	position: relative;
+	top:-.42rem;
+	display:inline-block;
+	font-size: .22rem;
+}
+.tv-logo{
+	vertical-align: top;
+	/*margin:.22rem 0 0 .3rem;*/
+	width: .5rem;
+	height: .5rem;
+}
+v-logo{
+	vertical-align: top;
+	margin:.2rem 0 0 .3rem;
+	/*opacity: .6;*/
+}
+.type-name,.tv-name{
+	display: inline-block;
+
+}
 .trailer-msg{
 	background-color: rgba(255, 255, 255, 0.5);
 	font-size: .26rem;
@@ -76,7 +106,7 @@ background:#333;
 	line-height: .64rem;
 }
 .trailer-msg>span,.trailer-msg>div{
-	// text-indent: 15px;
+	text-indent: 15px;
 	font-weight: 600;
 }
 .line{
