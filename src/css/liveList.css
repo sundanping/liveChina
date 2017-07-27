@@ -149,3 +149,48 @@ introduce-interaction>div{
     background-color: #f2f2f2;
 }
 
+.underLine{
+    height: 2px;background-color: #333;width: .6rem;position: relative;
+    top: .61rem;left: 70%;
+}
+.toLeft{
+    height: 2px;background-color: #333;width: .6rem;position: relative;
+    top: .61rem;left: 20%;
+    animation:myfirst 0.5s;
+    -webkit-animation:myfirst 0.5s; /* Safari and Chrome */
+}
+
+@keyframes myfirst
+{
+    0%   { top: .61rem;left: 70%;}
+    /*50%  { top: .61rem;left: 50%;}*/
+    100% { top: .61rem;left: 20%;}
+}
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+    0%   { top: .61rem;left: 70%;}
+    /*50%  { top: .61rem;left: 50%;}*/
+    100% { top: .61rem;left: 20%;}
+}
+
+.toRight{
+    height: 2px;background-color: #333;width: .6rem;position: relative;
+    top: .61rem;left: 70%;
+    animation:toright 0.5s;
+    -webkit-animation:toright 0.5s; /* Safari and Chrome */
+}
+
+@keyframes toright
+{
+    0%   { top: .61rem;left: 20%;}
+    /*50%  { top: .61rem;left: 50%;}*/
+    100% { top: .61rem;left: 70%;}
+}
+
+@-webkit-keyframes toright /* Safari and Chrome */
+{
+    0%   { top: .61rem;left: 20%;}
+    /*50%  { top: .61rem;left: 50%;}*/
+    100% { top: .61rem;left: 70%;}
+}
