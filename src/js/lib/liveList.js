@@ -21,7 +21,6 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
         // http://operate.tw.live.hoge.cn/?m=Apituwenol&c=tuwenol&a=detail&id=2263
         method:'JSONP',
         url:'http://operate.tw.live.hoge.cn/'+"?callback=JSON_CALLBACK"+'&m=Apituwenol&c=tuwenol&a=detail&id=2263&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197'
-
     // url:API_URL_ROOT+"?callback=JSON_CALLBACK"+'&m=Apituwenol&c=tuwenol&a=detail&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197&id'+$scope.id
     }).success(function(res){
         console.log(res)
