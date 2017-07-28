@@ -44,7 +44,7 @@ liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
 liveChinaApp.config(['$routeProvider',
     function(rp) {
 
-        rp.when('/liveList/:id/:time_status',{templateUrl:'../livaChina/src/template/liveList.html',
+        rp.when('/liveList/:id/:time_status',{templateUrl:'src/template/liveList.html',
             controller:'liveList' })
-            .otherwise({templateUrl:'../livaChina/src/template/liveIndex.html'});
+            .otherwise({templateUrl:'src/template/liveIndex.html'});
     }])
