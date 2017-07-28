@@ -1,13 +1,14 @@
 <!--<link rel="stylesheet" href="../css/liveChina.css">-->
-<nav  id="nav">
+<nav  id="nav" ng-controller="live">
     <div class="col-2 padding-left-3rem">
 
         <img class=" " src="src/imgs/right.png" alt="">
     </div>
     <div class="col-8 title">直播中国</div>
     <div class="col-2 right ">
-        <img class="right transtrom padding-right-3rem" src="src/imgs/search.png" alt="">
-
+        <a href="#/search">
+        <img ng-click="goBack()" class="right transtrom padding-right-3rem" src="src/imgs/search.png" alt="">
+        </a>
     </div>
 </nav>
 <!--预告-->

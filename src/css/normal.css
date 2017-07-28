@@ -10,7 +10,7 @@ table { border-collapse: separate; border-spacing: 0; }
 table, td, th { vertical-align: middle; }
 textarea, input, button, select, keygen, legend { outline: 0; margin: 0; padding: 0;}
 img{border:none;vertical-align:bottom;}
-input[type="button"],input[type="submit"],input[type="reset"]{-webkit-appearance:none;outline:none;}
+input[type="button"],input[type="submit"],input[type="reset"]，input[type="search"]{-webkit-appearance:none;outline:none;}
 a { text-decoration: none;  cursor: pointer; }
 a:hover { text-decoration: none; }
 

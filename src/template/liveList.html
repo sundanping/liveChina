@@ -1,82 +1,66 @@
 <link rel="stylesheet" href="src/css/liveList.css">
-<style>
 
-</style>
 <body ng-controller="liveList" >
+<div  ng-repeat="data in dataList">
+
     <div class="show-video">
-        <video poster="http://7xn47o.com1.z0.glb.clouddn.com/bbs/pics/2017/0220/4c/4cd70441c1487cc92e12a10f7520d07e.jpg?{$hgPicSizeStart}imageView2/1/w/{$hgPicSizeWidth}/h/{$hgPicSizeHeight}{$hgPicSizeEnd}"
-               src="http://vfile.m2ou4.v1.m2odemo.com/2017/1491/4427/1226/149144271226.ssm/149144271226.m3u8" controls
-        width="'100%" height="100%"></video>
+        <video poster="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}"
+          ng-cloak=""     src="http://vfile.m2ou4.v1.m2odemo.com/2017/1491/4427/1226/149144271226.ssm/149144271226.m3u8" controls
+        width="100%" height="100%"></video>
     </div>
-    <div class="title">中央电视台领导莅临</div>
+    <div class="title" >{{data.title}}</div>
     <div class="bg-color-238"></div>
     <div ng-show="time_status !=1" class="introduce-interaction">
         <div ng-click="changeIntroduce('introduce')" class="col-6 font-size-26 ">简介</div>
-        <div ng-click="changeIntroduce('interaction')"  class="col-6 font-size-26 " >互动<span>(455)</span>
+        <div ng-click="changeIntroduce('interaction')"  class="col-6 font-size-26 " >互动<span>({{data.click_num}})</span>
         </div>
         <div id="underLine" class="underLine" ></div>
 
-    </div>
-    <!--互动BAGIN-->
+    </div><div>
+</div>
+</div>
+
+<!--互动BAGIN-->
     <div ng-if="tag=='interaction'&& time_status!=1" class="interaction">
-        <div>
-            <div class="user-logo"><img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt=""> </div>
+        <div ng-repeat=' msg in comment'>
+            <div class="user-logo"><img ng-src="{{msg.avatar.host+msg.avatar.dir+msg.avatar.filepath+msg.avatar.filename}}" alt=""> </div>
 
             <div class="comment">
-                <span>我是观众:</span><span class="time">10:00:23</span><div class="channel">智慧南京</div>
+                <span>{{msg.user_name}}:</span><span class="time">{{msg.create_time_format}}</span><div class="channel">{{msg.topic_title}}</div>
                 <div>  </div>
-                <div class="reply">厉害！来啊厉害！来啊
+                <div class="reply">{{msg.content}}
                 </div>
             </div>
         </div>
-        <div>
-            <div class="user-logo"><img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt=""> </div>
 
-            <div class="comment">
-                <span>我是观众:</span><span class="time">10:00:23</span><div class="channel">智慧南京</div>
-                <div>  </div>
-                <div class="reply">厉害！来啊厉害！来啊
-                </div>
-            </div>
-        </div> <div>
-        <div class="user-logo"><img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt=""> </div>
-
-        <div class="comment">
-            <span>我是观众:</span><span class="time">10:00:23</span><div class="channel">智慧南京</div>
-            <div>  </div>
-            <div class="reply">厉害！来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害来啊厉害！来啊
-            </div>
-        </div>
     </div>
 
     </div>
     <!--互动END-->
 
 <!--简介BEGIN-->
-    <div ng-if="tag=='introduce' &&time_status!=1" >
+    <div ng-repeat="data in dataList" ng-if="tag=='introduce' &&time_status!=1" >
         <div class="introduce">
             <img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
             <span> 无线南京{{time_status}}</span>
         </div>
         <div class="introduce-content">
-            简 <span>介:</span>111111HTTP协议（HyperText Transfer Protocol，超文本传输协议）是因特网上应用最为广泛的一种网络传输协议，所有的WWW文件都必须遵守这个标准。
-            HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）
+            简 <span>介:</span>{{data.brief}}
         </div>
     </div>
 <!--简介END-->
 
 
     <!--预告video 的简介BEGIN-->
-    <div ng-if="time_status==1">
-        <div class="introduce">
+    <div ng-repeat="data in dataList" ng-if="time_status==1">
+        <div  class="introduce">
             <img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
             <span> 无线南京</span>
         </div>
         <div class="introduce-content">
-            简 <span>介:</span>HTTP协议（HyperText Transfer Protocol，超文本传输协议）是因特网上应用最为广泛的一种网络传输协议，所有的WWW文件都必须遵守这个标准。
-            HTTP是一个基于TCP/IP通信协议来传递数据（HTML 文件, 图片文件, 查询结果等）
+            简 <span>介:</span>{{data.brief}}
         </div>
-        <div class="launch-time">
+        <div  class="launch-time">
             开播时间：
         </div>
     </div>
@@ -86,6 +70,6 @@
         <input  type="text" placeholder="和大家说点什么吧">
     </div>
 </body>
-<script src="src/js/lib/liveList.js"></script>
+<!--<script src="src/js/lib/liveList.js"></script>-->
 
 

@@ -48,15 +48,16 @@ background:#333;
 }
 
 
-#nav>div:last-child{
+#nav>div:last-child,#nav>div:last-child>a{
 	height: .6rem;
 	line-height:.6rem;
+	display: inline-block;
 
 }
 .display-inline-block{
 	display: inline-block;;
 }
-#nav>div:last-child>img ,#nav>div:first-child>img  {
+#nav>div:last-child>a>img ,#nav>div:first-child>img  {
 
 	width: 80%;
 	height:80%;
