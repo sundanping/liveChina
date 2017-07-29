@@ -14,13 +14,51 @@ var API_URL_ROOT = 'http://twapi.live.hoge.cn/index.php';
 //剩余时间
 
 liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
-setInterval(timer,1000)
+    $scope.timer=function(t){
+        console.log(1)
 
-    function timer(){
-        $scope.time=new Date().getTime();
+        $scope.ts=t-(new Date().getTime());
 
-        console.log($scope.time)
+        $scope.dd = parseInt($scope.ts / 1000 / 60 / 60 / 24, 10);//计算剩余的天数
+        $scope.hh = parseInt($scope.ts / 1000 / 60 / 60 % 24, 10);//计算剩余的小时数
+        $scope.mm = parseInt($scope.ts / 1000 / 60 % 60, 10)+1;//计算剩余的分钟数
+        $scope.ss = parseInt($scope.ts / 1000 % 60, 10);//计算剩余的秒数
+        $scope.mmmm=parseInt($scope.ts / 1000 / 60 , 10)+1;//计算剩余的全部分钟数
+
+        $scope.dd = checkTime($scope.dd);
+        $scope.hh = checkTime($scope.hh);
+        $scope.mm = checkTime($scope.mm);
+        $scope.ss = checkTime($scope.ss);
+        $scope.mmmm = checkTime($scope.mmmm);
+
+        function checkTime(t){
+            if(t<10){
+                t='0'+t
+            }
+            return t;
+        }
+
+        if ($scope.ts<=0) {
+            $scope.dd=0; $scope.hh=0; $scope.mm=0; $scope.ss=0; $scope.mmmm=0
+        }
+        return $scope.mmmm+"分钟后";
+        console.log(1)
+        // $scope.$apply();
+
+        // setTimeout(timer,1000)
+        // return $scope.dd + "天" + $scope.hh + "时" + $scope.mm + "分" + $scope.ss + "秒"; ;
     }
+
+
+    $scope.ask=function(){
+        //
+        $scope.$apply();
+
+    }
+    var cleartim=null;
+    cleartim= setInterval($scope.ask,1000)
+
+
     $scope.goBack=function(){
         history.back()
     }
@@ -46,35 +84,9 @@ setInterval(timer,1000)
             }
         });
 
-
     });
 }]);
-//倒计时
 
-// function timer()
-// {
-//     var ts = (new Date(2017, 07, 29, 9, 0, 0)) - (new Date());//计算剩余的毫秒数
-//     $scope.dd = parseInt(ts / 1000 / 60 / 60 / 24, 10);//计算剩余的天数
-//     $scope.hh = parseInt(ts / 1000 / 60 / 60 % 24, 10);//计算剩余的小时数
-//     $scope.mm = parseInt(ts / 1000 / 60 % 60, 10);//计算剩余的分钟数
-//     $scope.ss = parseInt(ts / 1000 % 60, 10);//计算剩余的秒数
-//     $scope.dd= checkTime($scope.dd);
-//     $scope.hh = checkTime($scope.hh);
-//     $scope.mm = checkTime($scope.mm);
-//     $scope.ss = checkTime($scope.ss);
-//     $scope.apply()
-//     console.log($scope.dd+$scope.hh)
-//     // document.getElementById("timer").innerHTML = dd + "天" + hh + "时" + mm + "分" + ss + "秒";
-//     setInterval("timer()",1000);
-// }
-// function checkTime(i)
-// {
-//     if (i < 10) {
-//         i = "0" + i;
-//     }
-//     return i;
-// }
-//
 //路由
 liveChinaApp.config(['$routeProvider',
     function(rp) {

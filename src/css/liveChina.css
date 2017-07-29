@@ -57,12 +57,16 @@ background:#333;
 .display-inline-block{
 	display: inline-block;;
 }
+#nav>div:last-child>a>img{
+	position: relative;
+	right: -.3rem;
+}
 #nav>div:last-child>a>img ,#nav>div:first-child>img  {
 
-	width: 80%;
+	/*width: 80%;*/
 	height:80%;
 	margin-top:5%;
-	margin-left:0;
+	/*margin-left:0;*/
 }
  #nav>div:first-child>img{
  	padding-left:.1rem;
@@ -79,25 +83,24 @@ background:#333;
 .trailer>img{
 	display: inline-block;
 }
-.type-name,.tv-name{
-	position: relative;
-	top:-.42rem;
-	display:inline-block;
-	font-size: .22rem;
-}
+
 .tv-logo{
 	vertical-align: top;
 	/*margin:.22rem 0 0 .3rem;*/
 	width: .5rem;
 	height: .5rem;
 }
-v-logo{
-	vertical-align: top;
-	margin:.2rem 0 0 .3rem;
-	/*opacity: .6;*/
+.tv-logo{
+	vertical-align: top;width: .5rem;height:.5rem;
+	opacity: .6;
 }
-.type-name,.tv-name{
-	display: inline-block;
+.type-name{float: right;text-align: center; display: inline-block;width:.9rem;height: .5rem;line-height: .5rem;
+	border-radius: .4rem;margin-right:.3rem;border:1px solid rgba(255,255,255,.6);color:#95ff2b;margin-top:.05rem;
+	background: rgba(123,123,123,.4);font-size: .26rem}
+.tv-name{
+	color:#fff;text-shadow: 0 .02rem .03rem;
+	font-family:bold; margin-left: .2rem; font-size: .22rem;height: .5rem; line-height: .5rem; display: inline-block;
+
 
 }
 .trailer-msg{
@@ -148,4 +151,12 @@ v-logo{
 }
 .logo>span{
 	text-shadow: 0 2px 3px;
+}
+
+.index-title{
+	display: inline-block;margin-top: 2.2rem;text-indent: .2rem;
+	background-color: rgba(31,31,31,0.4);color:#fff;padding-right:.4rem;
+	border-radius: 0 .2rem .2rem 0;
+	height:.4rem;line-height: .4rem;
+	font-size:.26rem;overflow: hidden;text-overflow: ellipsis
 }
