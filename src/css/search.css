@@ -46,3 +46,39 @@
 .search-history-list{
     background: url(../imgs/right-logo.png) no-repeat center right;
 }
+#alert{
+  position: absolute;
+    top:-.4rem;
+    font-size: .28rem;
+    margin : 0 auto;
+    width: 2.4rem;
+    left:50%;
+    margin-left:-1.2rem;
+    height:.4rem;
+    background: #fdfdfd;
+    text-align: center;
+    border:0;
+ }
+.alert{
+    border:1px solid #333;
+    animation:alert 2s;
+    -webkit-animation:alert 2s; /* Safari and Chrome */
+}
+
+@keyframes alert
+{
+    0%   { top: -.4rem;color: #333333;font-weight: 400;}
+    25%  { top: 1rem;color: #070777;font-weight: 600;}
+    75%  { top: 1rem;color: #333333;font-weight: 800; }
+    100% { top: -.4rem;color: #070777;font-weight: 500;}
+}
+
+@-webkit-keyframes alert /* Safari and Chrome */
+{
+    0%   { top: -.4rem;color: #333333;font-weight: 400;}
+    25%  { top: 1rem;color: #070777;font-weight: 600;}
+    75%  { top: 1rem;color: #333333;font-weight: 800; }
+    100% { top: -.4rem;color: #070777;font-weight: 500;}
+}
+
+

@@ -2,21 +2,8 @@ var liveChinaApp=angular.module('liveChinaApp', ['ngRoute']);
 //URL
 var API_URL_ROOT = 'http://twapi.live.hoge.cn/index.php';
     liveChinaApp.constant('API_URL_ROOT', API_URL_ROOT);
-
-//剩余时间
-// function countDown(time){
-//     var remainingTime= Date.parse(new Date(time))-new Date();`
-//     return remainingTime;
-//     console.log(remainingTime)
-// }
-//
-// countDown('2017-02-06 00:00')
-//剩余时间
-
 liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
     $scope.timer=function(t){
-        console.log(1)
-
         $scope.ts=t-(new Date().getTime());
 
         $scope.dd = parseInt($scope.ts / 1000 / 60 / 60 / 24, 10);//计算剩余的天数

@@ -36,10 +36,14 @@ liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT','$routeParam
 
                     // $scope.showHistory=0;
                 }else{
+                    angular.element(document.querySelector('#alert')).addClass('alert');
+                    setTimeout(remove,2000)
+                    function remove(){
+                        angular.element(document.querySelector('#alert')).removeClass('alert');
+                    }
                     return false;
                 }
                     $http({
-                        // http://operate.tw.live.hoge.cn/?m=Apituwenol&c=tuwenol&a=detail&id=2263
                         method: 'JSONP',
                         url: API_URL_ROOT + '?m=Apituwenol&c=tuwenol&a=show&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197'
                         // }).success(function(data){
