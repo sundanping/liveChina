@@ -26,7 +26,7 @@
             <div class="user-logo"><img ng-src="{{msg.avatar.host+msg.avatar.dir+msg.avatar.filepath+msg.avatar.filename}}" alt=""> </div>
 
             <div class="comment">
-                <span>{{msg.user_name}}:</span><span class="time">{{msg.create_time_format}}</span><div class="channel">{{msg.topic_title}}</div>
+                <span>{{msg.user_name}}:</span><span class="time">{{changeTime(msg.create_time_format)}}</span><div class="channel">{{msg.topic_title}}</div>
                 <div>  </div>
                 <div class="reply">{{msg.content}}
                 </div>
@@ -42,11 +42,12 @@
     <div ng-repeat="data in dataList" ng-if="tag=='introduce' &&time_status!=1" >
         <div class="introduce">
             <img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
-            <span> 无线南京{{time_status}}</span>
+            <span> 无线南京</span>
         </div>
         <div class="introduce-content">
             简 <span>介:</span>{{data.brief}}
         </div>
+        <br>
     </div>
 <!--简介END-->
 
@@ -63,12 +64,19 @@
         <div  class="launch-time">
             开播时间：
         </div>
+        <br>
+
     </div>
     <!--简介END-->
 <!--input-->
     <div class="input-comment">
-        <input  type="text" placeholder="和大家说点什么吧">
+        <input  type="text"  placeholder="和大家说点什么吧">
     </div>
+<img ng-if="loading" style="
+position: fixed;top:0;right:0;bottom: 0;
+left:0;margin:auto;margin-bottom:1.2rem;
+border-radius: 50%;
+" src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
 </body>
 <!--<script src="src/js/lib/liveList.js"></script>-->
 

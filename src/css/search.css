@@ -1,7 +1,8 @@
 .search{
-height: 1rem;
+    height: .6rem;
     background-color: #333;
     font-size:.3rem;
+    overflow: hidden;
 }
 .search>div{
     display: inline-block;
@@ -9,27 +10,29 @@ height: 1rem;
 .search>.col-8>input{
     width: 90%;
     text-align: center;
-    height:.6rem;
-    padding: 0 .3rem;
+    height:.5rem;
+    padding: 0 .2rem;
     font-size:.3rem;
-    border-radius: .3rem;
-    margin:.2rem auto;
+    text-indent: .3rem;
+    border-radius: .25rem;
+    margin:.055rem auto;
 
     background: url(../imgs/search3.png) no-repeat center left ;
     background-color:#fff;
     background-origin: content-box;
 }
 .search>.col-2>img{
-    width:80%;
-    height:80%;
-    margin-top:10%;
+    width:50%;
+    height:50%;
+    position: relative;
+    margin-top:.04rem;
 }
 .cancel{
     color:#fff;
     text-align:center;
     font-size: .3rem;
-    height:1rem;
-    line-height: 1rem;
+    height:.6rem;
+    line-height: .6rem;
 
 }
 .search-history>div{

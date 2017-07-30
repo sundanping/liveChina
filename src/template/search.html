@@ -1,21 +1,30 @@
 
 
-    <link rel="stylesheet" type="text/css" href="src/css/search.css">
+ <link rel="stylesheet" type="text/css" href="src/css/search.css">
 
 <body ng-controller="search">
 <div class="search">
     <div class="col-2">
         <img ng-click="goBack()" class=" " src="src/imgs/right.png" alt="">
     </div>
-    <div class="col-8"> <input type="search" placeholder="请输入j搜索关键词" ng-model="text"  ng-keyup="keyUp($event)"></div>
+    <div class="col-8"> <input type="search"  placeholder="请输入搜索关键词" ng-model="text"  ng-keyup="keyUp($event)"></div>
     <div class="col-2 cancel">取消</div>
 </div>
-<div style="font-size: 28px"  class="search-history">
-    搜索历史
-</div>
-<div class="clear-history">
-   清空所以浏览记录？
-</div>
+<!--<h2 style="margin-top:12px;font-size:.24rem;float:left;direction: ltr;position: relative;display: block;padding-left:0;-->
+<!--text-left:0;">搜索历史</h2><br>-->
+<!--<div class="clear-history">-->
+   <!--清空所以浏览记录？-->
+<!--</div>-->
+<ul ng-if="showHistory==1 && historyArr[0]!=''" style="padding:0 .3rem">
+    <li style="font-size:.3rem;border-bottom:1px solid #999;padding:.3rem 0;font-weight: bold"
+
+    >搜索历史</li>
+    <li  ng-if="historyArr[0]!=''" ng-click="choice($event)"   ng-repeat="data in historyArr" style="
+    background: url(/liveChina/src/imgs/right-logo.png) no-repeat center right;
+    font-size:.3rem;border-bottom:1px solid #999;padding:.3rem 0;opacity: .7"><p>{{data}}</p></li>
+</ul>
+<div ng-if="showHistory==1 && historyArr[0]!=''" style="text-align: center;font-size: .3rem;font-weight: 600;" ng-click="clearHistory()">清除历史记录？</div>
+
 </body>
     <!--<script src="src/js/lib/search.js"></script>-->
 <!-- <script src="https://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script> -->
