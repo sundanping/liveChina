@@ -30,22 +30,13 @@ liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
         }
         return $scope.mmmm+"分钟后";
         console.log(1)
-        // $scope.$apply();
 
-        // setTimeout(timer,1000)
-        // return $scope.dd + "天" + $scope.hh + "时" + $scope.mm + "分" + $scope.ss + "秒"; ;
     }
-
-
     $scope.ask=function(){
-        //
         $scope.$apply();
-
     }
     var cleartim=null;
     cleartim= setInterval($scope.ask,1000)
-
-
     $scope.goBack=function(){
         history.back()
     }
@@ -54,7 +45,6 @@ liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
         url:API_URL_ROOT+"?callback=JSON_CALLBACK"+'&m=Apituwenol&c=tuwenol&a=show&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197',
 
     }).success(function (msg) {
-        console.log(msg)
     $scope.liveType=msg;
         $scope.trailer=[];
         $scope.history=[];
@@ -70,7 +60,6 @@ liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
 
             }
         });
-
     });
 }]);
 

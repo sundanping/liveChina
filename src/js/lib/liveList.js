@@ -21,20 +21,16 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
     $http({
         method:'JSONP',
         url:'http://operate.tw.live.hoge.cn/'+"?callback=JSON_CALLBACK"+'&m=Apituwenol&c=tuwenol&a=detail&custom_appkey=A3O8gmwJURFi8d74nuKxRpczjoAydHSE&custom_appid=137&id=2263'
-    // url:API_URL_ROOT+"?callback=JSON_CALLBACK"+'&m=Apituwenol&c=tuwenol&a=detail&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197&id'+$scope.id
     }).success(function(res){
-        console.log(res)
         $scope.loading=false;
 
         if($scope.time_status!=1) {
             $scope.getComment();
         }
             $scope.dataList=res;
-
     })
     $scope.getComment= function (){
         $scope.loading=true;
-
         $http({
             method:'JSONP',
             //http://twapi.live.hoge.cn/index.php?m=Apituwenol&c=thread&a=show_comment
@@ -44,13 +40,9 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
             $scope.comment=comment;
             //取消正在加载
             $scope.loading=false;
-
         })
     }
-// document.body.addEventListener('touchmove',function(){
-//     // console.log(this)
-// })
-    //下拉加载
+// 下拉加载
     window.onscroll = function(){
         if($scope.time_status!=1) {
             if(document.body.scrollTop+window.screen.availHeight>document.body.offsetHeight*0.9){

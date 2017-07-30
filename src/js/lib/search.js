@@ -19,10 +19,10 @@ liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT','$routeParam
         $scope.historyArr = $scope.temp;
         // $scope.historyArr=[1,2,34,5]
 ;
-        // if($scope.historyArr.length>10){
-        //     $scope.historyArr.length=10
-        // }
-        console.log($scope.historyArr);
+        if($scope.historyArr.length>10){
+            $scope.historyArr.length=10
+        }
+        // console.log($scope.historyArr);
 
         if(e.keyCode===13) {
             $scope.showHistory= 0;

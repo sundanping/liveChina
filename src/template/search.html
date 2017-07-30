@@ -14,14 +14,10 @@
     <div class="col-2 cancel">取消</div>
 </div>
 
-<ul ng-if="showHistory==1 && historyArr[0]!=''" style="padding:0 .3rem">
-    <li style="font-size:.3rem;border-bottom:1px solid #999;padding:.3rem 0;font-weight: bold"
-
-    >搜索历史</li>
-    <li  ng-if="historyArr[0]!=''" ng-click="choice($event)"   ng-repeat="data in historyArr" style="
-    background: url(/liveChina/src/imgs/right-logo.png) no-repeat center right;
-    font-size:.3rem;border-bottom:1px solid #999;padding:.3rem 0;opacity: .7"><p>{{data}}</p></li>
+<ul class="history-ul" ng-if="showHistory==1 && historyArr[0]!=''" style="padding:0 .3rem">
+    <li   >搜索历史</li>
+    <li  ng-if="historyArr[0]!=''" ng-click="choice($event)"   ng-repeat="data in historyArr" ><p>{{data}}</p></li>
 </ul>
-<div ng-if="showHistory==1 && historyArr[0]!=''" style="text-align: center;font-size: .3rem;font-weight: 600;" ng-click="clearHistory()">清除历史记录？</div>
+<div ng-if="showHistory==1 && historyArr[0]!=''"class="clear-history" ng-click="clearHistory()">清除历史记录？</div>
 
 </body>
