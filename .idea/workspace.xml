@@ -3,14 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2dd33350-1177-400e-8ff1-7658957090de" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/css/search.css" afterPath="$PROJECT_DIR$/src/css/search.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/lib/liveChinaApp.js" afterPath="$PROJECT_DIR$/src/js/lib/liveChinaApp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/lib/liveList.js" afterPath="$PROJECT_DIR$/src/js/lib/liveList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/lib/ngTouch.js" afterPath="$PROJECT_DIR$/src/js/lib/ngTouch.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/lib/search.js" afterPath="$PROJECT_DIR$/src/js/lib/search.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/template/liveIndex.html" afterPath="$PROJECT_DIR$/src/template/liveIndex.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/template/liveList.html" afterPath="$PROJECT_DIR$/src/template/liveList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/template/search.html" afterPath="$PROJECT_DIR$/src/template/search.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -44,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="liveList.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="liveList.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/template/liveList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+            <state relative-caret-position="765">
+              <caret line="89" column="189" lean-forward="false" selection-start-line="89" selection-start-column="189" selection-end-line="89" selection-end-column="189" />
               <folding />
             </state>
           </provider>
@@ -90,8 +84,8 @@
       <file leaf-file-name="liveList.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/lib/liveList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="602">
-              <caret line="50" column="40" lean-forward="false" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
+            <state relative-caret-position="15">
+              <caret line="1" column="63" lean-forward="false" selection-start-line="1" selection-start-column="63" selection-end-line="1" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -117,11 +111,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="liveChinaApp.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="liveChinaApp.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/js/lib/liveChinaApp.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="496">
-              <caret line="58" column="38" lean-forward="true" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
+            <state relative-caret-position="464">
+              <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -165,11 +159,11 @@
         <option value="$PROJECT_DIR$/src/template/liveIndex.html" />
         <option value="$PROJECT_DIR$/src/css/search.css" />
         <option value="$PROJECT_DIR$/src/js/lib/liveList.js" />
-        <option value="$PROJECT_DIR$/src/template/liveList.html" />
         <option value="$PROJECT_DIR$/src/js/lib/ngTouch.js" />
         <option value="$PROJECT_DIR$/src/js/lib/search.js" />
         <option value="$PROJECT_DIR$/src/template/search.html" />
         <option value="$PROJECT_DIR$/src/js/lib/liveChinaApp.js" />
+        <option value="$PROJECT_DIR$/src/template/liveList.html" />
       </list>
     </option>
   </component>
@@ -629,11 +623,18 @@
       <option name="project" value="LOCAL" />
       <updated>1501434428335</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="搜索页bug处理">
+      <created>1501495127639</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1501495127640</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163337000" />
+    <option name="totallyTimeSpent" value="164670000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="337" y="94" width="1375" height="1097" extended-state="0" />
@@ -697,7 +698,8 @@
     <MESSAGE value="主页面样式修改" />
     <MESSAGE value="搜索历史修改" />
     <MESSAGE value="搜索历史修改,不输入按回车给提示" />
-    <option name="LAST_COMMIT_MESSAGE" value="搜索历史修改,不输入按回车给提示" />
+    <MESSAGE value="搜索页bug处理" />
+    <option name="LAST_COMMIT_MESSAGE" value="搜索页bug处理" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -972,22 +974,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/js/lib/liveList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="602">
-          <caret line="50" column="40" lean-forward="false" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/template/liveList.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/lib/ngTouch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -1015,10 +1001,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/js/lib/liveList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="63" lean-forward="false" selection-start-line="1" selection-start-column="63" selection-end-line="1" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/js/lib/liveChinaApp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="58" column="38" lean-forward="true" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
+        <state relative-caret-position="464">
+          <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/template/liveList.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="89" column="189" lean-forward="false" selection-start-line="89" selection-start-column="189" selection-end-line="89" selection-end-column="189" />
           <folding />
         </state>
       </provider>

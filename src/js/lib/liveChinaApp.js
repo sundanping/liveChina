@@ -1,6 +1,6 @@
 var liveChinaApp=angular.module('liveChinaApp', ['ngRoute']);
 //URL
-var API_URL_ROOT = 'http://twapi.live.hoge.cn/index.php';
+var API_URL_ROOT = 'http://operate.tw.live.hoge.cn/index.php';
     liveChinaApp.constant('API_URL_ROOT', API_URL_ROOT);
 liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
 
