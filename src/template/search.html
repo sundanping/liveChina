@@ -11,20 +11,24 @@
         <img ng-click="goBack()" class=" " src="src/imgs/right.png" alt="">
     </div>
     <div class="col-8"> <input type="search"  placeholder="请输入搜索关键词" ng-model="text"  ng-keyup="keyUp($event)"></div>
-    <div ng-cloak="toCencel()" class="col-2 cancel">取消</div>
+    <div ng-click="toCancel()" class="col-2 cancel">取消</div>
 </div>
 
-<ul class="history-ul" ng-if="showHistory==1 && historyArr[0]!=''" style="padding: 0 .3rem;">
-    <li   >搜索历史</li>
-    <li  ng-if="historyArr[0]!=''" ng-click="choice($event)"   ng-repeat="data in historyArr" ><p>{{data}}</p></li>
+<ul style="background-color: #fdfdfd; position: absolute;height:100%;width: 100%; overflow: hidden; padding: 0 .3rem; font-size: .3rem" ng-if="showHistory==1 && historyArr[0]!=''">
+    <li  style="font-weight: 600;padding: .3rem 0 ;border-bottom:1px solid #999" >搜索历史</li>
+    <li style=" background: url(../liveChina/src/imgs/right-logo.png) no-repeat center right;
+    padding: .3rem 0 ;border-bottom:1px solid #999"   ng-if="historyArr[0]!=''" ng-click="choice($event)"   ng-repeat="data in historyArr" ><p>{{data}}</p></li>
+    <li  style="font-weight: 600;padding: .3rem 0 ;text-align: center" ng-click="clearHistory()">清除所有历史记录?</li>
 </ul>
-<div ng-if="showHistory==1 && historyArr[0]!=''"class="clear-history" ng-click="clearHistory()">清除历史记录？</div>
+<div ng-if="showHistory==1 && historyArr[0]!=''"class="clear-history" >？</div>
 
 <!--获取搜索到的内容-->
 
-<ul class="history-ul " ng-repeat="data in result.data"  style="font-size: .3rem;padding:0 .3rem;">
-    <li  class="">
-        {{data.title}}
+<ul class="search-ul " style="font-size: .3rem;padding:.1rem .3rem;">
+    <li ng-repeat="data in result.data" style="
+    border-bottom:1px solid #999;padding:.3rem 0;font-weight: 600;
+    background: url(../liveChina/src/imgs/right-logo.png) no-repeat center right"  class="">
+    <a style="display: inline-block;width: 100%" href="#/liveList/:{{data.id}}/:{{data.time_status}}">  {{data.title}}</a>
     </li>
 </ul>
 </body>

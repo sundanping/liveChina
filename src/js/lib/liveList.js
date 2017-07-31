@@ -1,6 +1,5 @@
 
 liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routeParams',function($scope,$http,API_URL_ROOT,$routeParams){
-
     $scope.id=$routeParams.id;
     $scope.time_status=$routeParams.time_status;
     $scope.tag='interaction';
@@ -47,17 +46,21 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
 // 下拉加载评论
 
     window.onscroll = function(){
+        if(window.document.URL.indexOf('liveList')>0){ //减少因为回退到主页面  滚动导致的加载
         if($scope.time_status!=1) {
             if(document.body.scrollTop+window.screen.availHeight>document.body.offsetHeight*0.9){
                 $scope.count+=10;
+
                 //加正在加载
                 $scope.loading=true;
 
                 // console.log( $scope.count);
-                    $scope.getComment();
-                }
+                $scope.getComment();
             }
-        };
+        }
+    };
+}
+
 //  时间转换
     $scope.changeTime=function(t){
         var oldTime= (new Date(t).getTime());

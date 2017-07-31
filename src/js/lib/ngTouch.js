@@ -1,7 +1,10 @@
 "use strict";
 
-angular.module("ngTouch", [])
-.directive("ngTouchstart", function () {
+// angular.module("ngTouch", [])
+
+
+
+liveChinaApp.directive("ngTouchstart", function () {
     return {
         controller: ["$scope", "$element", function ($scope, $element) {
 
