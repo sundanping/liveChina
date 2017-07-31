@@ -23,12 +23,13 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
         url:'http://operate.tw.live.hoge.cn/'+"?callback=JSON_CALLBACK"+'&m=Apituwenol&c=tuwenol&a=detail&custom_appkey=A3O8gmwJURFi8d74nuKxRpczjoAydHSE&custom_appid=137&id=2263'
     }).success(function(res){
         $scope.loading=false;
-
+            console.log(JSON.stringify(res[0]))
         if($scope.time_status!=1) {
             $scope.getComment();
         }
             $scope.dataList=res;
     })
+
     $scope.getComment= function (){
         $scope.loading=true;
         $http({
@@ -38,15 +39,17 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
             // url:API_URL_ROOT+"?callback=JSON_CALLBACK"+'&m=Apituwenol&c=tuwenol&a=show_comment&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197'
         }).success(function(comment){
             $scope.comment=comment;
-            //取消正在加载
+            //取消正在加载图片
+            console.log(comment)
             $scope.loading=false;
         })
     }
-// 下拉加载
+// 下拉加载评论
+
     window.onscroll = function(){
         if($scope.time_status!=1) {
             if(document.body.scrollTop+window.screen.availHeight>document.body.offsetHeight*0.9){
-                $scope.count+=20;
+                $scope.count+=10;
                 //加正在加载
                 $scope.loading=true;
 

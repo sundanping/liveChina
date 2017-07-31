@@ -10,7 +10,8 @@ angular.module("ngTouch", [])
                 var method = $element.attr("ng-touchstart");
                 $scope.$event = event;
                 $scope.$apply(method);
-            }
+            };
+            link()
 
         }]
     }

@@ -11,13 +11,20 @@
         <img ng-click="goBack()" class=" " src="src/imgs/right.png" alt="">
     </div>
     <div class="col-8"> <input type="search"  placeholder="请输入搜索关键词" ng-model="text"  ng-keyup="keyUp($event)"></div>
-    <div class="col-2 cancel">取消</div>
+    <div ng-cloak="toCencel()" class="col-2 cancel">取消</div>
 </div>
 
-<ul class="history-ul" ng-if="showHistory==1 && historyArr[0]!=''" style="padding:0 .3rem">
+<ul class="history-ul" ng-if="showHistory==1 && historyArr[0]!=''" style="padding: 0 .3rem;">
     <li   >搜索历史</li>
     <li  ng-if="historyArr[0]!=''" ng-click="choice($event)"   ng-repeat="data in historyArr" ><p>{{data}}</p></li>
 </ul>
 <div ng-if="showHistory==1 && historyArr[0]!=''"class="clear-history" ng-click="clearHistory()">清除历史记录？</div>
 
+<!--获取搜索到的内容-->
+
+<ul class="history-ul " ng-repeat="data in result.data"  style="font-size: .3rem;padding:0 .3rem;">
+    <li  class="">
+        {{data.title}}
+    </li>
+</ul>
 </body>

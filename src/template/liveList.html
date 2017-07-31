@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="src/css/liveList.css">
 
-<body ng-controller="liveList" >
+<body  ng-touchstart id="liveList" ng-controller="liveList" >
 <div  ng-repeat="data in dataList">
 
     <div class="show-video">
@@ -56,13 +56,18 @@
     <div ng-repeat="data in dataList" ng-if="time_status==1">
         <div  class="introduce">
             <img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
-            <span> 无线南京</span>
+            <span ng-touchend="toalert()"> 无线南京</span>
+            <script>
+                $scope.toalert=function(){
+                    alert(1)
+                }
+            </script>
         </div>
         <div class="introduce-content">
             简 <span>介:</span>{{data.brief}}
         </div>
         <div  class="launch-time">
-            开播时间：
+            开播时间：{{data.start_time_show}}
         </div>
         <br>
 
@@ -70,7 +75,7 @@
     <!--简介END-->
 <!--input-->
     <div class="input-comment">
-        <input  type="text"  placeholder="和大家说点什么吧">
+        <input  type="text"  ng-keyup=""  placeholder="和大家说点什么吧">
     </div>
 <img ng-if="loading" style="
 position: fixed;top:0;right:0;bottom: 0;

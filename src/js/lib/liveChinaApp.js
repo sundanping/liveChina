@@ -3,6 +3,7 @@ var liveChinaApp=angular.module('liveChinaApp', ['ngRoute']);
 var API_URL_ROOT = 'http://twapi.live.hoge.cn/index.php';
     liveChinaApp.constant('API_URL_ROOT', API_URL_ROOT);
 liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
+
     $scope.timer=function(t){
         $scope.ts=t-(new Date().getTime());
 
@@ -29,7 +30,7 @@ liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
             $scope.dd=0; $scope.hh=0; $scope.mm=0; $scope.ss=0; $scope.mmmm=0
         }
         return $scope.mmmm+"分钟后";
-        console.log(1)
+        // console.log(1)
 
     }
     $scope.ask=function(){
@@ -46,6 +47,7 @@ liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
 
     }).success(function (msg) {
     $scope.liveType=msg;
+        console.log(JSON.stringify(msg[0]))
         $scope.trailer=[];
         $scope.history=[];
         $scope.live=[];

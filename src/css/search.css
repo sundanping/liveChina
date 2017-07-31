@@ -80,7 +80,12 @@
     75%  { top: 1rem;color: #333333;font-weight: 800; }
     100% { top: -.4rem;color: #070777;font-weight: 500;}
 }
-.history-ul>li{
+.history-ul{
+    position: absolute;
+    top:.8rem;
+    background-color: #2a63ee;
+}
+.history-ul>li {
 
     background: url(/liveChina/src/imgs/right-logo.png) no-repeat center right;
     font-size:.3rem;border-bottom:1px solid #999;padding:.3rem 0;opacity: .7
@@ -88,6 +93,11 @@
 .history-ul>li:first-child{
     background: none;font-weight: bold;opacity: 1;
 }
+.bg-img-right{
+    background-img: url(/liveChina/src/imgs/right-logo.png);
+
+}
+
 .clear-history{
     font-size:.3rem;
     font-weight: bold;

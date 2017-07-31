@@ -13,7 +13,6 @@
 <!--预告-->
 <div style='height:.6rem'></div>
 <article ng-controller="live">
-    <!--http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif-->
     <section ng-repeat=" data in trailer">
         <a href="#/liveList/{{data.id}}/{{data.time_status}}">
             <div class="trailer" style="background-image: url({{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename||'http://ocb467zho.bkt.clouddn.com/bbs/pics/2017/0216/ce/cef05ac20cf7bc55ffeb64abffe78a60.jpg?{$hgPicSizeStart}imageView2/1/w/{$hgPicSizeWidth}/h/{$hgPicSizeHeight}{$hgPicSizeEnd}'}});
