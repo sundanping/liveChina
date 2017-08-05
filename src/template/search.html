@@ -1,7 +1,5 @@
 
-
  <link rel="stylesheet" type="text/css" href="src/css/search.css">
-
 <body ng-controller="search">
 <div id="alert">
     请输入关键字
@@ -13,7 +11,6 @@
     <div class="col-8"> <input type="search"  placeholder="请输入搜索关键词" ng-model="text"  ng-keyup="keyUp($event)"></div>
     <div ng-click="toCancel()" class="col-2 cancel">取消</div>
 </div>
-
 <ul style="background-color: #fdfdfd; position: absolute;height:100%;width: 100%; overflow: hidden; padding: 0 .3rem; font-size: .3rem" ng-if="showHistory==1 && historyArr[0]!=''">
     <li  style="font-weight: 600;padding: .3rem 0 ;border-bottom:1px solid #999" >搜索历史</li>
     <li style=" background: url(../liveChina/src/imgs/right-logo.png) no-repeat center right;
@@ -31,4 +28,5 @@
     <a style="display: inline-block;width: 100%" href="#/liveList/:{{data.id}}/:{{data.time_status}}">  {{data.title}}</a>
     </li>
 </ul>
+<div align="center"  style="font-size: .3rem;margin-top:1rem"  ng-if="result.data.length===0">没有搜索到您要的关键词</div>
 </body>

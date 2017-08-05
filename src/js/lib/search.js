@@ -2,6 +2,7 @@
 liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT','$routeParams',function($scope,$http,API_URL_ROOT,$routeParams){
     $scope.historyArr=null;
     $scope.showHistory= 0;
+
 // 取消
     $scope.toCancel=function(){
         $scope.showHistory= 0;
@@ -25,7 +26,7 @@ liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT','$routeParam
         $scope.temp = window.localStorage.searchHistory.slice(window.localStorage.searchHistory.indexOf(',') + 1).split(",").reverse();
         $scope.historyArr = $scope.temp;
         // $scope.historyArr=[1,2,34,5]
-;
+
         if($scope.historyArr.length>10){
             $scope.historyArr.length=10
         }
@@ -52,31 +53,28 @@ liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT','$routeParam
                 }
 
     };
-    $scope.goBack=function(){
-        history.back()
-    }
+        //
+        $scope.goBack=function(){
+            history.back()
+        }
 
 
-
+    // 搜索
     $scope.toAjax=function(v){
+
         $http({
             method: 'JSONP',
-            url: API_URL_ROOT + '?callback=JSON_CALLBACK&m=Apituwenol&c=tuwenol&a=show&custom_appkey=A3O8gmwJURFi8d74nuKxRpczjoAydHSE&custom_appid=137&title=大时代'
-            // url: 'http://operate.tw.live.hoge.cn/index.php?callback=JSON_CALLBACK&m=Apituwenol&c=tuwenol&a=show&custom_appkey=A3O8gmwJURFi8d74nuKxRpczjoAydHSE&custom_appid=137&title='+v
+            url: API_URL_ROOT + '?callback=JSON_CALLBACK&m=Apituwenol&c=tuwenol&a=show&custom_appkey=A3O8gmwJURFi8d74nuKxRpczjoAydHSE&custom_appid=137&title='+v
+           // url: 'http://operate.tw.live.hoge.cn/index.php?callback=JSON_CALLBACK&m=Apituwenol&c=tuwenol&a=show&custom_appkey=A3O8gmwJURFi8d74nuKxRpczjoAydHSE&custom_appid=137&title='+v
 
         }).then(function successCallback(response) {
-            // 请求成功执行代码
-            console.log('请求成功')
-            $scope.text='';
-            console.log(response)
-            $scope.result=response;
+            // console.log('请求成功')
+            $scope.text=''; //清空输入栏
+
+                $scope.result=response
+
+
         }, function errorCallback(response) {
-            // 请求失败执行代码
-            console.log('请求失败')
-            console.log(response)
-            console.log(v)
-
-
         });
     }
 }])

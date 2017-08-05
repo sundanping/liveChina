@@ -1,28 +1,36 @@
 <link rel="stylesheet" href="src/css/liveList.css">
 
 <body  ng-touchstart id="liveList" ng-controller="liveList" >
-<div  ng-repeat="data in dataList">
+<div style="position: fixed;z-index:199; width: 100%" ng-repeat="data in dataList">
+    <div class="share">
+        <img ng-click="goBack()" src="src/imgs/left.png" alt="">
+        <img  ng-click="share()"  src="src/imgs/share.png" alt="">
 
-    <div class="show-video">
-        <video poster="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}"
-          ng-cloak=""     src="http://vfile.m2ou4.v1.m2odemo.com/2017/1491/4427/1226/149144271226.ssm/149144271226.m3u8" controls
-        width="100%" height="100%"></video>
     </div>
-    <div class="title" >{{data.title}}</div>
+    <div class="show-video">
+        <video  ng-touchstart    ng-if="time_status!=1" poster="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}"
+               x-webkit-airplay="true" ng-src={{data.live_info[0].url||"http://vfile.m2ou4.v1.m2odemo.com/2017/1491/4427/1226/149144271226.ssm/149144271226.m3u8"}}
+               webkit-playsinline="true"  controls
+        width="100%" height="100%">
+        </video>
+
+        <img ng-if="time_status ==1" width="100%" height="100%" ng-src="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}" alt="">
+    </div>
+    <div style="background-color: #fff;" class="title" >{{data.title}}</div>
     <div class="bg-color-238"></div>
-    <div ng-show="time_status !=1" class="introduce-interaction">
+    <div style="background-color: #fff;"  ng-show="time_status !=1" class="introduce-interaction">
         <div ng-click="changeIntroduce('introduce')" class="col-6 font-size-26 ">简介</div>
         <div ng-click="changeIntroduce('interaction')"  class="col-6 font-size-26 " >互动<span>({{data.click_num}})</span>
         </div>
         <div id="underLine" class="underLine" ></div>
 
-    </div><div>
-</div>
-</div>
+    </div>
 
-<!--互动BAGIN-->
-    <div ng-if="tag=='interaction'&& time_status!=1" class="interaction">
-        <div ng-repeat=' msg in comment'>
+</div><div></div>
+
+<!--互动  评论 BAGIN-->
+    <div scroll-glue  id="interaction"  style="padding-top:6rem" ng-if="tag=='interaction'&& time_status!=1" class="interaction">
+        <div   style="overflow: auto" ng-repeat=' msg in commitArr'>
             <div class="user-logo"><img ng-src="{{msg.avatar.host+msg.avatar.dir+msg.avatar.filepath+msg.avatar.filename}}" alt=""> </div>
 
             <div class="comment">
@@ -39,8 +47,8 @@
     <!--互动END-->
 
 <!--简介BEGIN-->
-    <div ng-repeat="data in dataList" ng-if="tag=='introduce' &&time_status!=1" >
-        <div class="introduce">
+    <div style="padding-top:6rem"  ng-if="tag=='introduce'&& time_status!=1"   ng-repeat="data in dataList"  >
+         <div class="introduce">
             <img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
             <span> 无线南京</span>
         </div>
@@ -53,15 +61,11 @@
 
 
     <!--预告video 的简介BEGIN-->
-    <div ng-repeat="data in dataList" ng-if="time_status==1">
+    <div style="padding-top:6rem"  ng-repeat="data in dataList" ng-if="time_status==1">
         <div  class="introduce">
             <img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
-            <span ng-touchend="toalert()"> 无线南京</span>
-            <script>
-                $scope.toalert=function(){
-                    alert(1)
-                }
-            </script>
+            <span > 无线南京</span>
+
         </div>
         <div class="introduce-content">
             简 <span>介:</span>{{data.brief}}
@@ -73,15 +77,50 @@
 
     </div>
     <!--简介END-->
-<!--input-->
-    <div ng-if="" class="input-comment">
-        <input  type="text"  ng-keyup=""  placeholder="和大家说点什么吧">
+<!--input--><img ng-if="loading"  src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
+
+<div ng-if="time_status !=1" class="input-comment">
+        <input  id="input" type="text"  ng-model="commit" placeholder="和大家说点什么吧" >
+        <input  type="button" name="{{commit}}" value="发表" ng-model="send" ng-click="sendMessage($event)">
     </div>
-<img ng-if="loading" style="
-position: fixed;top:0;right:0;bottom: 0;
-left:0;margin:auto;margin-bottom:1.2rem;
-border-radius: 50%;
-" src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
+
+<!-- 直播结束 弹框信息-->
+<div ng-if="showTotalMessage" id="totalMessage"  ng-repeat="data in dataList">
+<!-- 头像-->
+    <div class="live-end-logo" align="center">
+        <span>
+            <img ng-src="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}" alt="">
+        </span>
+    </div>
+    <!--姓名-->
+    <div align="center">{{data.title}}</div>
+    <div class=" live-logo-name" align="center">
+        <img ng-src="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}" alt="">
+        <span class="live-name">无线南京</span>
+    </div>
+    <div align="center" class="live-end">
+        <div></div>
+        <div >直播结束</div>
+        <div> </div>
+    </div>
+    <div align="center" class="live-time">
+        直播时长：
+    </div>
+    <div style="margin:.9rem 0 .3rem 0" align="center">
+        <div class="col-6">观看人数</div>
+        <div class="col-6">聊天记录</div>
+    </div>
+    <div align="center">
+        <div class="col-6">e{{}}</div>
+        <div class="col-6">{{}}</div>
+    </div>
+        <div align="center">
+            <button  ng-click="cancelModal()" class="make-sure">确认</button>
+        </div>
+
+</div>
+
+
 </body>
 <!--<script src="src/js/lib/liveList.js"></script>-->
 

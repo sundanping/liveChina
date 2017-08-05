@@ -11,7 +11,7 @@
     </div>
 </nav>
 <!--预告-->
-<div style='height:.6rem'></div>
+<div style='height:.9rem'></div>
 <article ng-controller="live">
     <section ng-repeat=" data in trailer">
         <a href="#/liveList/{{data.id}}/{{data.time_status}}">
@@ -35,9 +35,9 @@ font-size:.26rem;line-height: .4rem;height: .8rem;
             <div class="padding-left-3rem display-inline-block"><span class="f00000">{{data.comment}}</span> 台联盟</div>
             <div class="line"></div>
             <span class="fabf63">{{data.click_num}} </span>人预约
-            <span class="padding-right-3rem right">
+            <span align="'center" class="padding-right-3rem right">
                     <img class="clock" src="src/imgs/clock.png" alt="clock">
-                  {{timer(data.start_time+1511122212230)}}</span>
+                  {{timer(data.start_time+1501971212230)}}</span>
         </div>
         <div class="bg-color-eee"></div>
 
@@ -54,7 +54,7 @@ font-size:.26rem;line-height: .4rem;height: .8rem;
 ">
                     <img  class="tv-logo" src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2460047465,2243415985&fm=58&u_exp_0=1893013850,1910110575&fm_exp_0=86&bpow=683&bpoh=993" alt="">
                     <span class="tv-name">智慧南京</span>
-                    <span style="width:1.2rem " s class="type-name">直播中</span>
+                    <span style="width:1.2rem ;color:#ff4a52" s class="type-name">直播中</span>
                     <!--tv-logo tv-name type-name-->
                 </div>
                 <div class="index-title">
@@ -81,7 +81,7 @@ font-size:.26rem;line-height: .4rem;height: .8rem;
 ">
                 <img style="" class="tv-logo" src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2460047465,2243415985&fm=58&u_exp_0=1893013850,1910110575&fm_exp_0=86&bpow=683&bpoh=993" alt="">
                 <span style=""class="tv-name">智慧南京</span>
-                <span style="" class="type-name">会看</span>
+                <span style="color:#ff7b16" class="type-name">回看</span>
                 <!--tv-logo tv-name type-name-->
             </div>
                 <div class="index-title">

@@ -1,9 +1,9 @@
-var liveChinaApp=angular.module('liveChinaApp', ['ngRoute']);
+var liveChinaApp=angular.module('liveChinaApp', ['ngRoute','luegg.directives']);
 //URL
 var API_URL_ROOT = 'http://operate.tw.live.hoge.cn/index.php';
     liveChinaApp.constant('API_URL_ROOT', API_URL_ROOT);
 liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
-
+    console.log(document.documentElement.style.fontSize)
     $scope.timer=function(t){
         $scope.ts=t-(new Date().getTime());
 
@@ -29,9 +29,16 @@ liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
         if ($scope.ts<=0) {
             $scope.dd=0; $scope.hh=0; $scope.mm=0; $scope.ss=0; $scope.mmmm=0
         }
-        return $scope.mmmm+"分钟后";
-        // console.log(1)
 
+        if($scope.dd*1 >0){
+            return $scope.dd+'天'+$scope.hh+'小时后'
+        }else if($scope.dd*1 ==0 && $scope.hh<12){
+            return $scope.hh+'小时后'
+
+        }else{
+            return $scope.mmmm+"分钟后";
+        // console.log(1)
+        }
     }
     $scope.ask=function(){
         $scope.$apply();
@@ -47,7 +54,7 @@ liveChinaApp.controller('live', ['$scope','$http' ,function($scope,$http){
 
     }).success(function (msg) {
     $scope.liveType=msg;
-        console.log(JSON.stringify(msg[0]))
+        // console.log(JSON.stringify(msg[0]))
         $scope.trailer=[];
         $scope.history=[];
         $scope.live=[];

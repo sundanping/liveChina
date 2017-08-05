@@ -1,5 +1,5 @@
 .search{
-    height: .6rem;
+    height: .9rem;
     background-color: #333;
     font-size:.3rem;
     overflow: hidden;
@@ -10,14 +10,14 @@
 .search>.col-8>input{
     width: 90%;
     text-align: center;
-    height:.5rem;
+    height:.6rem;
     padding: 0 .2rem;
     font-size:.3rem;
     text-indent: .3rem;
-    border-radius: .25rem;
-    margin:.055rem auto;
+    border-radius: .3rem;
+    margin:.15rem auto;
 
-    background: url(../imgs/search3.png) no-repeat center left ;
+    background: url(../imgs/search-black.jpg) no-repeat center left;
     background-color:#fff;
     background-origin: content-box;
 }
@@ -25,14 +25,14 @@
     width:50%;
     height:50%;
     position: relative;
-    margin-top:.04rem;
+    margin-top:.2rem;
 }
 .cancel{
     color:#fff;
     text-align:center;
     font-size: .3rem;
-    height:.6rem;
-    line-height: .6rem;
+    height:.9rem;
+    line-height: .9rem;
 
 }
 .search-history>div{

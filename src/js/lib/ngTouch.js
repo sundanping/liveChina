@@ -43,6 +43,7 @@ liveChinaApp.directive("ngTouchstart", function () {
         }]
     }
 })
+
 .directive("ngTouchend", function () {
     return {
         controller: ["$scope", "$element", function ($scope, $element) {
