@@ -238,9 +238,9 @@ video{
     border-radius: 50%;
 }
 #totalMessage{
-    position: absolute;
+    position: fixed;
     top:.2rem;
-    z-index: 200;
+    z-index: 999;
     opacity: .95;
     padding-top:.6rem;
     font-size: .3rem;

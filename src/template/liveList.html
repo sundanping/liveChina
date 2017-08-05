@@ -1,15 +1,15 @@
 <link rel="stylesheet" href="src/css/liveList.css">
 
-<body  ng-touchstart id="liveList" ng-controller="liveList" >
+<body   id="liveList" ng-controller="liveList" >
 <div style="position: fixed;z-index:199; width: 100%" ng-repeat="data in dataList">
-    <div class="share">
+    <div ng-if='touched' class="share">
         <img ng-click="goBack()" src="src/imgs/left.png" alt="">
         <img  ng-click="share()"  src="src/imgs/share.png" alt="">
 
     </div>
-    <div class="show-video">
+    <div my-touchstart="touchStart()"  class="show-video">
         <video  ng-touchstart    ng-if="time_status!=1" poster="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}"
-               x-webkit-airplay="true" ng-src={{data.live_info[0].url||"http://vfile.m2ou4.v1.m2odemo.com/2017/1491/4427/1226/149144271226.ssm/149144271226.m3u8"}}
+               x-webkit-airplay="true" ng-src='src/css/ceshi.mp4'
                webkit-playsinline="true"  controls
         width="100%" height="100%">
         </video>

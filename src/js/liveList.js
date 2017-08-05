@@ -5,12 +5,17 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
     $scope.id=$routeParams.id;
     $scope.time_status=$routeParams.time_status;
     $scope.tag='interaction';
-    $scope.count=3;
+        $scope.offset=0;
+        $scope.count=3;
     $scope.loading=true;
     $scope.commit='';
-    $scope.showTotalMessage=false;
+    $scope.showTotalMessage=false;//直播结束弹框限时汇总信息
 
+        $scope.touched = false;
 
+        $scope.touchStart = function(e) {
+            $scope.touched =!$scope.touched;
+        }
         $scope.changeIntroduce=function(status){
         $scope.tag=status;
         if(status==='introduce'){
@@ -30,7 +35,6 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
         url:'http://operate.tw.live.hoge.cn/'+"?callback=JSON_CALLBACK"+'&m=Apituwenol&c=tuwenol&a=detail&custom_appkey=A3O8gmwJURFi8d74nuKxRpczjoAydHSE&custom_appid=137&id=2263'
     }).success(function(res){
         // aa= angular.element(document.querySelector('#interaction')).append('<div style="margin-bottom:140px"  id="scroll-bottom">---------已经最底部----------</div>');
-        $scope.dataList=res;
         $scope.loading=false;
             // console.log(JSON.stringify(res[0]));
 
@@ -42,41 +46,35 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
             $scope.timer=  $scope.locationToLive()
             }, 1000);
         }
+        $scope.dataList=res;
 
-
-        if($scope.time_status ==2){
-           var nowData=(new Date()).getTime();
-           // console.log(nowData);
-           $scope.totalMessage=function(){
-
-           if(nowData>res[0].end_time && nowData<res[0].end_time*1+1000){
-              // 直播结束  汇总信息
-               console.log(22222222)
-              $scope.showTotalMessage=true;
-
-            }
-        }
-        // $scope.totalMessage()
-    }
-            $scope.dataList=res;
     })
 
+        $scope.totalMessage=function(){
+            if($scope.time_status ==2){
+                var nowData=(new Date()).getTime();
+                // console.log(nowData);
+                if(nowData>$scope.dataList[0].end_time && nowData<$scope.dataList[0].end_time*1+1000){
+                    // 直播结束  汇总信息
+                    $scope.showTotalMessage=true;
+                }
+            }// $scope.totalMessage()
+        }
 
 
         //刷新页面  到播放页
         $scope.locationToLive=function(){
                 console.log('刷新')
-        if($scope.dataList[0].end_time*1> new Date() && $scope.dataList[0].end_time*1< (new Date())+1100 )
-            $window.location.reload();
-            $scope.$on('destroy',function(){
-                $interval.cancel($scope.timer);
-            })
+        if($scope.dataList[0].end_time*1> new Date() && $scope.dataList[0].end_time*1< (new Date())+1100 ){
+            $location.path('/liveList/'+$scope.id+'/2');
+        }
+            // $scope.$on('destroy',function(){
+            //     $interval.cancel($scope.timer);
+            // })
         }
         //轮询   获取评论
         $scope.commitArr=[];
-        $scope.offset=0;
     $scope.getComment= function (){
-
         $scope.loading=true;
         $http({
             method:'JSONP',
@@ -98,8 +96,9 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
             if(comment.length>0){
                 // console.log('输出')
                 $scope.offset +=$scope.count;
+                console.log()
                 Array.prototype.push.apply($scope.commitArr,comment)
-                $('body').animate({scrollTop:$('#interaction').outerHeight()-window.innerHeight+500})
+                $('body').animate({scrollTop:$('#interaction').outerHeight()-window.innerHeight+$('.show-video').outerHeight()+$('#input').outerHeight()*10 })
             }else{
                 $scope.offset=$scope.commitArr.length-1;
             }
@@ -112,11 +111,7 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
         })
     }
 // 下拉加载评论
-        $interval( $scope.getComment,2000)
-
-
-
-
+//         $interval( $scope.getComment,2000)
 //  评论时间转换
     $scope.changeTime=function(t){
         var oldTime= (new Date(t).getTime());
@@ -134,12 +129,14 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
             }
     }
 
-
+        var tep=0;
     $scope.see=function(){
-        if($scope.id==2) {
             $scope.totalMessage();
-
-        }
+        tep++;
+           //2秒轮询一次
+           if(tep%2==0){
+               $scope.getComment();
+           }
         $scope.$apply()
     }
     setInterval($scope.see,1000)
@@ -214,4 +211,14 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
         $scope.showTotalMessage=false;
 
     }
+}]);
+liveChinaApp.directive('myTouchstart', [function() {
+    return function(scope, element, attr) {
+
+        element.on('touchstart', function(event) {
+            scope.$apply(function() {
+                scope.$eval(attr.myTouchstart);
+            });
+        });
+    };
 }])
