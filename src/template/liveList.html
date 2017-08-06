@@ -2,13 +2,13 @@
 
 <body   id="liveList" ng-controller="liveList" >
 <div style="position: fixed;z-index:199; width: 100%" ng-repeat="data in dataList">
-    <div ng-if='touched' class="share">
+    <div ng-if='touched'    class="share">
         <img ng-click="goBack()" src="src/imgs/left.png" alt="">
         <img  ng-click="share()"  src="src/imgs/share.png" alt="">
 
     </div>
     <div my-touchstart="touchStart()"  class="show-video">
-        <video  ng-touchstart    ng-if="time_status!=1" poster="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}"
+        <video id="video" ng-touchstart    ng-if="time_status!=1" poster="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}"
                x-webkit-airplay="true" ng-src='src/css/ceshi.mp4'
                webkit-playsinline="true"  controls
         width="100%" height="100%">
@@ -27,7 +27,6 @@
     </div>
 
 </div><div></div>
-
 <!--互动  评论 BAGIN-->
     <div scroll-glue  id="interaction"  style="padding-top:6rem" ng-if="tag=='interaction'&& time_status!=1" class="interaction">
         <div   style="overflow: auto" ng-repeat=' msg in commitArr'>

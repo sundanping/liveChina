@@ -5,17 +5,17 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
     $scope.id=$routeParams.id;
     $scope.time_status=$routeParams.time_status;
     $scope.tag='interaction';
-        $scope.offset=0;
-        $scope.count=3;
+     $scope.offset=0;
+     $scope.count=3;
     $scope.loading=true;
     $scope.commit='';
     $scope.showTotalMessage=false;//直播结束弹框限时汇总信息
-
-        $scope.touched = false;
-
-        $scope.touchStart = function(e) {
+    $scope.touched = false;
+        $scope.share_url='';//分享的路径
+     $scope.touchStart = function(e) {
             $scope.touched =!$scope.touched;
         }
+
         $scope.changeIntroduce=function(status){
         $scope.tag=status;
         if(status==='introduce'){
@@ -34,6 +34,7 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
         method:'JSONP',
         url:'http://operate.tw.live.hoge.cn/'+"?callback=JSON_CALLBACK"+'&m=Apituwenol&c=tuwenol&a=detail&custom_appkey=A3O8gmwJURFi8d74nuKxRpczjoAydHSE&custom_appid=137&id=2263'
     }).success(function(res){
+        $scope.share_url=res.share_url;//分享路径
         // aa= angular.element(document.querySelector('#interaction')).append('<div style="margin-bottom:140px"  id="scroll-bottom">---------已经最底部----------</div>');
         $scope.loading=false;
             // console.log(JSON.stringify(res[0]));
@@ -47,9 +48,7 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
             }, 1000);
         }
         $scope.dataList=res;
-
     })
-
         $scope.totalMessage=function(){
             if($scope.time_status ==2){
                 var nowData=(new Date()).getTime();
@@ -64,7 +63,7 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
 
         //刷新页面  到播放页
         $scope.locationToLive=function(){
-                console.log('刷新')
+                // console.log('刷新')
         if($scope.dataList[0].end_time*1> new Date() && $scope.dataList[0].end_time*1< (new Date())+1100 ){
             $location.path('/liveList/'+$scope.id+'/2');
         }
@@ -81,7 +80,6 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
             url:API_URL_ROOT+'?m=Apituwenol&c=thread&a=show_comment&callback=JSON_CALLBACK&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197&&offset='+$scope.offset+'&&count='+$scope.count
             // url:API_URL_ROOT+"?callback=JSON_CALLBACK"+'&m=Apituwenol&c=tuwenol&a=show_comment&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197'
         }).success(function(comment){
-
             // 过滤太长的用户名  成为'ab...cd' 形式
             comment.filter(function(item,index,arr){
                 if(item.user_name.length>4){
@@ -96,7 +94,7 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
             if(comment.length>0){
                 // console.log('输出')
                 $scope.offset +=$scope.count;
-                console.log()
+
                 Array.prototype.push.apply($scope.commitArr,comment)
                 $('body').animate({scrollTop:$('#interaction').outerHeight()-window.innerHeight+$('.show-video').outerHeight()+$('#input').outerHeight()*10 })
             }else{
@@ -147,7 +145,7 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
 
     $scope.sendMessage=function(e){
 
-        console.log(e)
+        // console.log(e)
         $scope.content= e.target.name ;
         if($scope.content=='' ||$scope.content==undefined || $scope.content==null){
 
@@ -188,7 +186,7 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
                         e.target.value='发表'
                         angular.element(document.querySelector('#input')).val('');
                         e.target.name=''
-                        console.log(comment)
+                        // console.log(comment)
                         $scope.getComment()
                     })
         }
@@ -197,11 +195,12 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
 
         //分享
     $scope.share=function(){
-        console.log(window.document.URL)
+        // console.log(window.document.URL)
         SmartCity.shareTo({
             title: '标题',
             brief: '描述',
-            contentURL: window.document.URL,
+            // contentURL: window.document.URL,
+            contentURL: $scope.share_url,
             imageLink: 'http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif'
         });
     }
@@ -212,6 +211,7 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
 
     }
 }]);
+//touch 事件
 liveChinaApp.directive('myTouchstart', [function() {
     return function(scope, element, attr) {
 

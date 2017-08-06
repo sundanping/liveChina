@@ -3,7 +3,7 @@ var liveChinaApp=angular.module('liveChinaApp', ['ngRoute','luegg.directives']);
 var API_URL_ROOT = 'http://operate.tw.live.hoge.cn/index.php';
     liveChinaApp.constant('API_URL_ROOT', API_URL_ROOT);
 liveChinaApp.controller('live', ['$scope','$http' ,'$interval', function($scope,$http,$interval){
-    console.log(document.documentElement.style.fontSize)
+    // console.log(document.documentElement.style.fontSize)
     $scope.timer=function(t){
         $scope.ts=t-(new Date().getTime());
 
@@ -18,7 +18,6 @@ liveChinaApp.controller('live', ['$scope','$http' ,'$interval', function($scope,
         $scope.mm = checkTime($scope.mm);
         $scope.ss = checkTime($scope.ss);
         $scope.mmmm = checkTime($scope.mmmm);
-
         function checkTime(t){
             if(t<10){
                 t='0'+t
@@ -55,7 +54,6 @@ liveChinaApp.controller('live', ['$scope','$http' ,'$interval', function($scope,
     $http({
         method: 'JSONP',
         url:API_URL_ROOT+"?callback=JSON_CALLBACK"+'&m=Apituwenol&c=tuwenol&a=show&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197',
-
     }).success(function (msg) {
     $scope.liveType=msg;
         // console.log(JSON.stringify(msg[0]))
@@ -69,9 +67,9 @@ liveChinaApp.controller('live', ['$scope','$http' ,'$interval', function($scope,
                 $scope.live.push(data)
             }else if(data.time_status===0){
                 $scope.history.push(data)
-
             }
         });
+        console.log($scope.trailer)
     });
 }]);
 

@@ -1,5 +1,5 @@
 
-liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT','$routeParams',function($scope,$http,API_URL_ROOT,$routeParams){
+liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT',function($scope,$http,API_URL_ROOT){
     $scope.historyArr=null;
     $scope.showHistory= 0;
 
@@ -22,7 +22,8 @@ liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT','$routeParam
     }
     //键盘输入事件
     $scope.keyUp = function(e){
-        $scope.showHistory= 1;
+
+            $scope.showHistory= 1;
         $scope.temp = window.localStorage.searchHistory.slice(window.localStorage.searchHistory.indexOf(',') + 1).split(",").reverse();
         $scope.historyArr = $scope.temp;
         // $scope.historyArr=[1,2,34,5]

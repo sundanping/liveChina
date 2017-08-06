@@ -18,10 +18,10 @@
             <div class="trailer" style="background-image: url({{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename||'http://ocb467zho.bkt.clouddn.com/bbs/pics/2017/0216/ce/cef05ac20cf7bc55ffeb64abffe78a60.jpg?{$hgPicSizeStart}imageView2/1/w/{$hgPicSizeWidth}/h/{$hgPicSizeHeight}{$hgPicSizeEnd}'}});
     background-size:100% 100%;">
                 <div style="padding-top:.2rem;padding-left:.3rem;
-font-size:.26rem;line-height: .4rem;height: .8rem;
-">
+                    font-size:.26rem;line-height: .4rem;height: .8rem;
+                ">
                 <img   class="tv-logo" src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2460047465,2243415985&fm=58&u_exp_0=1893013850,1910110575&fm_exp_0=86&bpow=683&bpoh=993" alt="">
-                <span  class="tv-name">智慧南京</span>
+                <span  class="tv-name">{{data.live_type_zh}}</span>
                 <span class="type-name">预告</span>
                     <!--tv-logo tv-name type-name-->
                 </div>
@@ -37,11 +37,10 @@ font-size:.26rem;line-height: .4rem;height: .8rem;
             <span class="fabf63">{{data.click_num}} </span>人预约
             <span align="'center" class="padding-right-3rem right">
                     <img class="clock" src="src/imgs/clock.png" alt="clock">
-                  {{timer(data.start_time+1501976702230)}}</span>
+                  {{timer(data.start_time)}}</span>
+            <!--{{timer(data.start_time+1502996702230)}}</span>-->
         </div>
         <div class="bg-color-eee"></div>
-
-
     </section>
 
     <!--直播-->
@@ -53,7 +52,7 @@ font-size:.26rem;line-height: .4rem;height: .8rem;
 font-size:.26rem;line-height: .4rem;height: .8rem;
 ">
                     <img  class="tv-logo" src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2460047465,2243415985&fm=58&u_exp_0=1893013850,1910110575&fm_exp_0=86&bpow=683&bpoh=993" alt="">
-                    <span class="tv-name">智慧南京</span>
+                    <span class="tv-name">{{data.live_type_zh}}</span>
                     <span style="width:1.2rem ;color:#ff4a52" s class="type-name">直播中</span>
                     <!--tv-logo tv-name type-name-->
                 </div>
@@ -80,7 +79,7 @@ font-size:.26rem;line-height: .4rem;height: .8rem;
 font-size:.26rem;line-height: .4rem;height: .8rem;
 ">
                 <img style="" class="tv-logo" src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2460047465,2243415985&fm=58&u_exp_0=1893013850,1910110575&fm_exp_0=86&bpow=683&bpoh=993" alt="">
-                <span style=""class="tv-name">智慧南京</span>
+                <span style=""class="tv-name">{{data.live_type_zh}}</span>
                 <span style="color:#ff7b16" class="type-name">回看</span>
                 <!--tv-logo tv-name type-name-->
             </div>
