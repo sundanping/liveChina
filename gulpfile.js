@@ -9,11 +9,15 @@ var minifyCSS = require('gulp-minify-css')
 // 获取 gulp-imagemin 模块
 var imagemin = require('gulp-imagemin')
 // 压缩 js 文件
+var rev = require('gulp-rev-collector');
+
 // 在命令行使用 gulp script 启动此任务
 gulp.task('script', function() {
     // 1. 找到文件
     gulp.src('src/js/*.js')
     // 2. 压缩文件
+        .pipe(rev())
+        .pipe(gulp.dest('dist/js'))
         .pipe(uglify())
         // 3. 另存压缩后的文件
         .pipe(gulp.dest('dist/js'))
@@ -28,9 +32,12 @@ gulp.task('uglifyjs', function () {
 // 压缩 css 文件
 // 在命令行使用 gulp css 启动此任务
 gulp.task('css', function () {
+
     // 1. 找到文件
     gulp.src('src/css/*.css')
     // 2. 压缩文件
+        .pipe(rev())
+        .pipe(gulp.dest('dist/css'))
         .pipe(minifyCSS())
         // 3. 另存为压缩文件
         .pipe(gulp.dest('dist/css'))
@@ -57,6 +64,28 @@ gulp.task('images', function () {
         .pipe(gulp.dest('dist/imgs'))
 });
 
+
+var revCollector = require('gulp-rev-collector');
+var minifyHTML   = require('gulp-minify-html');
+
+gulp.task('rev', function () {
+    return gulp.src(['rev/**/*.json', 'templates/**/*.html'])
+        .pipe( revCollector({
+            replaceReved: true,
+            dirReplacements: {
+                'css': '/dist/css',
+                '/js/': '/dist/js/',
+                'cdn/': function(manifest_value) {
+                    return '//cdn' + (Math.floor(Math.random() * 9) + 1) + '.' + 'exsample.dot' + '/img/' + manifest_value;
+                }
+            }
+        }) )
+        .pipe( minifyHTML({
+            empty:true,
+            spare:true
+        }) )
+        .pipe( gulp.dest('dist') );
+});
 gulp.task('default', ['uglifyjs','autoCss','images'])
 
 
