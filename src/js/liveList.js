@@ -134,7 +134,7 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
             $scope.totalMessage();
         tep++;
            //2秒轮询一次
-           if(tep%2==0){
+           if( $scope.tag=='interaction'&& tep%2==0){
                $scope.getComment();
            }
         $scope.$apply()
