@@ -1,0 +1,1 @@
+liveChinaApp.config(["$routeProvider",function(e){e.when("/liveList/:id/:time_status",{templateUrl:"src/template/liveList.html",controller:"liveList"}).when("/search",{templateUrl:"src/template/search.html",controller:"search"}).otherwise({templateUrl:"src/template/liveIndex.html"})}]);

@@ -1,41 +1,51 @@
 <link rel="stylesheet" href="src/css/liveList.css">
 
 <body   id="liveList" ng-controller="liveList" >
-<div style="position: fixed;z-index:199; width: 100%" ng-repeat="data in dataList">
+<!--加载动画BEGIN-->
+<div ng-if="load" class="load">
+    <div >加载更多...</div>
+</div>
+<!--加载动画END-->
+
+<div id="videoList" style="position: fixed;z-index:4; width: 100%" ng-repeat="data in dataList">
     <div ng-if='touched'    class="share">
-        <img ng-click="goBack()" src="src/imgs/left.png" alt="">
+        <img ng-touchstart="goBack3($event)"  src="src/imgs/left.png" alt="">
         <img  ng-click="share()"  src="src/imgs/share.png" alt="">
 
     </div>
-    <div my-touchstart="touchStart()"  class="show-video">
-        <video id="video" ng-touchstart    ng-if="time_status!=1" poster="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}"
-               x-webkit-airplay="true" ng-src='src/css/ceshi.mp4'
-               webkit-playsinline="true"  controls
-        width="100%" height="100%">
+    <!--src= "src/css/ceshi.mp4"-->
+    <div my-touchstart="touchStart()"  ng-click="changeShare()"   class="show-video">
+        <video id="my-video"  autoplay  class="" controls="controls"  ng-if="time_status!=0" x-webkit-airplay="true" webkit-playsinline="true"
+               poster="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}"      controls
+               width="100%" height="100%"  ng-click="addSrc($event)"  >
         </video>
+        <!--<video ng-if="time_status!=0" ng-click="addSrc($event)" id="my-video" class="video-js" controls preload="auto" width="640" height="264"  webkit-playsinline="true" x-webkit-airplay="true"  controls="controls" preload="preload" webkit-playsinline  playsinline-->
+               <!--poster="MY_VIDEO_POSTER.jpg" data-setup="{}" src="{{videoUrl}}"></video>-->
 
-        <img ng-if="time_status ==1" width="100%" height="100%" ng-src="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}" alt="">
+        <img ng-if="time_status ==0" width="100%" height="100%" ng-src="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}" alt="">
     </div>
     <div style="background-color: #fff;" class="title" >{{data.title}}</div>
     <div class="bg-color-238"></div>
-    <div style="background-color: #fff;"  ng-show="time_status !=1" class="introduce-interaction">
-        <div ng-click="changeIntroduce('introduce')" class="col-6 font-size-26 ">简介</div>
-        <div ng-click="changeIntroduce('interaction')"  class="col-6 font-size-26 " >互动<span>({{data.click_num}})</span>
+    <div style="background-color: #fff;"  ng-show="time_status !=0" class="introduce-interaction">
+        <div ng-click="changeIntroduce('introduce')"class="col-6 font-size-26 " ng-class="tag=='introduce'?'color-333':null" >简介</div>
+        <div ng-click="changeIntroduce('interaction')" class="col-6 font-size-26 "  ng-class="tag=='interaction'?'color-333':null"    >互动<span>({{data.click_num}})</span>
         </div>
         <div id="underLine" class="underLine" ></div>
 
     </div>
 
-</div><div></div>
+</div>
+<div></div>
 <!--互动  评论 BAGIN-->
-    <div scroll-glue  id="interaction"  style="padding-top:6rem" ng-if="tag=='interaction'&& time_status!=1" class="interaction">
-        <div   style="overflow: auto" ng-repeat=' msg in commitArr'>
+<!--my-touchend='touchend($event)'-->
+    <div ng-touchstart="onTouchstart()"   ng-touchend='touchend($event)'  id="interaction" ng-if="tag=='interaction'&& time_status !=0" class="interaction">
+        <div ng-style="translate"   style="overflow: hidden" ng-repeat=' msg in commitArr'>
             <div class="user-logo"><img ng-src="{{msg.avatar.host+msg.avatar.dir+msg.avatar.filepath+msg.avatar.filename}}" alt=""> </div>
 
-            <div class="comment">
+            <div ng-touchmove class="comment">
                 <span>{{msg.user_name}}:</span><span class="time">{{changeTime(msg.create_time_format)}}</span><div class="channel">{{msg.topic_title}}</div>
                 <div>  </div>
-                <div class="reply">{{msg.content}}
+                <div  class="reply">{{msg.content}}
                 </div>
             </div>
         </div>
@@ -46,13 +56,16 @@
     <!--互动END-->
 
 <!--简介BEGIN-->
-    <div style="padding-top:6rem"  ng-if="tag=='introduce'&& time_status!=1"   ng-repeat="data in dataList"  >
+    <div style="padding-top:6.3rem"  ng-if="tag=='introduce'&& time_status !=0"   ng-repeat="data in dataList"  >
          <div class="introduce">
-            <img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
-            <span> 无线南京</span>
+            <img ng-src="{{data.sort_pic|| 'http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif'}}" alt="">
+            <span> {{data.sort_name|| '直播中国'}}</span>
         </div>
         <div class="introduce-content">
             简 <span>介:</span>{{data.brief}}
+        </div>
+        <div  ng-if="tag=='introduce'"     class="launch-time">
+            开播时间：{{data.start_time_show}}
         </div>
         <br>
     </div>
@@ -60,10 +73,10 @@
 
 
     <!--预告video 的简介BEGIN-->
-    <div style="padding-top:6rem"  ng-repeat="data in dataList" ng-if="time_status==1">
+    <div style="padding-top:5.5rem"  ng-repeat="data in dataList" ng-if="time_status==0">
         <div  class="introduce">
-            <img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
-            <span > 无线南京</span>
+            <img ng-src="{{data.sort_pic|| 'http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif'}}" alt="">
+            <span> {{data.sort_name|| '直播中国'}}</span>
 
         </div>
         <div class="introduce-content">
@@ -76,12 +89,16 @@
 
     </div>
     <!--简介END-->
-<!--input--><img ng-if="loading"  src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
+<!--input-->
+<!--<img ng-if="loading"  src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">-->
 
-<div ng-if="time_status !=1" class="input-comment">
-        <input  id="input" type="text"  ng-model="commit" placeholder="和大家说点什么吧" >
-        <input  type="button" name="{{commit}}" value="发表" ng-model="send" ng-click="sendMessage($event)">
-    </div>
+<div id="sendMsg" ng-show="time_status !=0 && tag=='interaction'" class="input-comment">
+    <!--{{loading}}-->
+        <input  id="input" type="text" ng-focus="startTimer()"  ng-model="commit" placeholder="和大家说点什么吧" >
+        <!--<input  type="button" name="{{commit}}" value="发表" ng-model="send" ng-click="sendMessage($event)">-->
+    <button   name="{{commit}}" value=""  name="{{commit}}"  ng-model="send" ng-click="sendMessage($event)">发表</button>
+
+</div>
 
 <!-- 直播结束 弹框信息-->
 <div ng-if="showTotalMessage" id="totalMessage"  ng-repeat="data in dataList">
@@ -103,14 +120,14 @@
         <div> </div>
     </div>
     <div align="center" class="live-time">
-        直播时长：
+        直播时长：{{timeLong}}
     </div>
     <div style="margin:.9rem 0 .3rem 0" align="center">
         <div class="col-6">观看人数</div>
         <div class="col-6">聊天记录</div>
     </div>
     <div align="center">
-        <div class="col-6">e{{}}</div>
+        <div class="col-6">{{}}</div>
         <div class="col-6">{{}}</div>
     </div>
         <div align="center">
@@ -118,7 +135,13 @@
         </div>
 
 </div>
-
+    <script type="text/javascript">
+    var myPlayer = videojs('my-video');
+    videojs("my-video").ready(function(){
+        var myPlayer = this;
+        myPlayer.play();
+    });
+</script>
 
 </body>
 <!--<script src="src/js/lib/liveList.js"></script>-->

@@ -1,10 +1,14 @@
 
+
 .right{
 	float:right;
 	/*background: url(../imgs/search.png) no-repeat center;*/
 }
 .fabf63{
-	color:#fabf63
+	color: #daae4b
+}
+.opacity{
+	opacity: .7;
 }
 .f00000{
 	color:#f00000;
@@ -24,14 +28,14 @@
 	 /*}*/
 /*}*/
 #nav>div{
+	font-size: .36rem;
 	display:inline-block;
 }
 #nav{
 	padding: 0;
 	position:fixed;
-	width:100%;
+	width: 100%;
 	height:.9rem;
-	font-size:.34rem;
 	background:#333;
 /*opacity:0.4;*/
 }	
@@ -51,6 +55,7 @@
 	height: .9rem;
 	line-height:.9rem;
 	display: inline-block;
+	float:right;
 
 }
 .display-inline-block{
@@ -59,16 +64,16 @@
 #nav>div:last-child>a>img{
 	position: relative;
 	/*right: -.5rem;*/
-	transform:scale(0.8) ;
-	-webkit-transform:scale(0.8) ;
+
 
 }
 #nav>div:last-child>a>img ,#nav>div:first-child>img  {
 
 	/*width: 80%;*/
-	height:80%;
-	margin-top:10%;
+	height:.4rem;
+	line-height:.9rem;
 	/*margin-left:0;*/
+	margin-top:.28rem;
 }
  #nav>div:first-child>img{
  	padding-left:.1rem;
@@ -100,7 +105,7 @@
 	border:1px solid rgba(255,255,255,.6);color:#95ff2b;margin-top:.05rem;
 	background: rgba(123,123,123,.4);font-size: .26rem}
 .tv-name{
-	color:#fff;text-shadow: 0 .02rem .03rem;
+	color:#fff;text-shadow: 1px 2px #333;
 	font-family:bold; margin-left: .2rem;
 	font-size: .24rem;height: .5rem; line-height: .5rem;
 	display: inline-block;
@@ -111,22 +116,20 @@
 	height:.64rem;
 	line-height: .64rem;
 }
-.trailer-msg>span,.trailer-msg>div{
-	text-indent: 15px;
-	font-weight: 600;
-}
+
 .line{
 	width:1px;height:.3rem;
      display:inline-block;
-	border-left:1px solid #333;
+	border-left:1px solid #ccc;
 	line-height:.6rem;
-	position:relative;
-	top:.05rem;
+	/*position:relative;*/
+	/*top:.05rem;*/
+	margin-bottom:-.08rem;
 }
 .clock{
 	margin-right:.2rem;
-	width:.4rem;
-     height:.4rem;
+	width:.324rem;
+     height:.36rem;
       margin-bottom:.12rem;
 }
 .trailer-msg>div{
@@ -155,7 +158,7 @@
 }
 
 .index-title{
-	width: 100%;
+
 	display:inline-block;margin-top: 2.2rem;text-indent: .2rem;
 	background-color: rgba(31,31,31,0.4);color:#fff;padding-right:.4rem;
 	border-radius: 0 .2rem .2rem 0;

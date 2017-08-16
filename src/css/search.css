@@ -6,26 +6,32 @@
 }
 .search>div{
     display: inline-block;
+    height: .6rem;
+
 }
 .search>.col-8>input{
-    width: 90%;
-    text-align: center;
-    height:.6rem;
-    padding: 0 .2rem;
-    font-size:.3rem;
-    text-indent: .3rem;
-    border-radius: .3rem;
-    margin:.15rem auto;
 
-    background: url(../imgs/search-black.jpg) no-repeat center left;
-    background-color:#fff;
+    width: 90%;
+    /*text-align: center;*/
+    height:100%;
+    padding: 0 .2rem;
+    font-size: .26rem;
+    text-indent: .4rem;
+    border-radius: .3rem;
+    margin: .15rem auto;
+    background: url(../imgs/search22.jpg) no-repeat center left;
+    background-color: #fff;
+    background-size: .36rem .36rem;
+
     background-origin: content-box;
-}
+
+   }
 .search>.col-2>img{
-    width:50%;
-    height:50%;
+
     position: relative;
-    margin-top:.2rem;
+    height: .4rem;
+    top: .22rem;
+    left: .2rem;
 }
 .cancel{
     color:#fff;

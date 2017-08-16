@@ -1,0 +1,102 @@
+<!--<link rel="stylesheet" href="../css/liveChina.css">-->
+<nav id="nav" ng-controller="live">
+    <div class="col-2 padding-left-3rem">
+        <img ng-click="goBack()" class=" " src="src/imgs/right.png" alt="">
+    </div>
+    <div class="col-8 title">直播中国</div>
+    <div class="col-2 right ">
+        <a href="#/search">
+            <img  class="right  padding-right-3rem" src="src/imgs/search.png" alt="">
+        </a>
+    </div>
+</nav>
+<!--预告-->
+<div style='height:.9rem'></div>
+<article ng-controller="live">
+    <section ng-repeat=" data in trailer">
+        <a href="#/liveList/{{data.id}}/{{data.time_status}}">
+            <div class="trailer" style="background-image: url({{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename||'http://ocb467zho.bkt.clouddn.com/bbs/pics/2017/0216/ce/cef05ac20cf7bc55ffeb64abffe78a60.jpg?{$hgPicSizeStart}imageView2/1/w/{$hgPicSizeWidth}/h/{$hgPicSizeHeight}{$hgPicSizeEnd}'}});
+    background-size:100% 100%;">
+                <div style="padding-top:.2rem;padding-left:.3rem;
+                    font-size:.26rem;line-height: .4rem;height: .8rem;
+                ">
+                <img   class="tv-logo" ng-src="{{data.sort_pic|| 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2460047465,2243415985&fm=58&u_exp_0=1893013850,1910110575&fm_exp_0=86&bpow=683&bpoh=993'}}" alt="">
+                <span  class="tv-name">{{data.sort_name}}</span>
+                <span class="type-name">预告</span>
+                    <!--tv-logo tv-name type-name-->
+                </div>
+                <div class="index-title">
+                    {{data.brief||'暂无内容'}}
+                </div>
+            </div>
+        </a>
+
+        <div class="trailer-msg">
+            <div class="padding-left-3rem display-inline-block"><span class="f00000">{{data.comment}}</span> 台联盟</div>
+            <div class="line"></div>
+            <span class="fabf63">{{data.click_num}} </span>人预约
+            <span align="'center" class="padding-right-3rem right">
+                    <img class="clock" src="src/imgs/clock.png" alt="clock">
+                  {{timer(data.start_time)}}</span>
+            <!--{{timer(data.start_time+1502996702230)}}</span>-->
+        </div>
+        <div class="bg-color-eee"></div>
+    </section>
+
+    <!--直播-->
+    <section ng-repeat=" data in live">
+        <a href="#/liveList/{{data.id}}/{{data.time_status}}">
+            <div class="live trailer" style="background-image: url({{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename||'http://ocb467zho.bkt.clouddn.com/bbs/pics/2017/0216/ce/cef05ac20cf7bc55ffeb64abffe78a60.jpg?{$hgPicSizeStart}imageView2/1/w/{$hgPicSizeWidth}/h/{$hgPicSizeHeight}{$hgPicSizeEnd}'}});
+        background-size:100% 100%;">
+                <div style="padding-top:.2rem;padding-left:.3rem;
+font-size:.26rem;line-height: .4rem;height: .8rem;
+">
+                    <img  class="tv-logo" ng-src="{{data.sort_pic|| 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2460047465,2243415985&fm=58&u_exp_0=1893013850,1910110575&fm_exp_0=86&bpow=683&bpoh=993'}}" alt="">
+                    <span class="tv-name">{{data.sort_name}}</span>
+                    <span style="width:1.2rem ;color:#ff4a52" s class="type-name">直播中</span>
+                    <!--tv-logo tv-name type-name-->
+                </div>
+                <div class="index-title">
+                    {{data.brief||'暂无内容'}}
+                </div>
+            </div>
+        </a>
+        <div class="trailer-msg">
+            <div class="padding-left-3rem display-inline-block"><span class="fabf63">{{data.comment}}</span> 台联盟</div>
+            <span class="padding-right-3rem right"> <span class="fabf63">{{data.click_num||'99'}}</span> 人气</span>
+        </div>
+        <div class="bg-color-eee"></div>
+
+    </section>
+    <div>
+
+    </div>
+    <!--回看-->
+    <section ng-repeat=" data in history" class="">
+        <a href="#/liveList/{{data.id}}/{{data.time_status}}">
+            <div class="history trailer" style="background-image: url({{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename||'http://ocb467zho.bkt.clouddn.com/bbs/pics/2017/0216/ce/cef05ac20cf7bc55ffeb64abffe78a60.jpg?{$hgPicSizeStart}imageView2/1/w/{$hgPicSizeWidth}/h/{$hgPicSizeHeight}{$hgPicSizeEnd}'}});
+    background-size:100% 100%;">  <div style="padding-top:.2rem;padding-left:.3rem;
+font-size:.26rem;line-height: .4rem;height: .8rem;
+">
+                <img style="" class="tv-logo" ng-src="{{data.sort_pic|| 'https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2460047465,2243415985&fm=58&u_exp_0=1893013850,1910110575&fm_exp_0=86&bpow=683&bpoh=993'}}" alt="">
+                <span style=""class="tv-name">{{data.sort_name}}</span>
+                <span style="color:#ff7b16" class="type-name">回看</span>
+                <!--tv-logo tv-name type-name-->
+            </div>
+                <div class="index-title">
+                    {{data.brief||'暂无内容'}}
+                </div>
+            </div>
+        </a>
+        <div class="trailer-msg">
+            <div class="padding-left-3rem display-inline-block"><span class="fabf63">{{data.comment}}</span> 台联盟</div>
+            <span class="padding-right-3rem right"> <span class="fabf63">{{data.click_num||'123'}}</span> 人气</span>
+        </div>
+    </section>
+    <div>
+
+    </div>
+</article>
+
+
+

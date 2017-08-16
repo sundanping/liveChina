@@ -1,0 +1,129 @@
+<link rel="stylesheet" href="src/css/liveList.css">
+
+<body   id="liveList" ng-controller="liveList" >
+<div style="position: fixed;z-index:199; width: 100%" ng-repeat="data in dataList">
+    <div ng-if='touched'    class="share">
+        <img ng-click="goBack()" src="src/imgs/left.png" alt="">
+        <img  ng-click="share()"  src="src/imgs/share.png" alt="">
+
+    </div>
+    <div my-touchstart="touchStart()"  class="show-video">
+        <video id="video" ng-touchstart    ng-if="time_status!=1" poster="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}"
+               x-webkit-airplay="true" ng-src='src/css/ceshi.mp4'
+               webkit-playsinline="true"  controls
+        width="100%" height="100%">
+        </video>
+
+        <img ng-if="time_status ==1" width="100%" height="100%" ng-src="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}" alt="">
+    </div>
+    <div style="background-color: #fff;" class="title" >{{data.title}}</div>
+    <div class="bg-color-238"></div>
+    <div style="background-color: #fff;"  ng-show="time_status !=1" class="introduce-interaction">
+        <div ng-click="changeIntroduce('introduce')" class="col-6 font-size-26 ">简介</div>
+        <div ng-click="changeIntroduce('interaction')"  class="col-6 font-size-26 " >互动<span>({{data.click_num}})</span>
+        </div>
+        <div id="underLine" class="underLine" ></div>
+
+    </div>
+
+</div><div></div>
+<!--互动  评论 BAGIN-->
+    <div scroll-glue  id="interaction"  style="padding-top:6rem" ng-if="tag=='interaction'&& time_status!=1" class="interaction">
+        <div   style="overflow: auto" ng-repeat=' msg in commitArr'>
+            <div class="user-logo"><img ng-src="{{msg.avatar.host+msg.avatar.dir+msg.avatar.filepath+msg.avatar.filename}}" alt=""> </div>
+
+            <div class="comment">
+                <span>{{msg.user_name}}:</span><span class="time">{{changeTime(msg.create_time_format)}}</span><div class="channel">{{msg.topic_title}}</div>
+                <div>  </div>
+                <div class="reply">{{msg.content}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+    <!--互动END-->
+
+<!--简介BEGIN-->
+    <div style="padding-top:6rem"  ng-if="tag=='introduce'&& time_status!=1"   ng-repeat="data in dataList"  >
+         <div class="introduce">
+            <img ng-src="{{data.sort_pic|| 'http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif'}}" alt="">
+            <span> {{data.sort_name|| '直播中国'}}</span>
+        </div>
+        <div class="introduce-content">
+            简 <span>介:</span>{{data.brief}}
+        </div>
+        <br>
+    </div>
+<!--简介END-->
+
+
+    <!--预告video 的简介BEGIN-->
+    <div style="padding-top:6rem"  ng-repeat="data in dataList" ng-if="time_status==1">
+        <div  class="introduce">
+            <img ng-src="{{data.sort_pic|| 'http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif'}}" alt="">
+            <span> {{data.sort_name|| '直播中国'}}</span>
+
+        </div>
+        <div class="introduce-content">
+            简 <span>介:</span>{{data.brief}}
+        </div>
+        <div  class="launch-time">
+            开播时间：{{data.start_time_show}}
+        </div>
+        <br>
+
+    </div>
+    <!--简介END-->
+<!--input--><img ng-if="loading"  src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
+
+<div ng-if="time_status !=1" class="input-comment">
+        <input  id="input" type="text"  ng-model="commit" placeholder="和大家说点什么吧" >
+        <input  type="button" name="{{commit}}" value="发表" ng-model="send" ng-click="sendMessage($event)">
+    </div>
+
+<!-- 直播结束 弹框信息-->
+<div ng-if="showTotalMessage" id="totalMessage"  ng-repeat="data in dataList">
+<!-- 头像-->
+    <div class="live-end-logo" align="center">
+        <span>
+            <img ng-src="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}" alt="">
+        </span>
+    </div>
+    <!--姓名-->
+    <div align="center">{{data.title}}</div>
+    <div class=" live-logo-name" align="center">
+        <img ng-src="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}" alt="">
+        <span class="live-name">无线南京</span>
+    </div>
+    <div align="center" class="live-end">
+        <div></div>
+        <div >直播结束</div>
+        <div> </div>
+    </div>
+    <div align="center" class="live-time">
+        直播时长：
+    </div>
+    <div style="margin:.9rem 0 .3rem 0" align="center">
+        <div class="col-6">观看人数</div>
+        <div class="col-6">聊天记录</div>
+    </div>
+    <div align="center">
+        <div class="col-6">e{{}}</div>
+        <div class="col-6">{{}}</div>
+    </div>
+        <div align="center">
+            <button  ng-click="cancelModal()" class="make-sure">确认</button>
+        </div>
+
+</div>
+
+
+</body>
+<!--<script src="src/js/lib/liveList.js"></script>-->
+
+
+<!--
+http://operate.tw.live.hoge.cn/index.php?m=Apituwenol&c=interact&a=show&type=comment&custom_appkey=A3O8gmwJURFi8d74nuKxRpczjoAydHSE&custom_appid=137&topic_id=596&type=comment&content=hellow
+-->

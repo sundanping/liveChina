@@ -1,7 +1,16 @@
 
-liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT',function($scope,$http,API_URL_ROOT){
+liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT','filterServer',function($scope,$http,API_URL_ROOT,filterServer){
     $scope.historyArr=null;
-    $scope.showHistory= 0;
+    $scope.showHistory= 1;
+    $scope.search = true;
+    $scope.searchResult=[];
+
+    if(window.localStorage.searchHistory !=undefined && window.localStorage.searchHistory.length>0){
+        $scope.temp = window.localStorage.searchHistory.substr(window.localStorage.searchHistory.indexOf(',') + 1)
+        // console.log($scope.temp)
+        $scope.historyArr = $scope.temp.split(",").reverse();
+    // console.log($scope.historyArr)
+    }
 
 // 取消
     $scope.toCancel=function(){
@@ -12,70 +21,92 @@ liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT',function($sc
     $scope.clearHistory=function(){
         window.localStorage.searchHistory='';
         $scope.showHistory= 0;
+        $scope.historyArr.length=0
+        // alert('ok')
 
     }
     //选择历史
     $scope.choice=function(ev){
         $scope.text=ev.target.innerText;
-        $scope.toAjax($scope.text);
+        // $scope.toAjax($scope.text);
+        $scope.searchRes($scope.text)
+
         $scope.showHistory= 0;
+        $scope.search=false;
     }
+
+    $scope.filterData= JSON.parse(window.sessionStorage.getItem('filterData'));
+    // console.log($scope.filterData);
+
     //键盘输入事件
-    $scope.keyUp = function(e){
+    $scope.focus=function(){
+        $scope.showHistory= 1;
+    }
 
-            $scope.showHistory= 1;
-        $scope.temp = window.localStorage.searchHistory.slice(window.localStorage.searchHistory.indexOf(',') + 1).split(",").reverse();
-        $scope.historyArr = $scope.temp;
-        // $scope.historyArr=[1,2,34,5]
+    $scope.searching=function(){
+        if($scope.text !='' && $scope.text !=undefined && $scope.text !=null){
 
-        if($scope.historyArr.length>10){
-            $scope.historyArr.length=10
+            window.localStorage.searchHistory += ',' + $scope.text;
+            $scope.temp = window.localStorage.searchHistory.slice(window.localStorage.searchHistory.indexOf(',') + 1)
+            $scope.historyArr = $scope.temp.split(",").reverse();
+
+            //去重
+            //     var newArrr=[$scope.historyArr[0]];
+            //     angular.forEach($scope.historyArr,function(item,index){
+            //         console.log(item)
+            //         if(newArrr.indexOf(item)== -1){
+            //             newArrr.push(item)
+            //         }
+            //     })
+            var newArrr=$scope.historyArr.filter(function(item,index,array){
+                return array.indexOf(item)===index
+                 })
+            $scope.historyArr=newArrr;
+            if($scope.historyArr.length>10){
+                $scope.historyArr.length=10
+            }
         }
-        // console.log($scope.historyArr);
 
-        if(e.keyCode===13) {
-            $scope.showHistory= 0;
-                if ($scope.text != null && $scope.text != undefined  && $scope.text != '' ) {
-                   var  stroage = $scope.text;
-                    window.localStorage.searchHistory += ',' + stroage;
-                    $scope.temp = window.localStorage.searchHistory.slice(window.localStorage.searchHistory.indexOf(',') + 1)
-                    $scope.historyArr = $scope.temp.split(",").reverse();
-                    $scope.toAjax($scope.text)
-                    // $scope.showHistory=0;
-                }else{
-                    angular.element(document.querySelector('#alert')).addClass('alert');
-                    setTimeout(remove,2000)
-                    function remove(){
-                        angular.element(document.querySelector('#alert')).removeClass('alert');
-                    }
-                    return false;
+
+
+         $scope.showHistory= 0;//状态判断
+        $scope.searchRes($scope.text)
+        $scope.text=''
+
+    }
+
+        //搜索事件
+        $scope.searchRes=function(value){
+            angular.forEach($scope.filterData,function(item,index){
+                if((item.sort_name).indexOf(value)>0 ||item.title.indexOf(value)>0 ||item.brief.indexOf(value)>0){
+                    $scope.searchResult.push(item)
                 }
+            })
 
-                }
-
-    };
-        //
-        $scope.goBack=function(){
+        }
+        $scope.goBack2=function(){
             history.back()
         }
 
 
+
+
+
     // 搜索
-    $scope.toAjax=function(v){
-
-        $http({
-            method: 'JSONP',
-            url: API_URL_ROOT + '?callback=JSON_CALLBACK&m=Apituwenol&c=tuwenol&a=show&custom_appkey=A3O8gmwJURFi8d74nuKxRpczjoAydHSE&custom_appid=137&title='+v
-           // url: 'http://operate.tw.live.hoge.cn/index.php?callback=JSON_CALLBACK&m=Apituwenol&c=tuwenol&a=show&custom_appkey=A3O8gmwJURFi8d74nuKxRpczjoAydHSE&custom_appid=137&title='+v
-
-        }).then(function successCallback(response) {
-            // console.log('请求成功')
-            $scope.text=''; //清空输入栏
-
-                $scope.result=response
-
-
-        }, function errorCallback(response) {
-        });
-    }
+    // $scope.toAjax=function(v){
+    //
+    //     $http({
+    //         method: 'JSONP',
+    //         //&custom_appkey=A3O8gmwJURFi8d74nuKxRpczjoAydHSE&custom_appid=137
+    //         // url: API_URL_ROOT + '?callback=JSON_CALLBACK&m=Apituwenol&c=tuwenol&a=show&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&title='+v
+    //        url: 'http://operate.tw.live.hoge.cn/index.php?callback=JSON_CALLBACK&m=Apituwenol&c=tuwenol&a=show&custom_appkey=A3O8gmwJURFi8d74nuKxRpczjoAydHSE&custom_appid=137&title='+v
+    //
+    //     }).then(function successCallback(response) {
+    //         // console.log('请求成功')
+    //         $scope.text=''; //清空输入栏
+    //         $scope.search = false;
+    //             $scope.result=response;
+    //     }, function errorCallback(response) {
+    //     });
+    // }
 }])
