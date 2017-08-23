@@ -1,14 +1,21 @@
 
-liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT','filterServer',function($scope,$http,API_URL_ROOT,filterServer){
+liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT',function($scope,$http,API_URL_ROOT){
     $scope.historyArr=null;
     $scope.showHistory= 1;
     $scope.search = true;
     $scope.searchResult=[];
-
     if(window.localStorage.searchHistory !=undefined && window.localStorage.searchHistory.length>0){
         $scope.temp = window.localStorage.searchHistory.substr(window.localStorage.searchHistory.indexOf(',') + 1)
         // console.log($scope.temp)
         $scope.historyArr = $scope.temp.split(",").reverse();
+        var newArr2=[$scope.historyArr[0]];
+        angular.forEach($scope.historyArr,function(item,index){
+            console.log(item)
+            if(newArr2.indexOf(item)== -1){
+                newArr2.push(item)
+            }
+        })
+        $scope.historyArr=newArr2;
     // console.log($scope.historyArr)
     }
 
@@ -51,16 +58,16 @@ liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT','filterServe
             $scope.historyArr = $scope.temp.split(",").reverse();
 
             //去重
-            //     var newArrr=[$scope.historyArr[0]];
-            //     angular.forEach($scope.historyArr,function(item,index){
-            //         console.log(item)
-            //         if(newArrr.indexOf(item)== -1){
-            //             newArrr.push(item)
-            //         }
-            //     })
-            var newArrr=$scope.historyArr.filter(function(item,index,array){
-                return array.indexOf(item)===index
-                 })
+                var newArrr=[$scope.historyArr[0]];
+                angular.forEach($scope.historyArr,function(item,index){
+                    console.log(item)
+                    if(newArrr.indexOf(item)== -1){
+                        newArrr.push(item)
+                    }
+                })
+            // var newArrr=$scope.historyArr.filter(function(item,index,array){
+            //     return array.indexOf(item)===index
+            //      })
             $scope.historyArr=newArrr;
             if($scope.historyArr.length>10){
                 $scope.historyArr.length=10
@@ -78,7 +85,8 @@ liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT','filterServe
         //搜索事件
         $scope.searchRes=function(value){
             angular.forEach($scope.filterData,function(item,index){
-                if((item.sort_name).indexOf(value)>0 ||item.title.indexOf(value)>0 ||item.brief.indexOf(value)>0){
+                if(item.title.indexOf(value)>0 ){
+                    //(item.sort_name).indexOf(value)>0 ||
                     $scope.searchResult.push(item)
                 }
             })

@@ -1,9 +1,15 @@
 
 liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routeParams','$location','$timeout','$interval','$window',
     function ($scope,$http,API_URL_ROOT,$routeParams,$location,$timeout,$interval,$window){
-            var docHeight=document.documentElement.clientHeight;
-            console.log(docHeight)
+        console.log(2222222)
+        var docHeight=document.documentElement.clientHeight;
+        var clientWidth = document.body.clientWidth;
+        var videoheight = Math.ceil(clientWidth*0.75);
+        var videoinfoheight = videoheight;
+        $('.live-video-info').css('height' , videoinfoheight);
+        $('.live-video').css('height' , videoheight);
         $scope.id=$routeParams.id;
+        $scope.time_status=1;
         $scope.time_status=$routeParams.time_status;
         $scope.tag='interaction';
         $scope.offset=0;
@@ -15,9 +21,17 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
         $scope.touched = false;
         $scope.share_url='';//分享的路径
         $scope.color=true;
+        $scope.loadCommit=true;
+        // setTimeout(function(){
+        //     document.getElementById('my-video').play()
+        // },100)
 
-
-
+        var u = navigator.userAgent;
+        // var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        // if(isiOS){
+        //     $('body').wrap("<main></main>main>")
+        // }
 
         //简介互动切换 BEGIN
         $scope.changeIntroduce=function(status){
@@ -41,30 +55,33 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
             method:'JSONP',
             url:'http://operate.tw.live.hoge.cn'+"?callback=JSON_CALLBACK&m=Apituwenol&c=tuwenol&a=detail&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&id="+$scope.id
         }).success(function(res){
-            console.log(res)
             $scope.share_url=res.share_url;//分享路径
             $scope.videoUrl=res[0].live_info[0].url;
-            console.log( $scope.videoUrl)
+            console.log(res)
+            window.sessionStorage.setItem('videoUrl',$scope.videoUrl)
             $scope.loading=false;
             $scope.dataList=res;
+            $scope.sort_name=$scope.dataList[0].sort_name;
+            //视频时长
             $scope.timeLong= parseInt((res[0].end_time*1-res[0].start_time*1)/60/60%24)+'小时'
                 +parseInt((res[0].end_time*1-res[0].start_time*1)/60%60)+'分'+parseInt((res[0].end_time*1-res[0].start_time*1)%60)+'秒'
+
             $scope.getComment()
 
         })
 
         //  angular video  不支持 ng-src  点击事件解决报错
-        $scope.addSrc=function(e){
-            e.target.src=$scope.videoUrl;
-            console.log(e)
-        }
+        // $scope.addSrc=function(e){
+        //     e.target.src=$scope.videoUrl;
+        //     console.log(e)
+        // }
 
          //直播结束  弹框显示汇总信息
          $scope.totalMessage=function(){
             if($scope.time_status ==1){
                 var nowData=(new Date()).getTime();
                 // console.log(nowData);
-                if(nowData>$scope.dataList[0].end_time*1000 && nowData<$scope.dataList[0].end_time*1000+1000){
+                if(nowData>$scope.dataList[0].end_time*1000 && nowData<$scope.dataList[0].end_time*1000+3000){
                     // 直播结束  汇总信息
                     $scope.showTotalMessage=true;
                 }
@@ -84,15 +101,14 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
         // }
 
         //轮询   获取评论
-        // $scope.startmove=0;
-
         $scope.commitArr=[];
         $scope.cleartimer=true;
+        var aaa=1;
         $scope.getComment= function (){
+            aaa++;
             $scope.loading=true;
             // $scope.offset+=3;
             $scope.commentNum=0;
-
             $http({
                 method:'JSONP',
                 //评论列表接口 排序 顺序 order=asc 倒序 order=desc
@@ -100,10 +116,6 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
                 '&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&order=desc&count=6&offset=0&topic_id='+$scope.id
             }).success(function(comment){
                 // console.log(comment)
-                if(window.location.href.indexOf('liveList')>0){
-                    var currentHeight= window.innerHeight-document.getElementById('sendMsg').offsetHeight-document.getElementById('videoList').offsetHeight;
-                    var innerHeight=document.getElementById('interaction').offsetHeight || 0;
-                }
 
                 // 过滤太长的用户名  成为'ab...cd' 形式
                 if(comment.length>0) {
@@ -113,13 +125,11 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
                         }
                     })
                 }
-
                     // comment=comment.reverse();
                     //获取最新的6条评论  不同就塞进去
                    if($scope.commitArr.length==0 ){
                        $scope.commitArr=comment.reverse();
                        // Array.prototype.unshift.apply($scope.commitArr,comment)
-                       console.log($scope.commitArr)
                    }else if($scope.commitArr.length>0 && comment.length>0 ){
                        const yid = [];
                        const xid = [];
@@ -135,37 +145,35 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
                                $scope.commentNum++;
                                $scope.commitArr.push(comment[i]);
                            }
-                            // if($scope.commentNum>0 && $scope.cleartimer==true){
-                            //     // $timeout( $scope.scrollDiv,1000)
-                            //     $scope.scrollDiv()
-                            // }
 
                        }
-                   }
 
-                    $scope.moved=innerHeight-currentHeight;
-                //    if($scope.startmove==0 && $location.$$absUrl.indexOf('liveList')>0){
-                //        $('body').animate({scrollTop: $scope.moved});
-                //
-                //    }
-                // $scope.startmove++
+                   }
+                if(window.location.href.indexOf('liveList')>0){
+                    var currentHeight= document.getElementById('interaction').clientHeight;
+                    var innerHeight=document.getElementById('listsbox').scrollHeight;
+
+                }
+                // console.dir(document.getElementById('interaction'))
+                $scope.moved = innerHeight-currentHeight + 15;
+                if(aaa==2){
+                    $('#interaction').animate({scrollTop: $scope.moved});
+                }
                 $scope.$watch('moved',function(newValue,oldValue){
-                        if(newValue != oldValue  ){
-                            $scope.scrollDiv()
-                        }
-                    })
+                    if(newValue != oldValue  ){
+                        $scope.scrollDiv()
+                        $('#interaction').animate({scrollTop: $scope.moved});
+                    }
+                })
                 $scope.loading=false;
             })
         }
-
-            $scope.scrollDiv=function() {
-            if($location.$$absUrl.indexOf('liveList')>0 && $scope.scroll && $scope.tag=='interaction'){
-
-                $('body').animate({scrollTop: $scope.moved});
-
+        $scope.scrollDiv=function() {
+            if($location.$$absUrl.indexOf('liveList')>0 && $scope.loadcommit && $scope.tag==='interaction'){
+                $('#interaction').animate({scrollTop: $scope.moved});
+                console.log('监听更多')
             }
-            }
-
+        }
 
 
 //  评论时间
@@ -185,25 +193,25 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
             }
         }
 
-
         //定时器
-        var tep=0;
         $scope.see=function(){
-            $scope.totalMessage();
-            tep++;
-
-            //3秒轮询一次
-             if( $scope.tag=='interaction'&& tep%3==0 && $scope.time_status !=0){
+            console.log(111111)
+            // $scope.totalMessage();
+            // //3秒轮询一次
+             if( $scope.tag=='interaction' && $scope.time_status !=0 && $scope.loadCommit==true){
                 $scope.getComment();
+                console.log('监听3秒轮训')
             }
         }
-        $interval($scope.see,1000)
+        var timer1 = setInterval($scope.see, 3000)
 
-        // $scope.changeTime('2012-12-11 12:12:12')
 //发送评论
 
         $scope.sendMessage=function(e){
             // console.log(e)
+            if($scope.loadCommit==false){
+                $scope.loadCommit=true
+            }
             $scope.content= e.target.name ;
             if($scope.content=='' ||$scope.content==undefined || $scope.content==null){
 
@@ -252,12 +260,13 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
                     e.target.innerHTML='发表'
                     angular.element(document.querySelector('#input')).val('');
                     e.target.name=''
-                    // console.log(comment)
-                    // $scope.getComment()
+
                 })
             }
 
         }
+
+
 
         //分享
         $scope.share=function(){
@@ -271,49 +280,93 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
             });
         }
 
-
+        // $scope.touchStart=function(){
+        //     $scope.touched = !$scope.touched;
+        // }
         $scope.cancelModal=function(){
             $scope.showTotalMessage=false;
         }
 
-        $scope.changeShare = function() {
-            $scope.touched = !$scope.touched;
-            console.log(111111112111)
-        }
+        // $scope.changeShare = function() {
+        //     $scope.touched = !$scope.touched;
+        // }
 
         $scope.goBack3=function(e){
-            e.stopPropagation();
-            console.log(22222222222222222)
-            history.back()
+            window.history.back()
+            clearInterval(timer1)
         }
         $scope.startTimer=function () {
             $scope.cleartimer=true;
-            var curHeight=document.documentElement.clientHeight;
-            // alert(curHeight)
-        }
-        $scope.onTouchstart=function(){
+            // var curHeight=document.documentElement.clientHeight;
+            var u = navigator.userAgent;
+            var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+
+            if (isIOS) {
+                $(document).on("focus", "input", function () {
+                    $('#sendMsg').addClass("fixfixed");
+                }).on("focusout", "input", function () {
+                    $("#sendMsg").removeClass("fixfixed");
+                });
+            }
 
         }
+        //自动播放
 
+
+        $scope.onTouchstart=function(ev){
+            $scope.loadCommit=false;
+            document.getElementById('input').blur()
+            $scope.startY=ev.touches[0].clientY;
+            console.log('scrollTop=='+ $('#listbox').scrollTop())
+
+            if($('#listbox').scrollTop()==0){
+            //   请求数据  上拉加载
+            }
+        }
+
+
+        var scrollTop;
         $scope.touchend=function(e){
+            $scope.endY=e.changedTouches[0].clientY;
+            $scope.movelen=$scope.startY-$scope.endY;
+
+                if( Math.abs($scope.movelen)>30) {
+                    console.log(2017)
+                    $('#interaction').animate({scrollTop: $scope.movelen*15});
+                    console.log($scope.moved)
+                    if($scope.movelen>0){
+                        // 监听到达底部
+                        console.log("ssss"+$('#interaction').scrollTop())
+                        $timeout(
+                            function(){
+                                scrollTop=$('#interaction').scrollTop()
+                            },1)
+
+                        if($scope.movelen>scrollTop-50){
+                            $scope.loadCommit=true;
+                            console.log($scope.movelen+'监听到达底部成功'+scrollTop)
+                        }
+
+                    }
+                }
+                console.log('scrollTop--end=='+ $('#interaction').scrollTop())
+
+
+            // $scope.endtouch = e.touches[0].clientY;
+            // if ($scope.endtouch - $scope.startouch) {
+
+            // }
+            // $scope.loadCommit=true;
 
             $scope.cleartimer=false;
-            console.log($scope.moved)
-             if ($scope.time_status != 0) {
-                 // console.log('scrollTop='+document.body.scrollTop)
-                  // console.log(document.body.offsetHeight)
 
-                 // console.log('see='+document.documentElement.clientHeight+'@='+document.getElementById('interaction').offsetHeight)
-                 $scope.scroll=false;
-                 if(document.body.scrollTop+document.documentElement.clientHeight>document.body.offsetHeight*.8){
-                     //  到底部启动轮询
-                     $scope.scroll=true;
-                 }
-                  console.log($scope.moved)
-                  if(document.body.scrollTop<10){
-                      $scope.load=true;
+            if($scope.movelen<0 && $('#interaction').scrollTop()===0){
 
-                   //   ajax
+
+                  // console.log($scope.moved)
+
+                      // $scope.load=true;
+                     // ajax
                       $http({
                           method:'JSONP',
                                     //评论列表接口 排序参 顺序 order=asc 倒序 order=desc
@@ -322,85 +375,29 @@ liveChinaApp.controller('liveList', ['$scope' ,'$http','API_URL_ROOT','$routePar
 
                           // url:API_URL_ROOT+"?callback=JSON_CALLBACK&m=Apituwenol&c=thread&a=show_comment&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197&offset="+$scope.offset+'&&count='+$scope.count
                       }).success(function(comment) {
-
-                          $scope.load=false;
+                          // $scope.load=false;
                           Array.prototype.unshift.apply($scope.commitArr,comment);
                           console.log(comment);
                       })
                       console.log($scope.commitArr)
-                  }
-                        }
-
+              }
         }
+
 
     }]);
 
 
 
 
-
-
-
-
 //touch 事件
-    liveChinaApp.directive('myTouchstart', [function() {
-        return function(scope, element, attr) {
-
-            element.on('touchstart', function(event) {
-                scope.$apply(function() {
-                    scope.$eval(attr.myTouchstart);
-                });
-            });
-        };
-    }])
-    liveChinaApp.directive('myTouchmoved', [function() {
-        return function(scope, element, attr) {
-
-            element.on('Touchmoved', function(event) {
-                scope.$apply(function() {
-                    scope.$eval(attr.myTouchmoved);
-
-                });
-            });
-
-        };
-    }])
 
 
-liveChinaApp.directive('myTouchend', [function() {
-    return function(scope, element, attr) {
-
-        element.on('touchend', function(event) {
-            scope.$apply(function() {
-                scope.$eval(attr.myTouchend);
-            });
-        });
-
+liveChinaApp.filter("trustUrl", ['$sce', function ($sce) {
+    return function (recordingUrl) {
+        return $sce.trustAsResourceUrl(recordingUrl);
     };
-}])
+}]);
 
-liveChinaApp.directive("ngTap", function () {
-        return {
-            controller: ["$scope", "$element", function ($scope, $element) {
 
-                var moved = false;
-                $element.bind("touchstart", onTouchStart);
-                function onTouchStart(event) {
-                    $element.bind("touchmove", onTouchMove);
-                    $element.bind("touchend", onTouchEnd);
-                }
-                function onTouchMove(event) {
-                    moved = true;
-                }
-                function onTouchEnd(event) {
-                    $element.unbind("touchmove", onTouchMove);
-                    $element.unbind("touchend", onTouchEnd);
-                    if (!moved) {
-                        var method = $element.attr("ng-tap");
-                        $scope.$apply(method);
-                    }
-                }
 
-            }]
-        }
-    });
+

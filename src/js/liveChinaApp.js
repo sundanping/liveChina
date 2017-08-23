@@ -1,9 +1,26 @@
 var liveChinaApp=angular.module('liveChinaApp', ['ngRoute','ngTouch']);
-//URLl
+
+//路由
+liveChinaApp.config(['$routeProvider',
+    function(rp) {
+        rp.when('/liveList/:id/:time_status',{
+            templateUrl:'src/template/liveList.html',
+
+        }).when('/search',{
+            templateUrl:'src/template/search.html',
+        })
+            .otherwise({templateUrl:'src/template/liveIndex.html'
+            });
+    }])
+
+//URL
 var API_URL_ROOT = 'http://operate.tw.live.hoge.cn/index.php';
-    liveChinaApp.constant('API_URL_ROOT', API_URL_ROOT);
-liveChinaApp.controller('live', ['$scope','$http' ,'$interval','$window','filterServer',
+liveChinaApp.constant('API_URL_ROOT', API_URL_ROOT);
+// console.log(113434)
+
+liveChinaApp.controller('live', ['$scope','$http' ,'$interval','$window',
     function($scope,$http,$interval,$window,filterServer){
+    console.log(1111,'123')
     $scope.trailer=[];
     $scope.history=[];
     $scope.live=[];
@@ -61,7 +78,6 @@ liveChinaApp.controller('live', ['$scope','$http' ,'$interval','$window','filter
     $scope.goBack=function(){
         history.back()
     }
-
     $http({
         method: 'JSONP',
           url:API_URL_ROOT+'?callback=JSON_CALLBACK&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&m=Apituwenol&c=tuwenol&a=show'
@@ -84,9 +100,11 @@ liveChinaApp.controller('live', ['$scope','$http' ,'$interval','$window','filter
                 })
             }else if(data.time_status===1){
                 $scope.live.push(data)
+
             }else if(data.time_status===2){
                 $scope.history.push(data)
             }
+           
         });
         // console.log($scope.trailer)
     });

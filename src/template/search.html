@@ -1,18 +1,18 @@
 
  <link rel="stylesheet" type="text/css" href="src/css/search.css">
-<body ng-controller="search">
+<div ng-controller="search">
 <div id="alert"> 请输入关键字</div>
 <div class="search">
     <div class="col-2">
         <img ng-click="goBack2()" class=" " src="src/imgs/left.png" alt="">
     </div>
-    <div class="col-8"> <input type="text"  placeholder="请输入搜索关键词" ng-model="text"  ng-focus="focus($event)"></div>
+    <div class="col-8"> <input type="text"  placeholder=" &nbsp;&nbsp;请输入搜索关键词" ng-model="text"  ng-focus="focus($event)"></div>
     <!--<div ng-if="!search " ng-click="toCancel()" class="col-2 cancel">取消</div>-->
     <div  ng-click="searching()"  class="col-2 cancel">搜索</div>
 
 </div>
 <ul style="background-color: #fdfdfd; position: absolute;height:100%;width: 100%; overflow: hidden; padding: 0 .3rem; font-size: .3rem"  ng-if="showHistory && historyArr[0]!='' && historyArr.length>0">
-    <li  style="font-weight: 600;padding: .3rem 0 ;border-bottom:1px solid #999" >搜索历史</li>
+    <li  style="font-weight: 800;padding: .3rem 0 ;font-size:.3rem; border-bottom:1px solid #999" >搜索历史</li>
     <li style=" background: url(src/imgs/right-logo.png) no-repeat center right;
     padding: .3rem 0 ;border-bottom:1px solid #999"   ng-if="historyArr[0]!=''" ng-click="choice($event)"   ng-repeat="data in historyArr track by $index" ><p>{{data }}</p></li>
     <li  style="font-weight: 600;padding: .3rem 0 ;text-align: center" ng-click="clearHistory()">清除所有历史记录?</li>
@@ -29,4 +29,4 @@
     </li>
 </ul>
 <div align="center"  style="font-size: .3rem;margin-top:1rem"  ng-if="searchResult.length===0">没有搜索到您要的关键词</div>
-</body>
+</div>
