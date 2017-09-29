@@ -8,6 +8,10 @@ liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT',function($sc
         $scope.temp = window.localStorage.searchHistory.substr(window.localStorage.searchHistory.indexOf(',') + 1)
         // console.log($scope.temp)
         $scope.historyArr = $scope.temp.split(",").reverse();
+        if($scope.historyArr.length>8){
+            $scope.historyArr.length=8
+        }
+
         var newArr2=[$scope.historyArr[0]];
         angular.forEach($scope.historyArr,function(item,index){
             console.log(item)
@@ -47,11 +51,15 @@ liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT',function($sc
 
     //键盘输入事件
     $scope.focus=function(){
+        if($scope.historyArr!=null && $scope.historyArr.length>8){
+            $scope.historyArr.length=8
+        }
         $scope.showHistory= 1;
+
     }
 
     $scope.searching=function(){
-        if($scope.text !='' && $scope.text !=undefined && $scope.text !=null){
+        if($scope.text !='' && $scope.text !=undefined && $scope.text !=null &&$scope.text.length !=0){
 
             window.localStorage.searchHistory += ',' + $scope.text;
             $scope.temp = window.localStorage.searchHistory.slice(window.localStorage.searchHistory.indexOf(',') + 1)
@@ -69,9 +77,7 @@ liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT',function($sc
             //     return array.indexOf(item)===index
             //      })
             $scope.historyArr=newArrr;
-            if($scope.historyArr.length>10){
-                $scope.historyArr.length=10
-            }
+
         }
 
 
@@ -82,11 +88,13 @@ liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT',function($sc
 
     }
 
+
         //搜索事件
         $scope.searchRes=function(value){
+            $scope.searchResult=[]
             angular.forEach($scope.filterData,function(item,index){
-                if(item.title.indexOf(value)>0 ){
-                    //(item.sort_name).indexOf(value)>0 ||
+                if(item.title.indexOf(value)> -1 ){
+
                     $scope.searchResult.push(item)
                 }
             })
@@ -117,4 +125,6 @@ liveChinaApp.controller('search', ['$scope' ,'$http','API_URL_ROOT',function($sc
     //     }, function errorCallback(response) {
     //     });
     // }
+
+
 }])
