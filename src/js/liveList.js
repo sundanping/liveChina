@@ -187,7 +187,7 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
         $scope.see = function () {
             $scope.totalMessage();
             // //3秒轮询一次
-            if ($scope.tag == 'interaction' && $scope.time_status != 0 && $scope.loadCommit == true) {
+            if ($scope.tag == 'interaction' && $scope.time_status != 0 && $scope.loadCommit === true) {
                 $scope.getComment();
                 // console.log('监听3秒轮训')
             }
@@ -208,7 +208,6 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
             } else {
                 if (!$scope.scroll) {
                     $scope.scroll
-
                 }
                 // SmartCity.getUserInfo(function( res ){	//获取用户信息:
                 //     //	res为用户信息
@@ -256,7 +255,7 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
 //分享
         $scope.share = function () {
             // alert('分享')
-            SmartCity.shareTo({
+               SmartCity.shareTo({
                 title: $scope.dataList[0].title,
                 brief: $scope.dataList[0].brief,
                 // contentURL: window.document.URL,
@@ -291,7 +290,8 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
 //自动播放
         $scope.onTouchstart = function (ev) {
             ev.stopPropagation();
-            ev.preventDefault()
+            ev.preventDefault();
+            window.event.cancelBubble = false;
             $scope.loadCommit = false;
             document.getElementById('input').blur()
             $scope.startY = ev.touches[0].clientY;
@@ -327,6 +327,16 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
             }
 
 
+            // AlloyLever.config({
+            //     cdn:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
+            //     reportUrl: "//a.qq.com",
+            //     reportPrefix: 'abc',
+            //     reportKey: 'msg',
+            //     otherReport: {
+            //         uin: 100000
+            //     },
+            //     entry:"#interaction"
+            // })
 
 
             $scope.cleartimer = false;
@@ -335,7 +345,6 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
                 // console.log($scope.moved)
                 // $scope.load=true;
                 // ajax
-
                 $http({
                     method: 'JSONP',
                     //评论列表接口 排序参 顺序 order=asc 倒序 order=desc

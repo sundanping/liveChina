@@ -1,18 +1,6 @@
 var liveChinaApp = angular.module('liveChinaApp', ['ngRoute', 'ngTouch','duScroll']);
 
-//路由
-liveChinaApp.config(['$routeProvider',
-    function (rp) {
-        rp.when('/liveList/:id/:time_status', {
-            templateUrl: 'src/template/liveList.html',
 
-        }).when('/search', {
-            templateUrl: 'src/template/search.html',
-        })
-            .otherwise({
-                templateUrl: 'src/template/liveIndex.html'
-            });
-    }])
 
 //URL
 var API_URL_ROOT = 'http://operate.tw.live.hoge.cn/index.php';

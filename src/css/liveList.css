@@ -111,7 +111,7 @@
 }
 .interaction{
     overflow-y: auto;
-    z-index:888;
+    z-index:9999;
     /*margin-bottom:1rem;*/
     /*padding-top:6rem*/
     height: calc(100% - 6.79rem);
