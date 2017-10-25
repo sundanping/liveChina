@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2dd33350-1177-400e-8ff1-7658957090de" name="Default" comment="gulp">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/new add/liveChina.html" afterPath="$PROJECT_DIR$/new add/liveChina.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/new add/src/js/liveChinaApp.js" afterPath="$PROJECT_DIR$/new add/src/js/liveChinaApp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/new add/src/js/liveList.js" afterPath="$PROJECT_DIR$/new add/src/js/liveList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/new add/src/template/liveIndex.html" afterPath="$PROJECT_DIR$/new add/src/template/liveIndex.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/new add/src/template/liveList.html" afterPath="$PROJECT_DIR$/new add/src/template/liveList.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -45,8 +41,8 @@
       <file leaf-file-name="liveChinaApp.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/new add/src/js/liveChinaApp.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="188" column="40" lean-forward="false" selection-start-line="188" selection-start-column="40" selection-end-line="188" selection-end-column="40" />
+            <state relative-caret-position="63">
+              <caret line="89" column="26" lean-forward="true" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -425,7 +421,7 @@
       <workItem from="1501390544115" duration="1282000" />
       <workItem from="1501415037985" duration="20065000" />
       <workItem from="1501923962059" duration="38296000" />
-      <workItem from="1508944755886" duration="3940000" />
+      <workItem from="1508944755886" duration="5691000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1500954287275</created>
@@ -606,7 +602,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="215398000" />
+    <option name="totallyTimeSpent" value="217149000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="25" width="1369" height="699" extended-state="0" />
@@ -618,7 +614,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0045045046" sideWeight="0.49379843" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.023890786" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.042477876" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3539823" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3993994" sideWeight="0.49689922" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -885,8 +881,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/new add/src/js/liveChinaApp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="188" column="40" lean-forward="false" selection-start-line="188" selection-start-column="40" selection-end-line="188" selection-end-column="40" />
+        <state relative-caret-position="63">
+          <caret line="89" column="26" lean-forward="true" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
           <folding />
         </state>
       </provider>
