@@ -1,0 +1,1 @@
+liveChinaApp.factory("filterServer",function(){function t(t){n=t}var n;return console.log(t()),{_setDasta:t,_getData:function(t){return n}}});
