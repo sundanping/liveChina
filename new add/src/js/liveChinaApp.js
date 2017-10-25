@@ -89,11 +89,11 @@ liveChinaApp.controller('live', ['$scope', '$http', '$interval', '$window', '$do
         $scope.goBack = function () {
             history.back()
         }
-        // $http.jsonp(API_URL_ROOT + '?callback=JSON_CALLBACK&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83' +
-        //     '&m=Apituwenol&c=tuwenol&a=show&count=' + 12 + '&offset=' + 1 ).success(
-        // function(data){
-        //     alert(data);
-        // });
+        $http.jsonp(API_URL_ROOT + '?callback=JSON_CALLBACK&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83' +
+            '&m=Apituwenol&c=tuwenol&a=show&count=' + 12 + '&offset=' + 1 ).success(
+        function(data){
+            alert(data);
+        });
         var liveType = true;//加载时存储 推荐内容
         function http(count, offset, tailer, title) {
             if (count == undefined) {
