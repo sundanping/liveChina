@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2dd33350-1177-400e-8ff1-7658957090de" name="Default" comment="gulp">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/new add/src/js/liveChinaApp.js" afterPath="$PROJECT_DIR$/new add/src/js/liveChinaApp.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -41,8 +40,8 @@
       <file leaf-file-name="liveChinaApp.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/new add/src/js/liveChinaApp.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="89" column="26" lean-forward="true" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
+            <state relative-caret-position="168">
+              <caret line="94" column="27" lean-forward="true" selection-start-line="94" selection-start-column="27" selection-end-line="94" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -421,7 +420,7 @@
       <workItem from="1501390544115" duration="1282000" />
       <workItem from="1501415037985" duration="20065000" />
       <workItem from="1501923962059" duration="38296000" />
-      <workItem from="1508944755886" duration="5691000" />
+      <workItem from="1508944755886" duration="5993000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <created>1500954287275</created>
@@ -598,11 +597,18 @@
       <option name="project" value="LOCAL" />
       <updated>1502026404031</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="gulp">
+      <created>1508972165521</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1508972165521</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="217149000" />
+    <option name="totallyTimeSpent" value="217451000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="25" width="1369" height="699" extended-state="0" />
@@ -881,8 +887,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/new add/src/js/liveChinaApp.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="89" column="26" lean-forward="true" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
+        <state relative-caret-position="168">
+          <caret line="94" column="27" lean-forward="true" selection-start-line="94" selection-start-column="27" selection-end-line="94" selection-end-column="27" />
           <folding />
         </state>
       </provider>
