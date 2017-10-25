@@ -157,9 +157,9 @@
         <!--推荐-->
         <h2 style="font-size: .28rem;text-align: center;margin-top:.2rem; opacity: .7"
             ng-if="recommend  && searchNumber >0 &&searchText">没有搜索到你要的信息</h2>
-        <div class="recommend" style="margin-bottom:0;" ng-if=" recommend  && searchNumber>0">
+        <div class="recommend" style="margin-bottom:0;" ng-if=" recommend  && searchNumber>0 &&recommendList.length>0">
             <div class="line-row"></div>
-            <div class="heart-shape left-10px"></div>
+            <div  class="heart-shape left-10px"></div>
             为您推荐：
             <div class="line-row"></div>
         </div>

@@ -8,7 +8,6 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
         if( wifiCity.toLocaleLowerCase().substr(0,3) !='wif' ){
             wifiCity = 'not find wifiCity'
         }
-       console.log(wifi)
         //获取城市具体信息END
         var docHeight = document.documentElement.clientHeight;
         var clientWidth = document.body.clientWidth;
@@ -25,6 +24,7 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
         $scope.count = 6;
         $scope.loading = false;
         $scope.commit = '';
+        $scope.imgUrl='';
         $scope.scroll = true;
         $scope.showTotalMessage = false;//直播结束弹框限时汇总信息
         $scope.touched = false;
@@ -53,7 +53,8 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
             method: 'JSONP',
             url: 'http://operate.tw.live.hoge.cn' + "?callback=JSON_CALLBACK&m=Apituwenol&c=tuwenol&a=detail&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&id=" + $scope.id+'&type='+wifiCity
         }).success(function (res) {
-            console.log(res)
+            $scope.imgUrl=(res[0].sort_pic.host+res[0].sort_pic.dir+res[0].sort_pic.filepath+res[0].sort_pic.filename)
+            console.log($scope.imgUrl)
             $scope.share_url = res.share_url;//分享路径
             $scope.videoUrl = res[0].live_info[0].url;
             window.sessionStorage.setItem('videoUrl', $scope.videoUrl)

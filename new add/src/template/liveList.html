@@ -6,11 +6,11 @@
 <div id="liveList" ng-controller="liveList">
 
     <div id="videoList" style="" ng-repeat="data in dataList">
-        <div class="download-app" align="center" ng-if="!showDownLoad" >
-            <img src="http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif" alt="">
-            <span>下载{{a||'智慧无锡'}}APP</span>
+        <div class="download-app" align="center" ng-if="showDownLoad" >
+            <img ng-src="{{imgUrl}}" alt="">
+            <span>下载{{sort_name}}APP</span>
             <button>立即下载</button>
-            </div>
+          </div>
         <!--src= "src/css/ceshi.mp4"-->
         <div class="live-video-info sys-flex sys-flex-center" style="display:block;width:100%;background:#000;"></div>
         <div my-touchstart="touchStart()" ng-click="changeShare()" class="show-video">
@@ -20,7 +20,7 @@
                    controls="controls"
                    ng-if="time_status!=0"
                    webkit-playsinline
-                   poster="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}"
+                   poster="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename| trustUrl}}"
                    type="application/x-mpegURL"
                    width="100%" height="100%"
                    data-setup="{}"
@@ -47,7 +47,6 @@
         <div align="center" class="share" id="live-title">
             <!--<div ng-touchstart="goBack3($event)"></div>-->
             <div style="text-align: center">{{data.title}}</div>
-            <!--<div ng-click="share()"></div>-->
         </div>
         <div class="bg-color-238"></div>
 
@@ -62,7 +61,7 @@
         </div>
     </div>
 
-    <!--互动  评论 BAGIN-->
+    <!--互动  评论 BEGIN-->
     <div  class="videobox"></div>
     <div  id="interaction" ng-show="tag=='interaction'&& time_status !=0 " class="interaction">
         <div id="listsbox" ng-touchstart="onTouchstart($event)" ng-touchmove="touchmove($event)"
@@ -73,7 +72,7 @@
             <!--</div>-->
             <div class="lists" ng-style="translate" style="overflow: hidden" ng-repeat=' msg in commitArr'>
                 <div class="user-logo">
-                    <img  name="img" ng-src="{{msg.sort_pic.host+msg.sort_pic.dir+msg.sort_pic.filepath+msg.sort_pic.filename}}">
+                    <img  name="img" ng-src="{{imgUrl}}">
                     <!--ng-src="{{msg.avatar.host+msg.avatar.dir+msg.avatar.filepath+msg.avatar.filename}}" alt="">-->
                 </div>
 
@@ -93,7 +92,7 @@
     <!--简介BEGIN-->
     <div ng-if="tag=='introduce'&& time_status !=0" ng-repeat="data in dataList">
         <div class="introduce">
-            <img ng-src="{{data.sort_pic|| 'http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif'}}" alt="">
+            <img ng-src="{{imgUrl|| 'http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif'}}" alt="">
             <span> {{data.sort_name|| '直播中国'}}</span>
         </div>
         <div class="introduce-content">
@@ -110,7 +109,7 @@
     <!--预告video 的简介BEGIN-->
     <div  ng-repeat="data in dataList" ng-if="time_status==0">
         <div  class="introduce">
-            <img ng-src="{{data.sort_pic|| 'http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif'}}" alt="">
+            <img ng-src="{{imgUrl|| 'http://img1.bdstatic.com/img/image/shitu/feimg/uploading.gif'}}" alt="">
             <span> {{data.sort_name|| '直播中国'}}</span>
 
         </div>

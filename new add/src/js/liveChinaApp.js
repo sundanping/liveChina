@@ -186,6 +186,7 @@ liveChinaApp.controller('live', ['$scope', '$http', '$interval', '$window', '$do
        
         $scope.cancelSearch = function () {
             $scope.searchWords = '';
+            $scope.loadMoreMsg = '加载更多';
             $scope.trailer.length = 0;
             $scope.history.length = 0;
             $scope.live.length = 0;
