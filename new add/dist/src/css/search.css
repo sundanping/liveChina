@@ -1,1 +1,161 @@
-#alert,.cancel,.clear-history{text-align:center}.search{height:.9rem;background-color:#333;font-size:.3rem;overflow:hidden}.search>div{display:inline-block;height:.6rem}.search>.col-8>input{width:90%;height:100%;padding:0 .2rem;font-size:.26rem;text-indent:.4rem;border-radius:.3rem;margin:.15rem auto;background:url(../imgs/search22.jpg) center left no-repeat #fff;background-size:.22rem .22rem;background-origin:content-box}.search>.col-2>img{position:relative;height:.4rem;top:.22rem;left:.2rem}.cancel{color:#fff;font-size:.3rem;height:.9rem;line-height:.9rem}.search-history>div{font-size:30px}.clear-history{margin-top:.3rem}.search-history-list{background:url(../imgs/right-logo.png) center right no-repeat}#alert{position:absolute;top:-.4rem;font-size:.28rem;margin:0 auto 0 -1.2rem;width:2.4rem;left:50%;height:.4rem;background:#fdfdfd;border:0}.alert{border:1px solid #333;animation:alert 2s;-webkit-animation:alert 2s}@keyframes alert{0%{top:-.4rem;color:#333;font-weight:400}25%{top:1rem;color:#070777;font-weight:600}75%{top:1rem;color:#333;font-weight:800}100%{top:-.4rem;color:#070777;font-weight:500}}@-webkit-keyframes alert{0%{top:-.4rem;color:#333;font-weight:400}25%{top:1rem;color:#070777;font-weight:600}75%{top:1rem;color:#333;font-weight:800}100%{top:-.4rem;color:#070777;font-weight:500}}.history-ul{position:absolute;top:.8rem}.search-ul>li{background:url(../src/imgs/right-logo.png)}.history-ul>li{background-color:#333;font-size:.3rem;border-bottom:1px solid #999;padding:.3rem 0;opacity:.7}.history-ul>li:first-child{background:0 0;font-weight:700;opacity:1}.clear-history{font-size:.3rem;font-weight:700;margin-bottom:.4rem}.color-333{color:#333!important}
+.search {
+    height: .9rem;
+    background-color: #333;
+    font-size: .3rem;
+    overflow: hidden;
+}
+
+.search > div {
+    display: inline-block;
+    height: .6rem;
+
+}
+
+.search > .col-8 > input {
+
+    width: 90%;
+    /*text-align: center;*/
+    height: 100%;
+    padding: 0 .2rem;
+    font-size: .26rem;
+    text-indent: .4rem;
+    border-radius: .3rem;
+    margin: .15rem auto;
+    background: url(../imgs/search22.jpg) no-repeat center left;
+    background-color: #fff;
+    background-size: .22rem .22rem;
+    background-origin: content-box;
+
+}
+
+.search > .col-2 > img {
+    position: relative;
+    height: .4rem;
+    top: .22rem;
+    left: .2rem;
+}
+
+.cancel {
+    color: #fff;
+    text-align: center;
+    font-size: .3rem;
+    height: .9rem;
+    line-height: .9rem;
+
+}
+
+.search-history > div {
+    font-size: 30px;
+}
+
+.clear-history {
+    font-size: .3rem;
+    text-align: center;
+    margin-top: .3rem;
+}
+
+.search-history-list {
+    background: url(../imgs/right-logo.png) no-repeat center right;
+}
+
+#alert {
+    position: absolute;
+    top: -.4rem;
+    font-size: .28rem;
+    margin: 0 auto;
+    width: 2.4rem;
+    left: 50%;
+    margin-left: -1.2rem;
+    height: .4rem;
+    background: #fdfdfd;
+    text-align: center;
+    border: 0;
+}
+
+.alert {
+    border: 1px solid #333;
+    animation: alert 2s;
+    -webkit-animation: alert 2s; /* Safari and Chrome */
+}
+
+@keyframes alert {
+    0% {
+        top: -.4rem;
+        color: #333333;
+        font-weight: 400;
+    }
+    25% {
+        top: 1rem;
+        color: #070777;
+        font-weight: 600;
+    }
+    75% {
+        top: 1rem;
+        color: #333333;
+        font-weight: 800;
+    }
+    100% {
+        top: -.4rem;
+        color: #070777;
+        font-weight: 500;
+    }
+}
+
+@-webkit-keyframes alert /* Safari and Chrome */
+{
+    0% {
+        top: -.4rem;
+        color: #333333;
+        font-weight: 400;
+    }
+    25% {
+        top: 1rem;
+        color: #070777;
+        font-weight: 600;
+    }
+    75% {
+        top: 1rem;
+        color: #333333;
+        font-weight: 800;
+    }
+    100% {
+        top: -.4rem;
+        color: #070777;
+        font-weight: 500;
+    }
+}
+
+.history-ul {
+    position: absolute;
+    top: .8rem;
+}
+
+.search-ul > li {
+    background: url('../src/imgs/right-logo.png');
+}
+
+.history-ul > li {
+
+    background-color: #333;
+    font-size: .3rem;
+    border-bottom: 1px solid #999;
+    padding: .3rem 0;
+    opacity: .7
+}
+
+.history-ul > li:first-child {
+    background: none;
+    font-weight: bold;
+    opacity: 1;
+}
+
+.clear-history {
+    font-size: .3rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: .4rem;
+}
+
+.color-333{
+    color:#333!important;
+}

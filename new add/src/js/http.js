@@ -1,24 +1,61 @@
-liveChinaApp.factory('httpServer',['$http,$q',function($http,$q){
-    var service = {};
-
+liveChinaApp.factory('httpServer', ['$http','API_URL_ROOT', function ($http, API_URL_ROOT) {
+    //参数转换 {a:1,b:2} -- a=1&b=2
+    function _param(obj) {
+        var query = '',
+                name, value, fullSubName, subName, subValue, innerObj, i;
+        for (name in obj) {
+            value = obj[name];
+            if (value instanceof Array) {
+                for (i = 0; i < value.length; ++i) {
+                    subValue = value[i];
+                    fullSubName = name + '[' + i + ']';
+                    innerObj = {};
+                    innerObj[fullSubName] = subValue;
+                    query += _param(innerObj) + '&';
+                }
+            } else if (value instanceof Object) {
+                for (subName in value) {
+                    subValue = value[subName];
+                    fullSubName = name + '.' + subName;
+                    innerObj = {};
+                    innerObj[fullSubName] = subValue;
+                    query += _param(innerObj) + '&';
+                }
+            } else if (value !== undefined && value !== null)
+                query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
+        }
+        return query.length ? ('?callback=JSON_CALLBACK&'+query.substr(0, query.length - 1)) : query;
+    };
+    
     //请求数据
-    service.getData = function(){
-        var d = $q.defer();
-
-        $http({
-            method: 'JSONP',
-            url: API_URL_ROOT + '&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&m=Apituwenol&c=tuwenol&a=show&count='+count+'&offset='+offset
-        })
-            .success(function(response) {
-                d.resolve(response);
-            })
-            .error(function(){
-                d.reject("error");
+    return {
+        param:_param,
+        sendJsonPost: function (apiPrefix, path) {
+            var httpRequest;
+            httpRequest = $http({
+                method: 'JSONP',
+                url: apiPrefix + '?callback=JSON_CALLBACK&' + path,
+                options: {headers: {'Content-Type': "application/json"}},
+                headers: {'Content-Type': "application/json"}
             });
-        return d.promise;
+            
+            httpRequest.success(function (response) {
+                return response;
+            });
+            return httpRequest
+        },
+        //sendHttpJsonp2: function (obj) {
+        //    var httpResult, httpRequest;
+        //    httpRequest = $http.jsonp(API_URL_ROOT + '?callback=JSON_CALLBACK&' + obj);
+        //    return httpRequest.success(function (data) {
+        //        httpResult = data
+        //        return httpResult
+        //    });
+        //},
+        //
+        sendHttpJsonp: function (obj) {
+            return this.sendJsonPost(API_URL_ROOT, _param(obj))
+        }
     }
-
-
-    return service;
-
 }])
+

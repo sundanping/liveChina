@@ -10,7 +10,7 @@
             <img ng-src="{{imgUrl}}" alt="">
             <span>下载{{sort_name}}APP</span>
             <button>立即下载</button>
-          </div>
+        </div>
         <!--src= "src/css/ceshi.mp4"-->
         <div class="live-video-info sys-flex sys-flex-center" style="display:block;width:100%;background:#000;"></div>
         <div my-touchstart="touchStart()" ng-click="changeShare()" class="show-video">
@@ -127,23 +127,23 @@
     <!--简介END-->
     <!--发表评论-->
     <div id="sendMsg" ng-show="time_status !=0 && tag=='interaction'" class="input-comment">
-    <input id="input" type="text" ng-focus="startTimer()" ng-model="commit" placeholder="和大家说点什么吧">
-    <!--<input  type="button" name="{{commit}}" value="发表" ng-model="send" ng-click="sendMessage($event)">-->
-    <button  value="" name="{{commit}}"
-    ng-model="send" ng-click="sendMessage($event)">发表
-    </button>
-    <div class="share-web" ng-click="share()">
-    <img src="src/imgs/share3.png"   alt="" >
-    </div>
+        <input id="input" type="text" ng-focus="startTimer()" ng-model="commit" placeholder="和大家说点什么吧">
+        <!--<input  type="button" name="{{commit}}" value="发表" ng-model="send" ng-click="sendMessage($event)">-->
+        <button  value="" name="{{commit}}"
+                 ng-model="send" ng-click="sendMessage($event)">发表
+        </button>
+        <div class="share-web" ng-click="share()">
+            <img src="src/imgs/share3.png"   alt="" >
+        </div>
     </div>
 
     <!---->
     <!--<div id="sendMsg" ng-show="time_status !=0 && tag=='interaction'" class="input-comment">-->
-        <!--<input id="input" type="text" ng-focus="startTimer()" ng-model="commit" placeholder="和大家说点什么吧">-->
-        <!--&lt;!&ndash;<input  type="button" name="{{commit}}" value="发表" ng-model="send" ng-click="sendMessage($event)">&ndash;&gt;-->
-        <!--<button ng-class="commit.length==0?'opacity-4':null" name="{{commit}}" value="" name="{{commit}}"-->
-                <!--ng-model="send" ng-click="sendMessage($event)">发表-->
-        <!--</button>-->
+    <!--<input id="input" type="text" ng-focus="startTimer()" ng-model="commit" placeholder="和大家说点什么吧">-->
+    <!--&lt;!&ndash;<input  type="button" name="{{commit}}" value="发表" ng-model="send" ng-click="sendMessage($event)">&ndash;&gt;-->
+    <!--<button ng-class="commit.length==0?'opacity-4':null" name="{{commit}}" value="" name="{{commit}}"-->
+    <!--ng-model="send" ng-click="sendMessage($event)">发表-->
+    <!--</button>-->
     <!--</div>-->
     <!-- 直播结束 弹框信息-->
     <div  ng-if= "showTotalMessage" id="totalMessage" ng-repeat="data in dataList">

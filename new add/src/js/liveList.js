@@ -1,9 +1,8 @@
-liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeParams', '$location', '$timeout', '$interval', '$window',
-    function ($scope, $http, API_URL_ROOT, $routeParams, $location, $timeout, $interval, $window) {
+liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeParams', '$location', '$timeout', '$interval', '$window','httpServer',
+    function ($scope, $http, API_URL_ROOT, $routeParams, $location, $timeout, $interval, $window,httpServer) {
         //获取城市具体信息BEGIN
         var wifi = navigator.userAgent;
         var wifiPosition = wifi.lastIndexOf('_');
-        
         var wifiCity = wifi.substr(wifiPosition+1,6);
         if( wifiCity.toLocaleLowerCase().substr(0,3) !='wif' ){
             wifiCity = 'not find wifiCity'
@@ -15,7 +14,7 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
         var videoinfoheight = videoheight;
         $('.live-video-info').css('height', videoinfoheight);
         $('.live-video').css('height', videoheight);
-        
+        var timer1;
         $scope.id = $routeParams.id;
         $scope.time_status = 1;
         $scope.time_status = $routeParams.time_status;
@@ -39,7 +38,7 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
         }
         $scope.changeIntroduce = function (status) {
             $scope.tag = status;
-
+            
             if (status === 'introduce') {
                 angular.element(document.querySelector('#underLine')).addClass('toLeft').removeClass('toRight').removeClass('underLine');
             } else {
@@ -49,12 +48,21 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
         //简介互动切换 END
         //返回按钮 BEGIN
         //ajax  请求页面
+        var param = {
+            custom_appkey:'G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC',
+            custom_appid:83,
+            m:'Apituwenol',
+            c:'tuwenol',
+            a:'detail',
+            id:$scope.id,
+            type:wifiCity
+        }
+        var URL_LIVE_LIST ='http://operate.tw.live.hoge.cn';
         $http({
             method: 'JSONP',
-            url: 'http://operate.tw.live.hoge.cn' + "?callback=JSON_CALLBACK&m=Apituwenol&c=tuwenol&a=detail&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&id=" + $scope.id+'&type='+wifiCity
+            url: URL_LIVE_LIST +httpServer.param(param)
         }).success(function (res) {
             $scope.imgUrl=(res[0].sort_pic.host+res[0].sort_pic.dir+res[0].sort_pic.filepath+res[0].sort_pic.filename)
-            console.log($scope.imgUrl)
             $scope.share_url = res.share_url;//分享路径
             $scope.videoUrl = res[0].live_info[0].url;
             window.sessionStorage.setItem('videoUrl', $scope.videoUrl)
@@ -63,19 +71,18 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
             $scope.sort_pic = $scope.dataList[0].sort_pic;
             $scope.sort_name = $scope.dataList[0].sort_name;
             //视频时长
-            //console.log($scope.dataList[0])
             $scope.timeLong = parseInt((res[0].end_time * 1 - res[0].start_time * 1) / 60 / 60 % 24) + '小时'
-                + parseInt((res[0].end_time * 1 - res[0].start_time * 1) / 60 % 60) + '分' + parseInt((res[0].end_time * 1 - res[0].start_time * 1) % 60) + '秒'
-
+                    + parseInt((res[0].end_time * 1 - res[0].start_time * 1) / 60 % 60) + '分' + parseInt((res[0].end_time * 1 - res[0].start_time * 1) % 60) + '秒'
+            
             $scope.getComment()
-
+            
         })
-
+        
         //  angular video  不支持 ng-src  点击事件解决报错
-         $scope.addSrc=function(e){
-             e.target.src=$scope.videoUrl;
-         }
-
+        $scope.addSrc=function(e){
+            e.target.src=$scope.videoUrl;
+        }
+        
         //直播结束  弹框显示汇总信息
         $scope.totalMessage = function () {
             if ($scope.time_status == 1) {
@@ -88,10 +95,9 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
             }
         }
         $scope.load = false;
-
+        
         //刷新页面  到播放页
         // $scope.locationToLive=function(){
-        //     // console.log('刷新')
         //     // if($scope.dataList[0].end_time*1> new Date() && $scope.dataList[0].end_time*1< (new Date())+1100 ){
         //     //     $location.path('/liveList/'+$scope.id+'/2');
         //     // }
@@ -99,7 +105,7 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
         //     //     $interval.cancel($scope.timer);
         //     // })
         // }
-
+        
         //轮询   获取评论
         $scope.commitArr = [];
         $scope.cleartimer = true;
@@ -145,32 +151,34 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
                             $scope.commentNum++;
                             $scope.commitArr.push(comment[i]);
                         }
-
+                        
                     }
                     setTimeout(watch, 1)
                 }
-
+                
             })
         }
-
+        
         function watch() {
+            if((window.document.URL).indexOf('liveList')== -1){
+                window.clearInterval(timer1)
+            }
             var currentHeight = document.getElementById('interaction').clientHeight || 0;
             var innerHeight = document.getElementById('listsbox').scrollHeight || 0;
-            // console.dir(document.getElementById('interaction'))
             $scope.moved = innerHeight - currentHeight + 15;
             if (animateOnce == 2) {
                 $('#interaction').animate({scrollTop: $scope.moved});
             }
             $('#interaction').animate({scrollTop: $scope.moved});
-
+            
             $scope.$watch('moved', function (newValue, oldValue) {
                 if (newValue != oldValue) {
                     $scope.scrollDiv()
                 }
             })
-
+            
         }
-
+        
         $scope.scrollDiv = function () {
             if ($location.$$absUrl.indexOf('liveList') > 0 && $scope.loadcommit && $scope.tag === 'interaction') {
                 $('#interaction').animate({scrollTop: $scope.moved});
@@ -186,7 +194,6 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
             }
             var oldTime = (new Date(t).getTime());
             var newTime = new Date().getTime();
-            // console.log(newTime)
             var timeType = parseInt((newTime - oldTime) / 1000 / 60);//计算分钟
             if ((newTime - oldTime) / 1000 > 0 && (newTime - oldTime) / 1000 < 60) {
                 return '刚刚'
@@ -198,7 +205,7 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
                 return t.substr(0, 10);
             }
         }
-
+        
         //定时器
         $scope.see = function () {
             $scope.totalMessage();
@@ -208,18 +215,17 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
                 // console.log('监听3秒轮训')
             }
         }
-        var timer1 = setInterval($scope.see, 3000)
+         timer1 = setInterval($scope.see, 3000)
 
 //发送评论
-
+        
         $scope.sendMessage = function (e) {
-            // console.log(e)
             if ($scope.loadCommit == false) {
                 $scope.loadCommit = true
             }
             $scope.content = e.target.name;
             if ($scope.content == '' || $scope.content == undefined || $scope.content == null) {
-
+                
                 return false;
             } else {
                 if (!$scope.scroll) {
@@ -246,20 +252,19 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
                 //     }else{
                 //         //  即用户未登录  跳登录页登录
                 //         SmartCity.goLogin();
-
+                
                 //     }
                 // });
-
+                
                 e.target.innerHTML = '发表'
                 // console.log($scope.id)
                 $http({
                     method: 'JSONP',
-
+                    
                     // url: API_URL_ROOT+"?&callback=JSON_CALLBACK&m=Apituwenol&c=interact&a=show&type=comment&custom_appkey=A3O8gmwJURFi8d74nuKxRpczjoAydHSE&custom_appid=137&topic_id=596&type=comment&content="+$scope.content
                     url: API_URL_ROOT + "?&callback=JSON_CALLBACK&m=Apituwenol&c=interact&a=show&type=comment&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&content=" + $scope.content + '&topic_id=' + $scope.id
                 }).success(function (comment) {
                     // $scope.comment=comment;
-                    // console.log(comment)
                     //取消正在加载图片
                     e.target.innerHTML = '发表'
                     angular.element(document.querySelector('#input')).val('');
@@ -271,9 +276,7 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
 //分享
         $scope.share = function () {
             // alert('分享')
-            console.log(window.document.URL)
-            console.log(window.location.href)
-               SmartCity.shareTo({
+            SmartCity.shareTo({
                 title: $scope.dataList[0].title,
                 brief: $scope.dataList[0].brief,
                 contentURL: window.document.URL+"?style=true",
@@ -281,16 +284,16 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
                 imageLink: $scope.dataList[0].sort_pic
             });
         }
-
+        
         $scope.cancelModal = function () {
             $scope.showTotalMessage = false;
         }
-
+        
         $scope.goBack3 = function (e) {
             window.history.back()
             clearInterval(timer1)
         }
-
+        
         $scope.startTimer = function () {
             $scope.cleartimer = true;
             // var curHeight=document.documentElement.clientHeight;
@@ -318,8 +321,8 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
                 //   请求数据  上拉加载
             }
         }
-
-
+        
+        
         var scrollTop;
         $scope.touchend = function (e) {
             e.stopPropagation();
@@ -333,18 +336,18 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
                 if ($scope.movelen > 0) {
                     // 监听到达底部
                     $timeout(
-                        function () {
-                            scrollTop = $('#interaction').scrollTop()
-                        }, 1)
-
+                            function () {
+                                scrollTop = $('#interaction').scrollTop()
+                            }, 1)
+                    
                     if ($scope.movelen > scrollTop - 30) {
                         $scope.loadCommit = true;
                     }
-
+                    
                 }
             }
-
-
+            
+            
             // AlloyLever.config({
             //     cdn:'//s.url.cn/qqun/qun/qqweb/m/qun/confession/js/vconsole.min.js',
             //     reportUrl: "//a.qq.com",
@@ -355,10 +358,10 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
             //     },
             //     entry:"#interaction"
             // })
-
-
+            
+            
             $scope.cleartimer = false;
-
+            
             if ($scope.movelen < 0 && $('#interaction').scrollTop() === 0) {
                 // console.log($scope.moved)
                 // $scope.load=true;
@@ -368,34 +371,30 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
                     //评论列表接口 排序参 顺序 order=asc 倒序 order=desc
                     url: API_URL_ROOT + '?m=Apituwenol&c=thread&a=show_comment&callback=JSON_CALLBACK&' +
                     'custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&order=sc&offset=' + $scope.commitArr.length + '&count=' + $scope.count + '&topic_id=' + $scope.id
-
+                    
                     // url:API_URL_ROOT+"?callback=JSON_CALLBACK&m=Apituwenol&c=thread&a=show_comment&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197&offset="+$scope.offset+'&&count='+$scope.count
                 }).success(function (comment) {
                     // $scope.load=false;
                     Array.prototype.unshift.apply($scope.commitArr, comment);
-                    // console.log(comment);
                     $scope.loading = false;
-
+                    
                 })
-                // console.log($scope.commitArr)
             }
         }
         $scope.cancelModal = function(){
             $scope.showTotalMessage = false
         }
-    
+        
         //setTimeout(function(){
         //    document.getElementById('my-video').play()
         //},100)
         setTimeout(loadVideo,100)
         function loadVideo(){
-            //console.log(document.getElementById("my-video").src)
-            //    console.log(document.getElementById('my-video'))
-                var myPlayer = videojs('my-video');
-                videojs("my-video").ready(function(){
-                    var myPlayer = this;
-                    myPlayer.play();
-                });
+            var myPlayer = videojs('my-video');
+            videojs("my-video").ready(function(){
+                var myPlayer = this;
+                myPlayer.play();
+            });
         }
     }])
 ;
@@ -431,7 +430,6 @@ liveChinaApp.filter("trustUrl", ['$sce', function ($sce) {
 
 //setTimeout(vide,1)
 //function vide(){
-//    console.log(document.getElementById('my-video'))
 //    var myPlayer = videojs('my-video');
 //    videojs("my-video").ready(function(){
 //        var myPlayer = this;

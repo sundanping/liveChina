@@ -1,11 +1,9 @@
 var liveChinaApp = angular.module('liveChinaApp', ['ngRoute', 'ngTouch', 'duScroll']);
-//URL
-var API_URL_ROOT = 'http://operate.tw.live.hoge.cn/index.php';
-//var API_URL_ROOT = 'http://tuwenolsc.cloud.hoge.cn/views/live-china/dist/liveChina.html';
-liveChinaApp.constant('API_URL_ROOT', API_URL_ROOT);
-liveChinaApp.controller('live', ['$scope', '$http', '$interval', '$window', '$document',
-    function ($scope, $http, $interval, $window, filterServer, $document) {
 
+var API_URL_ROOT = 'http://operate.tw.live.hoge.cn/index.php';
+liveChinaApp.constant('API_URL_ROOT', API_URL_ROOT);
+    liveChinaApp.controller('live', ['$scope', '$http', '$interval', '$window', '$document','httpServer',
+    function ($scope, $http, $interval, $window, $document,httpServer) {
         $scope.loadMoreMsg = '加载更多';
         $scope.searchWords = '';
         $scope.trailer = [];
@@ -20,7 +18,6 @@ liveChinaApp.controller('live', ['$scope', '$http', '$interval', '$window', '$do
         $scope.offset = 0;
         $scope.noWet=false;
         $scope.searchText= false;
-    
         $scope.loadtuwenol = true;
         $scope.loadlength = 0;
         $scope.searchNumber = 0;
@@ -31,7 +28,8 @@ liveChinaApp.controller('live', ['$scope', '$http', '$interval', '$window', '$do
         }else{
             $scope.noWet= false
         }
-    
+        
+        //倒计时事件设置 BEGIN
         $scope.timer = function (t) {
             $scope.ts = (new Date(t.start_time_show).getTime() - (new Date().getTime())) * 1;
             $scope.dd = parseInt($scope.ts / 1000 / 60 / 60 / 24, 10);//计算剩余的天数
@@ -44,7 +42,6 @@ liveChinaApp.controller('live', ['$scope', '$http', '$interval', '$window', '$do
             $scope.ss = checkTime($scope.ss);
             $scope.mm = checkTime($scope.mm);
             $scope.mmmm = checkTime($scope.mmmm);
-            
             function checkTime(t) {
                 if (t < 10) {
                     t = '0' + t
@@ -71,30 +68,17 @@ liveChinaApp.controller('live', ['$scope', '$http', '$interval', '$window', '$do
                     $scope.mm = 0;
                     $scope.ss = 0;
                     $scope.mmmm = 0;
-                    // $window.location.reload();
                     t.time_status = 1;
-                    // $scope.trailer.filter(function(item,index,arr){
-                    //     if(item.id==t.id){
-                    //         $scope.index=index;
-                    //     }
-                    // })
-                    // $scope.trailer.splice($scope.index,1)
-                    // $scope.live.unshfit(t)
                     return '直播开始'
                 } else
                     return $scope.mm + "分" + $scope.ss + '秒后';
             }
         }
         $interval($scope.timer, 1000)
-        $scope.goBack = function () {
-            history.back()
-        }
-        // $http.jsonp(API_URL_ROOT + '?callback=JSON_CALLBACK&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83' +
-        //     '&m=Apituwenol&c=tuwenol&a=show&count=' + 12 + '&offset=' + 1 ).success(
-        // function(data){
-        //     alert(data);
-        // });
+        //倒计时时间设置 END
+       
         var liveType = true;//加载时存储 推荐内容
+        
         function http(count, offset, tailer, title) {
             if (count == undefined) {
                 count = 10
@@ -105,13 +89,21 @@ liveChinaApp.controller('live', ['$scope', '$http', '$interval', '$window', '$do
             if (tailer == undefined) {
                 tailer = 1
             }
-            //$scope.recommendList.length = 0;
+            $scope.path={
+                custom_appkey:'G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC',
+                custom_appid:83,
+                m:'Apituwenol',
+                c:'tuwenol',
+                a:'show',
+                count:count,
+                offset:offset,
+                title:title
+            };
+            
             $http({
                 method: 'JSONP',
-                url: API_URL_ROOT + '?callback=JSON_CALLBACK&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83' +
-                '&m=Apituwenol&c=tuwenol&a=show&count=' + count + '&offset=' + offset + '&title=' + title
+                url: API_URL_ROOT +httpServer.param($scope.path)
             }).success(function (msg) {
-                console.log(msg)
                 if(liveType && msg.length === 0){
                     $scope.noMsg = true;
                 }
@@ -125,7 +117,7 @@ liveChinaApp.controller('live', ['$scope', '$http', '$interval', '$window', '$do
                 }
                 if (title != undefined && title.length > 0 && msg.length <3 && !liveType) {
                     if( msg.length ===0){
-                    // 隐藏没有搜索结果字段
+                        // 隐藏没有搜索结果字段
                         $scope.searchText= true;
                     }else{
                         $scope.searchText= false;
@@ -143,24 +135,18 @@ liveChinaApp.controller('live', ['$scope', '$http', '$interval', '$window', '$do
                         })
                     } else if (data.time_status === 1) {
                         $scope.live.push(data)
-                            if(liveType){
-                            
-                                $scope.recommendList.push(data)
-    
-                            }
-                        
+                        if(liveType){
+                            $scope.recommendList.push(data)
+                        }
                     } else if (data.time_status === 2) {
                         $scope.history.push(data)
                     }
                 });
                 liveType= false;
-               
                 if ($scope.recommendList.length > 3) {
                     $scope.recommendList.length = 3
                 }
-                console.log($scope.recommendList)
             });
-            console.log($scope.searchNumber)
         }
         
         http($scope.count, $scope.offset, $scope.show_tailer, $scope.searchWords)//mounted
@@ -171,7 +157,7 @@ liveChinaApp.controller('live', ['$scope', '$http', '$interval', '$window', '$do
             $scope.searchWords = ''
             http($scope.count, $scope.offset, $scope.show_tailer, $scope.searchWords)
         }
-      
+        
         $scope.search = function () {
             if ($scope.searchWords.length === 0) {
                 return false
@@ -181,14 +167,11 @@ liveChinaApp.controller('live', ['$scope', '$http', '$interval', '$window', '$do
             
             if ($scope.searchWords.length > 0) {
                 $scope.live.length = 0;
-                console.log($scope.live)
                 $scope.history.length = 0;
                 $scope.trailer.length = 0;
                 http(50, 0, '', $scope.searchWords)
             }
-            
         }
-       
         $scope.cancelSearch = function () {
             $scope.searchWords = '';
             $scope.loadMoreMsg = '加载更多';
@@ -205,54 +188,25 @@ liveChinaApp.controller('live', ['$scope', '$http', '$interval', '$window', '$do
     
     
     
-        //
-        //function _param(obj) {
-        //
-        //    var query = '',
-        //            name, value, fullSubName, subName, subValue, innerObj, i;
-        //
-        //    for (name in obj) {
-        //        value = obj[name];
-        //
-        //        if (value instanceof Array) {
-        //            for (i = 0; i < value.length; ++i) {
-        //                subValue = value[i];
-        //                fullSubName = name + '[' + i + ']';
-        //                innerObj = {};
-        //                innerObj[fullSubName] = subValue;
-        //                query += _param(innerObj) + '&';
-        //            }
-        //        } else if (value instanceof Object) {
-        //            for (subName in value) {
-        //                subValue = value[subName];
-        //                fullSubName = name + '.' + subName;
-        //                innerObj = {};
-        //                innerObj[fullSubName] = subValue;
-        //                query += _param(innerObj) + '&';
-        //            }
-        //        } else if (value !== undefined && value !== null)
-        //            query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
-        //    }
-        //
-        //    return query.length ? query.substr(0, query.length - 1) : query;
+        //$scope.goBack = function () {
+        //    history.back()
+        //}
+        //调用factory 发送ajax请求
+        //$scope.path={
+        //    custom_appkey:'G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC',
+        //    custom_appid:83,
+        //    m:'Apituwenol',
+        //    c:'tuwenol',
+        //    a:'show',
+        //    count:10,
+        //    offset:$scope.offset,
+        //    title:$scope.searchWords
         //};
-        //
-        //
-        //
-        //var re = _param({name:12,age:23})
-       //console.log(re)
+        ////   ajax
+        //sendAjax($scope.path)
+        //function sendAjax(path){
+        //    httpServer.sendHttpJsonp(path).success(function (response) {
+        //        console.log(response)
+        //    });
+        //};
     }]);
-
-    
-
-    //var userAgentInfo = navigator.userAgent;
-    //var Agents = ["Android", "iPhone",
-    //    "SymbianOS", "Windows Phone",
-    //    "iPad", "iPod"];
-    //var flag = true;
-    //for (var v = 0; v < Agents.length; v++) {
-    //    if (userAgentInfo.indexOf(Agents[v]) > 0) {
-    //        flag = false;
-    //        break;
-    //    }
-    //}

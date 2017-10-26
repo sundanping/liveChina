@@ -1,1 +1,57 @@
-@charset "utf-8";body,html{width:100%;height:100%}*,body,h1,h2,h3,h4,h5,h6{margin:0;padding:0}*,img{border:none}a,a:hover{text-decoration:none}*{list-style:none;outline:0;box-sizing:border-box}body{font-family:"微软雅黑";color:#535353}dd,div,dl,dt,form,img,li,ol,p,section,ul{list-style:none;padding:0;margin:0}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:400}table{border-collapse:separate;border-spacing:0}table,td,th{vertical-align:middle}button,input,keygen,legend,select,textarea{outline:0;margin:0;padding:0}img{vertical-align:bottom}input[type=button],input[type=submit],input[type=reset]，input[type=search]{-webkit-appearance:none;outline:0}a{cursor:pointer}.row:after{content:"";clear:both;display:block}[class*=col-]{float:left}.col-1{width:8.33%}.col-2{width:16.66%}.col-3{width:25%}.col-4{width:33.33%}.col-5{width:41.66%}.col-6{width:50%}.col-7{width:58.33%}.col-8{width:66.66%}.col-9{width:75%}.col-10{width:83.33%}.col-11{width:91.66%}.col-12{width:100%}
+@charset "utf-8";
+
+/* 通用样式 */
+
+*{
+    margin:0;padding:0;border:none;list-style:none;outline:none;box-sizing: border-box;
+
+}
+html {
+    height: 100%;
+    width: 100%;
+}
+body {
+    font-family: "微软雅黑";  padding: 0; margin: 0;
+    color: #535353;
+    width: 100%;
+    height: 100%;
+}
+div, section,form, img,ul, dd, dl, ol, dt, li, p { list-style: none; padding: 0; margin: 0; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; margin: 0; padding: 0; font-weight: normal; }
+table { border-collapse: separate; border-spacing: 0; }
+table, td, th { vertical-align: middle; }
+textarea, input, button, select, keygen, legend { outline: 0; margin: 0; padding: 0;}
+img{border:none;vertical-align:bottom;}
+input[type="button"],input[type="submit"],input[type="reset"]，input[type="search"]{-webkit-appearance:none;outline:none;}
+a { text-decoration: none;  cursor: pointer; }
+a:hover { text-decoration: none; }
+
+/*:root{*/
+/*font-size:10px*/
+/*}*/
+/*html{*/
+/*font-size:10px*/
+
+/*}*/
+.row:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+[class*="col-"] {
+    float: left;
+    /*padding: 15px;*/
+}
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+/* 通用样式 */
