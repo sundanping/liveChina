@@ -29,16 +29,13 @@
                    preload="auto"
                    self.wView.allowsInlineMediaPlayback = YES;
                    self.wView.mediaPlaybackRequiresUserAction = NO;
-
                    x-webkit-airplay="allow">
                 <!--ng-click="addSrc($event)"-->
-
                 <!--_webView.mediaPlaybackRequiresUserAction = NO;-->
                 <!--webView.allowsInlineMediaPlayback=YES-->
                 <span class="font-size-26">你的浏览器不支持播放，请换个浏览器试试</span>
             </video>
             <!--x5-video-player-type="h5"--><!--app上阻止全屏-->
-
             <img ng-if="time_status ==0" width="100%" height="100%"
                  ng-src="{{data.indexpic.host+data.indexpic.dir+data.indexpic.filepath+data.indexpic.filename}}" alt="">
         </div>
@@ -62,7 +59,7 @@
     </div>
 
     <!--互动  评论 BEGIN-->
-    <div  class="videobox"></div>
+    <div  ng-class="time_status ==0?'height-5rem':'video-box'"  class=""></div>
     <div  id="interaction" ng-show="tag=='interaction'&& time_status !=0 " class="interaction">
         <div id="listsbox" ng-touchstart="onTouchstart($event)" ng-touchmove="touchmove($event)"
              ng-touchend='touchend($event)' >
@@ -86,9 +83,7 @@
             </div>
         </div>
     </div>
-
     <!--互动END-->
-
     <!--简介BEGIN-->
     <div ng-if="tag=='introduce'&& time_status !=0" ng-repeat="data in dataList">
         <div class="introduce">

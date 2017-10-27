@@ -45,8 +45,7 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
                 angular.element(document.querySelector('#underLine')).removeClass('toLeft').addClass('toRight').removeClass('underLine');
             }
         };
-        //简介互动切换 END
-        //返回按钮 BEGIN
+         //返回按钮 BEGIN
         //ajax  请求页面
         var param = {
             custom_appkey:'G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC',
@@ -70,12 +69,11 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
             $scope.dataList = res;
             $scope.sort_pic = $scope.dataList[0].sort_pic;
             $scope.sort_name = $scope.dataList[0].sort_name;
+            document.title=$scope.sort_name
             //视频时长
             $scope.timeLong = parseInt((res[0].end_time * 1 - res[0].start_time * 1) / 60 / 60 % 24) + '小时'
                     + parseInt((res[0].end_time * 1 - res[0].start_time * 1) / 60 % 60) + '分' + parseInt((res[0].end_time * 1 - res[0].start_time * 1) % 60) + '秒'
-            
             $scope.getComment()
-            
         })
         
         //  angular video  不支持 ng-src  点击事件解决报错
@@ -115,11 +113,24 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
             $scope.loading = true;
             // $scope.offset+=3;
             $scope.commentNum = 0;
+            var param = {
+                custom_appkey:'G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC',
+                custom_appid:83,
+                m:'Apituwenol',
+                c:'thread',
+                a:'show_comment',
+                topic_id:$scope.id,
+                offset:0,
+                order:'desc',
+                count:6
+            }
+            
             $http({
                 method: 'JSONP',
                 //评论列表接口 排序 顺序 order=asc 倒序 order=desc
-                url: API_URL_ROOT + '?m=Apituwenol&c=thread&a=show_comment&callback=JSON_CALLBACK' +
-                '&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&order=desc&count=6&offset=0&topic_id=' + $scope.id
+                url:API_URL_ROOT+httpServer.param(param)
+                //url: API_URL_ROOT + '?m=Apituwenol&c=thread&a=show_comment&callback=JSON_CALLBACK' +
+                //'&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&order=desc&count=6&offset=0&topic_id=' + $scope.id
             }).success(function (comment) {
                 $scope.loading = false;
                 
@@ -255,14 +266,21 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
                 
                 //     }
                 // });
-                
+                var param = {
+                    custom_appkey:'G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC',
+                    custom_appid:83,
+                    m:'Apituwenol',
+                    c:'interact',
+                    a:'show',
+                    topic_id:$scope.id,
+                    content:$scope.content
+                }
                 e.target.innerHTML = '发表'
                 // console.log($scope.id)
                 $http({
                     method: 'JSONP',
-                    
-                    // url: API_URL_ROOT+"?&callback=JSON_CALLBACK&m=Apituwenol&c=interact&a=show&type=comment&custom_appkey=A3O8gmwJURFi8d74nuKxRpczjoAydHSE&custom_appid=137&topic_id=596&type=comment&content="+$scope.content
-                    url: API_URL_ROOT + "?&callback=JSON_CALLBACK&m=Apituwenol&c=interact&a=show&type=comment&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&content=" + $scope.content + '&topic_id=' + $scope.id
+                    url: API_URL_ROOT +httpServer.param(param)
+                    //url: API_URL_ROOT + "?&callback=JSON_CALLBACK&m=Apituwenol&c=interact&a=show&type=comment&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&content=" + $scope.content + '&topic_id=' + $scope.id
                 }).success(function (comment) {
                     // $scope.comment=comment;
                     //取消正在加载图片
@@ -366,13 +384,24 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
                 // console.log($scope.moved)
                 // $scope.load=true;
                 // ajax
+                var param = {
+                    custom_appkey:'G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC',
+                    custom_appid:83,
+                    m:'Apituwenol',
+                    c:'thread',
+                    a:'show_comment',
+                    topic_id:$scope.id,
+                    content:$scope.content,
+                    order:'desc',
+                    count:$scope.count,
+                    offset: $scope.commitArr.length
+                }
                 $http({
                     method: 'JSONP',
+                    url: API_URL_ROOT +httpServer.param(param)
                     //评论列表接口 排序参 顺序 order=asc 倒序 order=desc
-                    url: API_URL_ROOT + '?m=Apituwenol&c=thread&a=show_comment&callback=JSON_CALLBACK&' +
-                    'custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&order=sc&offset=' + $scope.commitArr.length + '&count=' + $scope.count + '&topic_id=' + $scope.id
-                    
-                    // url:API_URL_ROOT+"?callback=JSON_CALLBACK&m=Apituwenol&c=thread&a=show_comment&custom_appkey=da1c994019b00a760a68e735db9dc281&custom_appid=197&offset="+$scope.offset+'&&count='+$scope.count
+                    //url: API_URL_ROOT + '?m=Apituwenol&c=thread&a=show_comment&callback=JSON_CALLBACK&' +
+                    //'custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&order=desc&offset=' + $scope.commitArr.length + '&count=' + $scope.count + '&topic_id=' + $scope.id
                 }).success(function (comment) {
                     // $scope.load=false;
                     Array.prototype.unshift.apply($scope.commitArr, comment);

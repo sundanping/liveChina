@@ -149,7 +149,7 @@ liveChinaApp.constant('API_URL_ROOT', API_URL_ROOT);
             });
         }
         
-        http($scope.count, $scope.offset, $scope.show_tailer, $scope.searchWords)//mounted
+        http($scope.count, $scope.offset, $scope.show_tailer, $scope.searchWords) //mounted
         $scope.loadMore = function () {
             $scope.loadlength = 0;
             $scope.offset += $scope.count
@@ -157,15 +157,19 @@ liveChinaApp.constant('API_URL_ROOT', API_URL_ROOT);
             $scope.searchWords = ''
             http($scope.count, $scope.offset, $scope.show_tailer, $scope.searchWords)
         }
-        
         $scope.search = function () {
-            if ($scope.searchWords.length === 0) {
-                return false
-            }
+            
             $scope.searchType = false;
             $scope.searchNumber++;
-            
-            if ($scope.searchWords.length > 0) {
+            //没有字段时候搜索返回列表页
+            if ($scope.searchWords.length === 0) {
+                $scope.trailer.length = 0;
+                $scope.history.length = 0;
+                $scope.live.length = 0;
+                http($scope.count, $scope.offset, $scope.show_tailer, $scope.searchWords)
+                $scope.searchType = true;
+            }
+            else if ($scope.searchWords.length > 0) {
                 $scope.live.length = 0;
                 $scope.history.length = 0;
                 $scope.trailer.length = 0;

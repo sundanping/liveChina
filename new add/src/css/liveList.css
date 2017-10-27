@@ -188,9 +188,11 @@
     background-color: #389dca;
 }
 
-.videobox{
+.video-box{
     height: 5.79rem;
-
+}
+.height-5rem{
+    height:5rem ;
 }
 #none{
     display: none!important;
@@ -431,8 +433,6 @@ live-name{
 .color-333{
     color:#000;
 }
-
-
 main {
     /* main绝对定位，进行内部滚动 */
     position: absolute;
@@ -445,8 +445,6 @@ main {
     position: absolute;
     /*bottom: 1.1rem;*/
 }
-
-
 /* lists*/
 .lists{
     width: 100%;

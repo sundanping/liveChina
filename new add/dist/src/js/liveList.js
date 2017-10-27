@@ -1,9 +1,8 @@
-liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeParams', '$location', '$timeout', '$interval', '$window',
-    function ($scope, $http, API_URL_ROOT, $routeParams, $location, $timeout, $interval, $window) {
+liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeParams', '$location', '$timeout', '$interval', '$window','httpServer',
+    function ($scope, $http, API_URL_ROOT, $routeParams, $location, $timeout, $interval, $window,httpServer) {
         //获取城市具体信息BEGIN
         var wifi = navigator.userAgent;
         var wifiPosition = wifi.lastIndexOf('_');
-        
         var wifiCity = wifi.substr(wifiPosition+1,6);
         if( wifiCity.toLocaleLowerCase().substr(0,3) !='wif' ){
             wifiCity = 'not find wifiCity'
@@ -49,9 +48,19 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
         //简介互动切换 END
         //返回按钮 BEGIN
         //ajax  请求页面
+        var param = {
+            custom_appkey:'G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC',
+            custom_appid:83,
+            m:'Apituwenol',
+            c:'tuwenol',
+            a:'detail',
+            id:$scope.id,
+            type:wifiCity
+        }
+        var URL_LIVE_LIST ='http://operate.tw.live.hoge.cn';
         $http({
             method: 'JSONP',
-            url: 'http://operate.tw.live.hoge.cn' + "?callback=JSON_CALLBACK&m=Apituwenol&c=tuwenol&a=detail&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&id=" + $scope.id+'&type='+wifiCity
+            url: URL_LIVE_LIST +httpServer.param(param)
         }).success(function (res) {
             $scope.imgUrl=(res[0].sort_pic.host+res[0].sort_pic.dir+res[0].sort_pic.filepath+res[0].sort_pic.filename)
             $scope.share_url = res.share_url;//分享路径
@@ -106,11 +115,24 @@ liveChinaApp.controller('liveList', ['$scope', '$http', 'API_URL_ROOT', '$routeP
             $scope.loading = true;
             // $scope.offset+=3;
             $scope.commentNum = 0;
+            var param = {
+                custom_appkey:'G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC',
+                custom_appid:83,
+                m:'Apituwenol',
+                c:'thread',
+                a:'show_comment',
+                topic_id:$scope.id,
+                offset:0,
+                order:'desc',
+                count:6
+            }
+            
             $http({
                 method: 'JSONP',
                 //评论列表接口 排序 顺序 order=asc 倒序 order=desc
-                url: API_URL_ROOT + '?m=Apituwenol&c=thread&a=show_comment&callback=JSON_CALLBACK' +
-                '&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&order=desc&count=6&offset=0&topic_id=' + $scope.id
+                url:API_URL_ROOT+httpServer.param(param)
+                //url: API_URL_ROOT + '?m=Apituwenol&c=thread&a=show_comment&callback=JSON_CALLBACK' +
+                //'&custom_appkey=G8FHXedPgl4i7sA2rfUISxfaB0NB5WJC&custom_appid=83&order=desc&count=6&offset=0&topic_id=' + $scope.id
             }).success(function (comment) {
                 $scope.loading = false;
                 
